@@ -3,26 +3,24 @@ import "./AdminLogin.css";
 import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 function AdminLogin() {
-
   const [adminLogin, setAdminLogin] = useState({
     username: "",
-    password: ""
-  })
+    password: "",
+  });
 
-  const handleLogin =async()=>{
+  const handleLogin = async () => {
     try {
-      const response = await axios.post(``,adminLogin)
+      const response = await axios.post(``, adminLogin);
       console.log(response);
-      localStorage.setItem("token",response.data)
+      localStorage.setItem("token", response.data);
       setAdminLogin({
-        username:"",
-        password:""
-      })
+        username: "",
+        password: "",
+      });
     } catch (error) {
       console.log(error);
     }
-
-  }
+  };
 
   const login = () => {
     document.querySelector(".signup-form-container").style.cssText =
@@ -69,7 +67,9 @@ function AdminLogin() {
             type="text"
             placeholder="Username"
             className="input-field"
-            onChange={(e) => setAdminLogin({ ...adminLogin, username: e.target.value })}
+            onChange={(e) =>
+              setAdminLogin({ ...adminLogin, username: e.target.value })
+            }
           />
 
           <br />
@@ -79,7 +79,9 @@ function AdminLogin() {
             type="password"
             placeholder="Password"
             className="input-field"
-            onChange={(e) => setAdminLogin({ ...adminLogin, password: e.target.value })}
+            onChange={(e) =>
+              setAdminLogin({ ...adminLogin, password: e.target.value })
+            }
           />
           <br />
           <br />
