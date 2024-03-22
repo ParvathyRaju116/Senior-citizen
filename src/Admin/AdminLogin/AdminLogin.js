@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./AdminLogin.css";
-import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function AdminLogin() {
+  const navigate = useNavigate();
   const [adminLogin, setAdminLogin] = useState({
     username: "",
     password: "",
@@ -10,15 +12,34 @@ function AdminLogin() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(``, adminLogin);
-      console.log(response);
-      localStorage.setItem("token", response.data);
-      setAdminLogin({
-        username: "",
-        password: "",
-      });
+      const response = await axios.post(
+        `http://localhost:5000/adminLogin`,
+        adminLogin
+      );
+      if (response.status === 200) {
+        setAdminLogin({
+          username: "",
+          password: "",
+        });
+        console.log(response);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Admin Login Success",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/admin-dash");
+      }
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Invalid Username or Password",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   };
 
@@ -85,7 +106,7 @@ function AdminLogin() {
           />
           <br />
           <br />
-          <button className="login-button" type="button">
+          <button className="login-button" type="button" onClick={handleLogin}>
             Login
           </button>
         </div>
