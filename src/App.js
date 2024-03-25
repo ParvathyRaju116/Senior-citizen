@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AdminDashboard from './Admin/AdminDashboard'
+
 import AdminLogin from './Admin/AdminLogin/AdminLogin';
+import AdminDashboard from './Admin/Admin Dashboard/AdminDashboard';
 
 function App() {
   return (
