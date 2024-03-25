@@ -12,6 +12,7 @@ import './AdminSidebar.css';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
+
 function AdminSidebar() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'scroll initial' }}>
@@ -25,24 +26,23 @@ function AdminSidebar() {
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <a className="nav-link" href="#">
-            <i className="fa fa-bell "style={{ color: 'white' }} ></i> 
+            <i className="fa fa-bell "style={{ color: 'white' }}  title="Notification" ></i> 
           </a>
         </li>
         <li className="nav-item mx-2"  >
         <a className="nav-link" href="#">
-        <i className="fa fa-envelope" style={{ color: 'white' }}></i>
+        <i className="fa fa-envelope" style={{ color: 'white' }} title="Messages"     ></i>
 
           </a> 
         </li>
         <li> 
 
-        <Stack direction="row" spacing={2} className='mt-1' >
-        <Avatar style={{ width: '30px', height: '30px' }} >A</Avatar>
-              
-            </Stack>
+        <a className="nav-link" href="#">
+      <i className="fa fa-power-off" style={{ color: 'white', marginRight: '5px' }} title="Log Out"></i>
+    </a>
 
         </li>
-        {/* Add more navbar items as needed */}
+      
       </ul>
     </div>
   </div>
