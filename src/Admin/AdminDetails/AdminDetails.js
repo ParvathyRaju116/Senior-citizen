@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import './AdminDetails.css';
 import ServiceGraph from '../AdminGraph/ServiceGraph';
 function AdminDetails() {
-  const [isAsideMinimized, setIsAsideMinimized] = useState(false);
 
   return (
-    <div className={`admin-main ${isAsideMinimized ? 'aside-minimized' : ''}`}>
+    <div >
       <i className="fa fa-home icon-with-text"></i>
       <h6 className='d1'>Dashboard</h6>
 
@@ -31,8 +30,8 @@ function AdminDetails() {
       <div className="additional-row" >
         
         <div className="admin-detail "style={{backgroundColor:"white"}} >
-        <h5 className='m-2'  >Services</h5>
- <ServiceGraph></ServiceGraph>
+        
+<ServiceGraph></ServiceGraph>
         </div>
         {/* Second identical div */}
         <div className="admin-detail" style={{backgroundColor:"white"}}>
