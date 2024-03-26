@@ -20,17 +20,16 @@ function ServiceGraph() {
 
   return (
     <div>
+      <h2 className='mt-2 text-center' style={{ color: "#9C6644" }}>Services</h2>
       <BarChart
-        xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-        series={[{ data: [4, 3, 5] }]} // Keep only one set of data
-        width={300}
-        height={300}
+        xAxis={[{ scaleType: 'band', data: ['Homecare', 'Therapy', 'Nursing Care', 'Doctor'] }]}
+        series={[
+          { data: [4, 3, 5], color: ['#9C6644', '#7F5539', '#B08968'] } 
+        ]}
+        width={400}
+        height={200}
       />
-      <div>
-        
-      </div>
     </div>
-    
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './AdminDetails.css';
 import ServiceGraph from '../AdminGraph/ServiceGraph';
+import Payment from '../Admin Dashboard/AdminPayment/Payment';
+
 function AdminDetails() {
 
   return (
@@ -35,7 +37,7 @@ function AdminDetails() {
         </div>
         {/* Second identical div */}
         <div className="admin-detail" style={{backgroundColor:"white"}}>
-          
+         <Payment></Payment> 
         </div>
       </div>
     </div>
