@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import './AdminAttendance.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function AdminAttendance() {
   const [students, setStudents] = useState([
-    { name: 'John Doe', attendance: 'Present' },
-    { name: 'Jane Doe', attendance: 'Absent' },
-    { name: 'Peter Parker', attendance: 'Late' },
+    { name: 'John Doe', attendance: 'Present', date: new Date() }, // Added date property
+    { name: 'Jane Doe', attendance: 'Absent', date: new Date() },
+    { name: 'Peter Parker', attendance: 'Late', date: new Date() },
   ]);
   
-
   const handleAttendanceChange = (event, index) => {
     const newStudents = [...students];
     newStudents[index].attendance = event.target.value;
+    setStudents(newStudents);
+  };
+
+  const handleDateChange = (date, index) => {
+    const newStudents = [...students];
+    newStudents[index].date = date;
     setStudents(newStudents);
   };
 
@@ -26,6 +33,7 @@ function AdminAttendance() {
           <tr>
             <th>Name</th>
             <th>Attendance</th>
+            <th>Date</th> {/* Added Date column */}
           </tr>
         </thead>
         <tbody className='table2'>
@@ -38,6 +46,9 @@ function AdminAttendance() {
                   <option value="Absent">Absent</option>
                   <option value="Late">Late</option>
                 </select>
+              </td>
+              <td>
+                <DatePicker selected={student.date} onChange={(date) => handleDateChange(date, index)} />
               </td>
             </tr>
           ))}
