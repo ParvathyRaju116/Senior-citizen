@@ -98,7 +98,7 @@ function AdminSidebar() {
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div style={{ padding: '20px 100px' }}>
           <Stack direction="row" spacing={2}>
-      <Avatar sx={{ bgcolor: deepOrange[500]}} >L</Avatar>
+          <Avatar style={{ color: "white", backgroundColor:"#9C6644"}}>L</Avatar>
       
     </Stack>
           

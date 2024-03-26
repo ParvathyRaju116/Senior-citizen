@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import './AdminAttendance.css';
 
 function AdminAttendance() {
@@ -9,7 +7,7 @@ function AdminAttendance() {
     { name: 'Jane Doe', attendance: 'Absent' },
     { name: 'Peter Parker', attendance: 'Late' },
   ]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  
 
   const handleAttendanceChange = (event, index) => {
     const newStudents = [...students];
@@ -22,10 +20,7 @@ function AdminAttendance() {
       <div className='attendance-title mt-3'>
         <h3>Service Provider</h3>
       </div>
-      <div className='date-picker-container'>
-        <label>Date:</label>
-        <DatePicker selected={selectedDate} onChange={date => setSelectedDate(date)} />
-      </div>
+  
       <table className='attendance-table'>
         <thead>
           <tr>

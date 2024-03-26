@@ -6,10 +6,9 @@ function AdminDetails() {
   return (
     <div   >
 
-<div className=" icon-with-text">
-  <i className="fa fa-home icon-with-text"></i>
-  <h6 className='mt-4 '>DashBoard</h6>
-</div>
+  <i className="fa fa-home   icon-with-text"></i>
+  <h6 className='d1'  >DashBoard</h6>
+
 <div className="admin-details-container" >
 
 <div className="admin-detail home-icon-container">

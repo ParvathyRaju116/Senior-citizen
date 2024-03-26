@@ -12,7 +12,7 @@
   
   .icon-with-text i {
     margin-right: 10px; 
-    margin-top: 10px;/* Adjust the margin as needed */
+    margin-top: -80px;/* Adjust the margin as needed */
   }
   .admin-details-container {
     display: flex;
@@ -29,7 +29,7 @@
   align-items: center;
   border: 2px solid #EDE0D4;
   border-radius: 10px;
-  background-color:#7F5539;
+  background-color:#B08968;
   color: white;
   
   }
@@ -46,7 +46,7 @@
   
   .admin-detail h6 {
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: -10px;
   }
   
   /* Adjustments for smaller screens */
@@ -58,3 +58,8 @@
     .admin-detail {
       margin-bottom: 20px;
     }}
+
+    .d1{
+      margin-top:-30px;
+      margin-left: 40px;
+    }
