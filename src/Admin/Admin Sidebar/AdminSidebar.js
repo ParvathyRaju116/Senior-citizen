@@ -68,27 +68,27 @@ function AdminSidebar() {
 
         <CDBSidebarContent className="sidebar-content" >
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to="" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="home">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
+            <NavLink exact to="" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="book">Bookings</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+            <NavLink exact to="" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="comment">Feedbacks</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
+            <NavLink exact to="" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">Webinar/Workshop</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
+            <NavLink exact to="" target="_blank" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="handshake">Virtual Assistance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div style={{ padding: '20px 5px' }}>
-            Sidebar Footer
+           Logout
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
