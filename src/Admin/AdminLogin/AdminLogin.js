@@ -55,7 +55,7 @@ function AdminLogin() {
     document.querySelector(".button-1").style.cssText = "display: block";
   };
   return (
-    <div className="containeradmin">
+    <div className="containeradmin login-body">
       {/* Data or Content */}
       <div >
         <div className="content-adminholder">

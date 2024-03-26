@@ -1,0 +1,60 @@
+.home-icon-container {
+   color: linear-gradient(to bottom, #525a6d, #eaa0a2);
+    padding: 10px; /* Adjust padding as needed */
+   
+    background-color: beige;
+  }
+  
+  .icon-with-text {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+  }
+  
+  .icon-with-text i {
+    margin-right: 10px; 
+    margin-top: 10px;/* Adjust the margin as needed */
+  }
+  .admin-details-container {
+    display: flex;
+    padding: 30px;
+  }
+  
+  .admin-detail {
+    flex: 1;
+    margin: 0 10px;
+    flex: 1;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #EDE0D4;
+  border-radius: 10px;
+  background-color:#7F5539;
+  color: white;
+  
+  }
+  
+ 
+  
+  .icon-with-text i {
+    font-size: 24px;
+  }
+  
+  .icon-with-text h6 {
+    margin-top: 10px;
+  }
+  
+  .admin-detail h6 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media screen and (max-width: 768px) {
+    .admin-details-container {
+      flex-direction: column;
+    }
+    
+    .admin-detail {
+      margin-bottom: 20px;
+    }}
