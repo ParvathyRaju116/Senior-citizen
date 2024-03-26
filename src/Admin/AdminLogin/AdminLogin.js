@@ -57,7 +57,7 @@ function AdminLogin() {
   return (
     <div className="containeradmin">
       {/* Data or Content */}
-      <div className="box-1">
+      <div >
         <div className="content-adminholder">
           <h2 className="fade-in"></h2>
           <h2 className="fade-in">

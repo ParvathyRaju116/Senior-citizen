@@ -26,12 +26,13 @@ function AdminSidebar() {
       <ul className="navbar-nav ms-auto">
         <li className="nav-item">
           <a className="nav-link" href="#">
-            <i className="fa fa-bell "style={{ color: 'white' }}  title="Notification" ></i> 
-          </a>
+          <i className="fa fa-message" style={{ color: 'white' }} title="Chat"></i>          </a>
         </li>
+
+        
         <li className="nav-item mx-2"  >
         <a className="nav-link" href="#">
-        <i className="fa fa-envelope" style={{ color: 'white' }} title="Messages"     ></i>
+        <i className="fa fa-envelope" style={{ color: 'white' }} title="Leave Request"     ></i>
 
           </a> 
         </li>
