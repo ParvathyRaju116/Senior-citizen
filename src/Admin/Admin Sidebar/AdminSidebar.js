@@ -62,7 +62,7 @@ function AdminSidebar() {
 
       {/* Sidebar */}
       <CDBSidebar textColor="#fff" style={{ background: 'linear-gradient(to bottom, #9C6644, #DDB892)' }}>
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+        <CDBSidebarHeader >
           <a className="text-decoration-none" style={{ color: 'inherit' }}>
             <Stack direction="row" spacing={2}>
               <Avatar
@@ -75,7 +75,7 @@ function AdminSidebar() {
           </a>
         </CDBSidebarHeader>
 
-        <CDBSidebarContent className="sidebar-content" >
+        <CDBSidebarContent  >
           <CDBSidebarMenu>
             <NavLink exact to="" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="home">Dashboard</CDBSidebarMenuItem>
