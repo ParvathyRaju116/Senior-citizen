@@ -1,0 +1,8 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.card1{
+    background: linear-gradient(to right,	#C8A8E9, #E3AADD );
+
+}
