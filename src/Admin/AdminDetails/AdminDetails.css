@@ -31,6 +31,9 @@
   border-radius: 10px;
   background-color:#B08968;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   }
   
@@ -56,10 +59,27 @@
     }
     
     .admin-detail {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }}
 
     .d1{
-      margin-top:-30px;
+      margin-top:-25px;
       margin-left: 40px;
     }
+    .b1{
+      margin-right: 200px;
+      font-size: 40px;
+    }
+    .b2{
+      margin-left: -200px;
+      
+    }
+    .b3{
+      margin-left: -140px;
+    }
+    .additional-row {
+      display: flex;
+    }
+    
+   
+    
