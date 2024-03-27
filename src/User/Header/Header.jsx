@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <>
-      <Navbar expand="lg" className="card1 bg-body-tertiary" style={{height:'70px'}}>
+      <Navbar expand="lg" className="fixed-top" style={{height:'70px'}}>
         <Container className='header'>
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -19,8 +19,8 @@ function Header() {
                 <Avatar alt="Remy Sharp" src="https://static.vecteezy.com/system/resources/previews/019/879/186/original/user-icon-on-transparent-background-free-png.png" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-               <Link to={'/user-profile'} style={{textDecoration:'none'}}> <Dropdown.Item>Profile</Dropdown.Item></Link>
-                <Dropdown.Item href="#action/3.2">Settings</Dropdown.Item>
+              <Dropdown.Item><Link to={'/user-home'} style={{textDecoration:'none',color:'black'}}> Home</Link></Dropdown.Item>
+              <Dropdown.Item><Link to={'/user-profile'} style={{textDecoration:'none',color:'black'}}> Profile</Link></Dropdown.Item>
                 <Dropdown.Item href="#action/3.3">Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

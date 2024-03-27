@@ -125,9 +125,9 @@ function Profile() {
 
   return (
     <>
-     <Header/> 
-     <div className='d-flex justify-content-center mt-5'>
-         <div className='card shadow p-5 w-50'>
+     <Header /> 
+     <div className='d-flex justify-content-center pt-5'>
+         <div className='card shadow p-5 w-50 mt-5'>
             <div className='d-flex justify-content-between'>
                <h3> Profile</h3>
                <button className='btn 'onClick={() => setOpen(!open)} ><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-180 ms-auto"></i></button>

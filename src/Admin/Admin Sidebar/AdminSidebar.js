@@ -26,13 +26,9 @@ function AdminSidebar() {
     </button>
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav ms-auto">
-
       <div className="dropdown">
-      
-      
     </div>
        
-
     <li className="nav-item mx-2"  >
         <a className="nav-link" href="#">
         <i className="fa fa-bell" style={{ color: 'white' }} title="Notification"     ></i>
@@ -50,7 +46,6 @@ function AdminSidebar() {
         <a className="nav-link" href="#">
       <i className="fa fa-power-off" style={{ color: 'white', marginRight: '5px' }} title="Log Out"></i>
     </a>
-
         </li>
       
       </ul>
