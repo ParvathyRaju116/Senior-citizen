@@ -75,10 +75,13 @@ function AdminSidebar() {
             <NavLink exact to="/admin-dash" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="home">Dashboard</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/admin-leave" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="note-sticky">Leave Requests</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink exact to="" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Bookings</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="" activeClassName="activeClicked">
+            <NavLink exact to="/admin-feedback" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="comment">Feedbacks</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="" activeClassName="activeClicked">
