@@ -8,6 +8,7 @@ import Profile from './User/Profile/Profile';
 import Complaints from './User/Complaints/Complaints';
 import Home from './Common/Home';
 import MyBookings from './User/Bookings/MyBookings';
+import Singup from './ServiceProvider/LoginRegister/Singup'
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path='/user-complaints' element={<Complaints/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/user-bookings' element={<MyBookings/>} />
-
+        <Route path='/service-login' element={<Singup/>} />
+        <Route path='/service-reg' element={<Singup register/>} />
       </Routes>
     </div>
   );
