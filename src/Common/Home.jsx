@@ -3,61 +3,81 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { Avatar } from "@mui/material";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import Footer from "../User/Footer/Footer";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleAdmin = () => {
+    navigate("/admin-login");
+  };
+
+  const handleUser = () => {
+    navigate("/user-login");
+  };
+
+  const handleService = () => {
+    navigate("/sp-home");
+  };
+
   return (
     <>
       <Navbar expand="lg" style={{ height: "70px", width: "100%" }}>
         <Container className="header">
           <Navbar.Brand className="fw-bolder">LiveCare</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Dropdown className="ms-auto">
-              <Dropdown.Toggle variant="link" id="dropdown-basic">
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://cdn-icons-png.flaticon.com/512/5509/5509584.png"
-                />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item>
-                  <span style={{ textDecoration: "none", color: "black" }}>
-                    <Link
-                      to="/user-login"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      {" "}
-                      User
-                    </Link>
+
+          <Dropdown className="ms-auto">
+            <Dropdown.Toggle variant="link" id="dropdown-basic">
+              <Avatar
+                alt="Remy Sharp"
+                src="https://cdn-icons-png.flaticon.com/512/5509/5509584.png"
+              />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Link
+                to="/user-login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Dropdown.Item as="span">
+                  <span
+                    style={{ textDecoration: "none", color: "black" }}
+                    onClick={handleUser}
+                  >
+                    User
                   </span>
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <span style={{ textDecoration: "none", color: "black" }}>
-                    <Link
-                      to="/admin-login"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      {" "}
-                      Admin
-                    </Link>
+              </Link>
+              <Link
+                to="/admin-login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Dropdown.Item as="span">
+                  <span
+                    style={{ textDecoration: "none", color: "black" }}
+                    onClick={handleAdmin}
+                  >
+                    Admin
                   </span>
                 </Dropdown.Item>
-                <Dropdown.Item>
-                  <span style={{ textDecoration: "none", color: "black" }}>
-                    <Link
-                      to="/sp-home"
-                      style={{ textDecoration: "none", color: "black" }}
-                    >
-                      Service Provide
-                    </Link>
+              </Link>
+              <Link
+                to="/sp-home"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Dropdown.Item as="span">
+                  <span
+                    style={{ textDecoration: "none", color: "black" }}
+                    onClick={handleService}
+                  >
+                    Service Provide
                   </span>
                 </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Navbar.Collapse>
+              </Link>
+            </Dropdown.Menu>
+          </Dropdown>
         </Container>
       </Navbar>
       <div className="home d-flex justify-content-center align-items-center">
