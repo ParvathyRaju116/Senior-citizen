@@ -1,35 +1,66 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import { Avatar } from '@mui/material';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import { Avatar } from "@mui/material";
+import Dropdown from "react-bootstrap/Dropdown";
+import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
-import Footer from '../User/Footer/Footer';
-
+import Footer from "../User/Footer/Footer";
 
 function Header() {
   return (
     <>
-      <Navbar expand="lg" style={{height:'70px',width:'100%'}}>
-        <Container className='header'>
-          <Navbar.Brand className='fw-bolder'>LiveCare</Navbar.Brand>
+      <Navbar expand="lg" style={{ height: "70px", width: "100%" }}>
+        <Container className="header">
+          <Navbar.Brand className="fw-bolder">LiveCare</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          <Dropdown className='ms-auto'>
+            <Dropdown className="ms-auto">
               <Dropdown.Toggle variant="link" id="dropdown-basic">
-                <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/5509/5509584.png" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://cdn-icons-png.flaticon.com/512/5509/5509584.png"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                              <Dropdown.Item><Link to={'/user-login'} style={{ textDecoration: 'none', color: 'black' }}> User</Link></Dropdown.Item>
-                              <Dropdown.Item><Link to={'/admin-login'} style={{ textDecoration: 'none', color: 'black' }}> Admin</Link></Dropdown.Item>
-                              <Dropdown.Item><Link to={'/user-home'} style={{ textDecoration: 'none', color: 'black' }}>Service Provide</Link></Dropdown.Item>
+                <Dropdown.Item>
+                  <span style={{ textDecoration: "none", color: "black" }}>
+                    <Link
+                      to={"/user-login"}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      {" "}
+                      User
+                    </Link>
+                  </span>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <span style={{ textDecoration: "none", color: "black" }}>
+                    <Link
+                      to={"/admin-login"}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      {" "}
+                      Admin
+                    </Link>
+                  </span>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <span style={{ textDecoration: "none", color: "black" }}>
+                    <Link
+                      to={"/user-home"}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Service Provide
+                    </Link>
+                  </span>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
         </Container>
-          </Navbar>
-          <div className="home d-flex justify-content-center align-items-center">
+      </Navbar>
+      <div className="home d-flex justify-content-center align-items-center">
         <Container>
           <Row>
             <Col md={6}>
@@ -50,8 +81,8 @@ function Header() {
             <Col md={6}></Col>
           </Row>
         </Container>
-          </div>
-          <div className="services mb-5">
+      </div>
+      <div className="services mb-5">
         <Container>
           <h1 className="mt-3 text-center text-dark mb-5">SERVICES</h1>
 
@@ -108,32 +139,58 @@ function Header() {
                 <i class="fas fa-exclamation-triangle fa-2x"></i>
               </div>
             </Col>
-            <Col md={4} >
+            <Col md={4}>
               <div className="Card shadow therapy ms-5 flex-column rounded">
                 <h3>Treatment</h3>
                 <i class="fas fa-medkit fa-2x"></i>
-
               </div>
             </Col>
           </Row>
         </Container>
-          </div>
-          
-          <div className='d-flex justify-content-center align-items-center mb-5'>
-              <Container>
-                  <h1 className='text-dark text-center mb-5'>ABOUT US</h1>
-                  <Row>
-                      <Col md={6}>
-                          <img style={{ width: '300px', height: '400px' }} src="https://papayacare.com/wp-content/uploads/2023/09/Caring-for-the-Elderly-6-Things-to-Remember.jpg" alt="" className='rounded' />
-                          <img style={{width:'300px',height:'400px',borderRadius:'10px'}} src="https://hss-me.com/wp-content/uploads/2022/08/Elder-care-dubai.jpg" alt="" className='mt-5 ms-4 pt-5' />
-                      </Col>
-                      <Col md={6} className='d-flex justify-content-center align-items-center'>
-                          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident dolores, aut delectus, nesciunt voluptatem facere, ducimus reprehenderit quos ad magnam laborum cupiditate est expedita sit repellendus assumenda explicabo odio necessitatibus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione corporis, veritatis minima numquam perferendis harum voluptate eveniet voluptatum aspernatur cum id laudantium inventore dolor pariatur laborum porro sit quia ullam?</p>
-                      </Col>
-                  </Row>
-              </Container>
-          </div>
-          <Footer/>
+      </div>
+
+      <div className="d-flex justify-content-center align-items-center mb-5">
+        <Container>
+          <h1 className="text-dark text-center mb-5">ABOUT US</h1>
+          <Row>
+            <Col md={6}>
+              <img
+                style={{ width: "300px", height: "400px" }}
+                src="https://papayacare.com/wp-content/uploads/2023/09/Caring-for-the-Elderly-6-Things-to-Remember.jpg"
+                alt=""
+                className="rounded"
+              />
+              <img
+                style={{
+                  width: "300px",
+                  height: "400px",
+                  borderRadius: "10px",
+                }}
+                src="https://hss-me.com/wp-content/uploads/2022/08/Elder-care-dubai.jpg"
+                alt=""
+                className="mt-5 ms-4 pt-5"
+              />
+            </Col>
+            <Col
+              md={6}
+              className="d-flex justify-content-center align-items-center"
+            >
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Provident dolores, aut delectus, nesciunt voluptatem facere,
+                ducimus reprehenderit quos ad magnam laborum cupiditate est
+                expedita sit repellendus assumenda explicabo odio
+                necessitatibus. Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Ratione corporis, veritatis minima numquam
+                perferendis harum voluptate eveniet voluptatum aspernatur cum id
+                laudantium inventore dolor pariatur laborum porro sit quia
+                ullam?
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </>
   );
 }

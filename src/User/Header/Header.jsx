@@ -4,9 +4,24 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Avatar } from '@mui/material';
 import './Headre.css'
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+
 
 function Header() {
+  const navigate = useNavigate()
+
+  const handleLogout = ()=>{
+
+    sessionStorage.clear()
+    navigate("/")
+    Swal.fire({
+      title: "Logged out",
+      icon: "success"
+    });
+  }
+
   return (
     <>
       <Navbar expand="lg"  style={{height:'70px'}}>
@@ -24,7 +39,7 @@ function Header() {
               <Dropdown.Item><Link to={'/user-feedback'} style={{textDecoration:'none',color:'black'}}> Feedback</Link></Dropdown.Item>
                 <Dropdown.Item><Link to={'/user-complaints'} style={{ textDecoration: 'none', color: 'black' }}> Complaints</Link></Dropdown.Item>
                 <Dropdown.Item><Link to={'/user-bookings'} style={{textDecoration:'none',color:'black'}}> My Bookings</Link></Dropdown.Item>
-              <Dropdown.Item href="#action/3.3">Logout</Dropdown.Item>
+              <Dropdown.Item href="#action/3.3" onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
