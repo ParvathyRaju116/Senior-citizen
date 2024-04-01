@@ -69,8 +69,11 @@ function Login({ register }) {
       );
 
       if (result.status >= 200 && result.status < 300) {
-        navigate("/service-login");
-
+        navigate("/service-reg2");
+        Swal.fire({
+          title: "Primary Reg Completed",
+          icon: "Success",
+        });
         setUserdata({
           username: "",
           email: "",
@@ -93,9 +96,13 @@ function Login({ register }) {
     }
   };
 
-  const handleSecondReg = async (e) => {
+  const handleSecondReg = async () => {
     const reqBody = new FormData();
-    reqBody.append("profile_img", profile_img);
+
+    if (profile_img) {
+      reqBody.append("profile_img", profile_img, profile_img.name);
+    }
+
     reqBody.append("email", userdata.email);
 
     try {
@@ -111,9 +118,11 @@ function Login({ register }) {
 
       if (response.status >= 200 && response.status < 300) {
         Swal.fire({
-          title: "Resitration Completed Wait For Admin Response",
-          icon: "Success",
+          title: "Registration Completed, Wait For Admin Response",
+          icon: "success",
         });
+        setUserdata({email:""})
+        setProfile_img(null)
       }
     } catch (error) {
       console.log(error);
