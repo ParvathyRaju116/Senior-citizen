@@ -72,7 +72,7 @@ function AdminSidebar() {
 
         <CDBSidebarContent  >
           <CDBSidebarMenu>
-            <NavLink exact to="" activeClassName="activeClicked">
+            <NavLink exact to="/admin-dash" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="home">Dashboard</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="" activeClassName="activeClicked">
