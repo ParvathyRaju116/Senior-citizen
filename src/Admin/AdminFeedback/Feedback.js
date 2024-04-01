@@ -38,7 +38,7 @@ function Feedback() {
               <TableRow className='table-row'>
                 <TableCell align="center" className='table-cell feed5'>
                   <Stack direction="row" className='ms-5 feed5'>
-                    <Avatar alt="Remy Sharp" src="https://i.postimg.cc/pT58SGxM/images.png" />
+                    <Avatar alt="Remy Sharp" src="https://i.postimg.cc/nLxDH6gH/senior-man-avatar-smiling-elderly-man-with-beard-with-gray-hair-3d-vector-people-character-illustrat.jpg" />
                     <h6 className='mt-3 ms-3'>Midhun P M</h6>
                   </Stack>
                 </TableCell>
@@ -51,7 +51,7 @@ function Feedback() {
 
                     <Stack direction="row" spacing={2}>
       <Button variant="contained" color="success">
-        Success
+        Respond
       </Button>
       
     </Stack>
