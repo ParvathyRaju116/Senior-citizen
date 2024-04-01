@@ -9,26 +9,19 @@ function Profile() {
   const [isUpdate, setIsUpdate] = useState(false);
 
   const [profile, setProfile] = useState({
-    id: "",
     username: "",
     email: "",
     password: "",
     number: "",
     address: "",
   });
+  const [id, setId] = useState(null);
 
   const handleProfile = async () => {
-    const reqBody = new FormData();
-    reqBody.append("username", profile.username);
-    reqBody.append("email", profile.email);
-    reqBody.append("password", profile.password);
-    reqBody.append("number", profile.number);
-    reqBody.append("address", profile.address);
-
     try {
       const response = await axios.post(
-        `http://localhost:5000/editUser/${profile.id}`,
-        reqBody
+        `http://localhost:5000/editUser/${id}`,
+        profile
       );
 
       if (response.status >= 200 && response.status <= 300) {
@@ -37,7 +30,10 @@ function Profile() {
           title: "Updated Successfully",
           icon: "success",
         });
-        sessionStorage.setItem('existingUser', JSON.stringify(response.data.updatedUser));
+        sessionStorage.setItem(
+          "existingUser",
+          JSON.stringify(response.data.updatedUser)
+        );
         setIsUpdate(true);
       }
     } catch (error) {
@@ -53,9 +49,9 @@ function Profile() {
     if (sessionStorage.getItem("existingUser")) {
       const user = JSON.parse(sessionStorage.getItem("existingUser"));
       if (user) {
+        setId(user._id);
         setProfile({
           ...profile,
-          id: user._id || "",
           username: user.username || "",
           email: user.email || "",
           address: user.address || "",
@@ -66,6 +62,7 @@ function Profile() {
     }
   }, [isUpdate]);
 
+  console.log(profile);
   return (
     <>
       <Header />
@@ -139,7 +136,7 @@ function Profile() {
               <button
                 type="button"
                 className="btn btn-warning mt-3"
-                onClick={handleProfile}
+                onClick={() => handleProfile()}
               >
                 Update
               </button>
