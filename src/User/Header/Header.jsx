@@ -39,7 +39,7 @@ function Header() {
               <Dropdown.Item><Link to={'/user-feedback'} style={{textDecoration:'none',color:'black'}}> Feedback</Link></Dropdown.Item>
                 <Dropdown.Item><Link to={'/user-complaints'} style={{ textDecoration: 'none', color: 'black' }}> Complaints</Link></Dropdown.Item>
                 <Dropdown.Item><Link to={'/user-bookings'} style={{textDecoration:'none',color:'black'}}> My Bookings</Link></Dropdown.Item>
-              <Dropdown.Item href="#action/3.3" onClick={handleLogout}>Logout</Dropdown.Item>
+              <Dropdown.Item  onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
