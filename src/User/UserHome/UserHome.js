@@ -9,7 +9,7 @@ function UserHome() {
     <>
       <Header />
       <div className="home d-flex justify-content-center align-items-center">
-        <Container>
+        <Container fluid>
           <Row>
             <Col md={6}>
               <h1 className="ms-5">

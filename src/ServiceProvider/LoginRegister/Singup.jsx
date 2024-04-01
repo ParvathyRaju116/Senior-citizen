@@ -68,24 +68,21 @@ function Login({ register }) {
         }
       );
 
-      if (result.status >= 200 && result.status < 300 ) {
-        
+      if (result.status >= 200 && result.status < 300) {
         navigate("/service-login");
-       
 
-          setUserdata({
-            username: "",
-            email: "",
-            password: "",
-            mobile: "",
-            service: "",
-            specialization: "",
-            qualification: "",
-            exp_year: "",
-            rate: "",
-            experience_crt: null,
-          })
-     
+        setUserdata({
+          username: "",
+          email: "",
+          password: "",
+          mobile: "",
+          service: "",
+          specialization: "",
+          qualification: "",
+          exp_year: "",
+          rate: "",
+          experience_crt: null,
+        });
       } else {
         console.log(result.data);
         Swal.fire({
@@ -97,37 +94,34 @@ function Login({ register }) {
   };
 
   const handleSecondReg = async (e) => {
-
     const reqBody = new FormData();
     reqBody.append("profile_img", profile_img);
     reqBody.append("email", userdata.email);
 
     try {
-        const response = await axios.post(
-            `http://localhost:5000/serviceProvider/fianlRegtration`,
-            reqBody,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
+      const response = await axios.post(
+        `http://localhost:5000/serviceProvider/fianlRegtration`,
+        reqBody,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-          if (response.status >= 200 && response.status < 300 ){
-            Swal.fire({
-                title: "Resitration Completed Wait For Admin Response",
-                icon: "Success",
-              });
-          }
-
-    } catch (error) {
-        console.log(error);
+      if (response.status >= 200 && response.status < 300) {
         Swal.fire({
-            title: "Something went wrong",
-            icon: "warning",
-          });
+          title: "Resitration Completed Wait For Admin Response",
+          icon: "Success",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Something went wrong",
+        icon: "warning",
+      });
     }
-
   };
   console.log(userdata);
 
@@ -160,7 +154,11 @@ function Login({ register }) {
         {/* Forms */}
         <div className="box-2">
           <div className="login-form-container">
-            {registerForm ? <h1>Register Form</h1> : <h1>Login Form</h1>}
+            {registerForm ? (
+              <h1>Primary Registration Form</h1>
+            ) : (
+              <h1>Second Registration Form</h1>
+            )}
             {registerForm ? (
               <div className="mb-4">
                 <input
@@ -175,29 +173,44 @@ function Login({ register }) {
               </div>
             ) : null}
 
-            <div className="mb-3">
-              <input
-                type="email"
-                placeholder="email"
-                className="input-field"
-                value={userdata.email}
-                onChange={(e) =>
-                  setUserdata({ ...userdata, email: e.target.value })
-                }
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                type="password"
-                placeholder="Password"
-                className="input-field"
-                value={userdata.password}
-                onChange={(e) =>
-                  setUserdata({ ...userdata, password: e.target.value })
-                }
-              />
-            </div>
-
+            {registerForm ? (
+              <div className="mb-3">
+                <input
+                  type="email"
+                  placeholder="email"
+                  className="input-field"
+                  value={userdata.email}
+                  onChange={(e) =>
+                    setUserdata({ ...userdata, email: e.target.value })
+                  }
+                />
+              </div>
+            ) : (
+              <div className="mb-3">
+                <input
+                  type="email"
+                  placeholder="Confirm email"
+                  className="input-field"
+                  value={userdata.email}
+                  onChange={(e) =>
+                    setUserdata({ ...userdata, email: e.target.value })
+                  }
+                />
+              </div>
+            )}
+            {registerForm ? null : (
+              <div>
+                <label htmlFor="" className="fw-bolder mb-3">
+                  Profile Imge
+                </label>
+                <br />
+                <input
+                  className="ms-5 mb-4"
+                  type="file"
+                  onChange={(e) => setProfile_img(e.target.files[0])}
+                />
+              </div>
+            )}
             {registerForm ? (
               <div className="mb-3">
                 <input
@@ -277,10 +290,13 @@ function Login({ register }) {
                     }
                   />
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="">Experince Certifacte</label>
-
+                <div className="mb-3 ms-5">
+                  <label htmlFor="" className="mb-3 me-5">
+                    Experince Certifacte
+                  </label>
+                  <br />
                   <input
+                    className="ms-5"
                     type="file"
                     onChange={(e) =>
                       setUserdata({
@@ -290,11 +306,15 @@ function Login({ register }) {
                     }
                   />
                 </div>
-                <div>
-                  <label htmlFor="">Profile Imge</label>
+                <div className="mb-3">
                   <input
-                    type="file"
-                    onChange={(e) => setProfile_img(e.target.files[0])}
+                    type="password"
+                    placeholder="Password"
+                    className="input-field"
+                    value={userdata.password}
+                    onChange={(e) =>
+                      setUserdata({ ...userdata, password: e.target.value })
+                    }
                   />
                 </div>
               </>
@@ -307,7 +327,7 @@ function Login({ register }) {
                   type="button"
                   onClick={handleRegister}
                 >
-                  Register
+                  Primary Registration
                 </button>
               </div>
             ) : (
@@ -323,32 +343,23 @@ function Login({ register }) {
             )}
           </div>
           {registerForm ? (
-            <div className="text-center">
-              <p>
-                Already have an Account?{" "}
-                <Link
-                  to={"/service-login"}
-                  style={{ textDecoration: "none", color: "navyblue" }}
-                >
-                  Login
-                </Link>{" "}
-                here
-              </p>
-            </div>
-          ) : (
-            <div className="text-center">
-              <p>
-                Don't have an Account?{" "}
-                <Link
-                  to={"/service-reg"}
-                  style={{ textDecoration: "none", color: "navyblue" }}
-                >
-                  Register
-                </Link>{" "}
-                here
-              </p>
-            </div>
-          )}
+            <p className="text-center">
+              Complete your registration here{" "}
+              <Link to={"/service-reg2"}>Step2</Link>
+            </p>
+          ) : null}
+          <div className="text-center">
+            <p>
+              Already have an Account?{" "}
+              <Link
+                to={"/service-login"}
+                style={{ textDecoration: "none", color: "navyblue" }}
+              >
+                Login
+              </Link>{" "}
+              here
+            </p>
+          </div>
         </div>
       </div>
     </>

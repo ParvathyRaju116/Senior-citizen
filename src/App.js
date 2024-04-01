@@ -23,7 +23,7 @@ function App() {
         <Route path='/user-complaints' element={<Complaints/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/user-bookings' element={<MyBookings/>} />
-        <Route path='/service-login' element={<Singup/>} />
+        <Route path='/service-reg2' element={<Singup/>} />
         <Route path='/service-reg' element={<Singup register/>} />
       </Routes>
     </div>

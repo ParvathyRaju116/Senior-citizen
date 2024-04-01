@@ -20,7 +20,7 @@ function Header() {
   };
 
   const handleService = () => {
-    navigate("/sp-home");
+    navigate("/service-reg");
   };
 
   return (
@@ -65,7 +65,7 @@ function Header() {
                 </Dropdown.Item>
               </Link>
               <Link
-                to="/sp-home"
+                to="/service-reg"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <Dropdown.Item as="span">
