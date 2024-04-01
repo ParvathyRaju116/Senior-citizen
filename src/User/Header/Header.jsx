@@ -11,7 +11,7 @@ function Header() {
     <>
       <Navbar expand="lg" className="fixed-top" style={{height:'70px'}}>
         <Container className='header'>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand className='fw-bolder'>LiveCare</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Dropdown className='ms-auto'>
@@ -21,7 +21,10 @@ function Header() {
               <Dropdown.Menu>
               <Dropdown.Item><Link to={'/user-home'} style={{textDecoration:'none',color:'black'}}> Home</Link></Dropdown.Item>
               <Dropdown.Item><Link to={'/user-profile'} style={{textDecoration:'none',color:'black'}}> Profile</Link></Dropdown.Item>
-                <Dropdown.Item href="#action/3.3">Logout</Dropdown.Item>
+              <Dropdown.Item><Link to={'/user-feedback'} style={{textDecoration:'none',color:'black'}}> Feedback</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={'/user-complaints'} style={{ textDecoration: 'none', color: 'black' }}> Complaints</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={'/user-bookings'} style={{textDecoration:'none',color:'black'}}> My Bookings</Link></Dropdown.Item>
+              <Dropdown.Item href="#action/3.3">Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>

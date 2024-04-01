@@ -16,13 +16,15 @@ function Footer() {
                 </Col>
                 <Col md={4}>
                     <h3>Contact</h3>
-                    <p>953686145</p>
-                    <p>elderlycare@gmail.com</p>
-                    <div className='d-flex  mt-2'>
-                    <i class="fa-brands fa-instagram fa-2x"></i>
-                    <i class="fa-brands fa-whatsapp ms-3 fa-2x"></i>
-                    <i class="fa-brands fa-facebook ms-3 fa-2x"></i>
-                    </div>
+                    <p><i className="fa fa-map-marker-alt mr-2"></i> 123 Street, New York, USA</p>
+                            <p><i className="fa fa-phone-alt mr-2"></i> +012 345 67890</p>
+                            <p><i className="fa fa-envelope mr-2"></i> info@example.com</p>
+                            <div className="d-flex justify-content-start mt-4">
+                                <a className="btn btn-outline-light btn-social mr-2" href="#"><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-outline-light btn-social mr-2 ms-2" href="#"><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-outline-light btn-social mr-2 ms-2" href="#"><i className="fab fa-linkedin-in"></i></a>
+                                <a className="btn btn-outline-light btn-social ms-2" href="#"><i className="fab fa-instagram"></i></a>
+                            </div>
                 </Col>
                 <Col md={4}>
                     <h3>News Teller</h3>
