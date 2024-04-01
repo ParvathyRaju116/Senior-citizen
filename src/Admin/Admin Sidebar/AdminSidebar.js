@@ -78,7 +78,7 @@ function AdminSidebar() {
             <NavLink exact to="/admin-leave" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="note-sticky">Leave Requests</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="" activeClassName="activeClicked">
+            <NavLink exact to="/admin-bookings" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Bookings</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/admin-feedback" activeClassName="activeClicked">
