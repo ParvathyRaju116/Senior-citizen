@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <>
-      <Navbar expand="lg" className="fixed-top" style={{height:'70px'}}>
+      <Navbar expand="lg"  style={{height:'70px'}}>
         <Container className='header'>
           <Navbar.Brand className='fw-bolder'>LiveCare</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
