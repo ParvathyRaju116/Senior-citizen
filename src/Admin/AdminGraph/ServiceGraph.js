@@ -24,7 +24,7 @@ function ServiceGraph() {
       <BarChart
         xAxis={[{ scaleType: 'band', data: ['Homecare', 'Therapy', 'Nursing Care', 'Doctor'] }]}
         series={[
-          { data: [4, 3, 5], color: ['#9C6644', '#7F5539', '#B08968'] } 
+          { data: [4, 3, 5,6], color: ['#9C6644', '7F5539#7F5539', '#B08968'] } 
         ]}
         width={400}
         height={200}
