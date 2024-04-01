@@ -6,6 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import Footer from "../User/Footer/Footer";
+import './home.css'
 
 function Header() {
   const navigate = useNavigate();
@@ -80,10 +81,10 @@ function Header() {
           </Dropdown>
         </Container>
       </Navbar>
-      <div className="home d-flex justify-content-center align-items-center">
-        <Container>
-          <Row>
-            <Col md={6}>
+      <div className="chome d-flex justify-content-center align-items-center">
+       
+         {/*  <Row>
+            <Col md={6} className="text-light">
               <h1 className="ms-5">
                 Expert care for the <br /> Elderly
               </h1>
@@ -99,8 +100,9 @@ function Header() {
               </button>
             </Col>
             <Col md={6}></Col>
-          </Row>
-        </Container>
+          </Row> */}
+          <button className="btn btn-outline-primary">Get Started</button>
+       
       </div>
       <div className="services mb-5">
         <Container>
