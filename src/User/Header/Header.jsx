@@ -36,7 +36,6 @@ function Header() {
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to='/user-home' style={{ textDecoration: 'none', color: 'black' }}>Home</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/user-profile' style={{ textDecoration: 'none', color: 'black' }}>Profile</Dropdown.Item>
-                <Dropdown.Item as={Link} to='/user-feedback' style={{ textDecoration: 'none', color: 'black' }}>Feedback</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/user-complaints' style={{ textDecoration: 'none', color: 'black' }}>Complaints</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/user-bookings' style={{ textDecoration: 'none', color: 'black' }}>My Bookings</Dropdown.Item>
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
