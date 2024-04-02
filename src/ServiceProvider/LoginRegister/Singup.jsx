@@ -26,8 +26,6 @@ function Login({ register }) {
   console.log(profile_img);
 
   const handleRegister = async () => {
-   
-
     const {
       username,
       email,
@@ -68,7 +66,7 @@ function Login({ register }) {
             },
           }
         );
-  
+
         if (result.status >= 200 && result.status < 300) {
           navigate("/service-reg2");
           Swal.fire({
@@ -87,18 +85,26 @@ function Login({ register }) {
             rate: "",
             experience_crt: null,
           });
-        } else {
-          console.log(result.data);
+        } else if (result?.response?.status === 400) {
+          console.log(result);
           Swal.fire({
-            title: "Something went wrong",
+            title: "Email Already Taken ",
             icon: "warning",
           });
         }
       } catch (error) {
-        Swal.fire({
-          title: "Email Already Taken ",
-          icon: "warning",
-        });
+        if(error?.response?.status === 400){
+          Swal.fire({
+            title: "Email Already Taken ",
+            icon: "warning",
+          });
+        }
+        else{
+          Swal.fire({
+            title: "Something Went Wrong",
+            icon: "warning",
+          });
+        }
         console.log(error);
       }
     }
@@ -129,8 +135,8 @@ function Login({ register }) {
           title: "Registration Completed, Wait For Admin Response",
           icon: "success",
         });
-        setUserdata({email:""})
-        setProfile_img(null)
+        setUserdata({ email: "" });
+        setProfile_img(null);
       }
     } catch (error) {
       console.log(error);

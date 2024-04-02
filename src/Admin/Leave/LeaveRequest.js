@@ -6,18 +6,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import dayjs from 'dayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MultiInputDateTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputDateTimeRangeField';
 
 function LeaveRequest() {
-  const [value, setValue] = React.useState([
-    dayjs('2022-04-17'),
-    dayjs('2022-04-21'),
-  ]);
+ 
   return (
     <div style={{backgroundColor:"beige"}}>
       <div className='leave1 '>
@@ -38,24 +33,28 @@ function LeaveRequest() {
               <Typography variant="body2" color="text.secondary"  style={{ marginTop: '-5px',textAlign:"center"  }}>
                 Cardiologist
               </Typography>
-             <h5  className='leave2' >Request Details</h5>
-             <h6  className='leave3'  >Date</h6>
-             <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateRangePicker', 'DateRangePicker']}>
-        <DemoItem label="Uncontrolled picker" component="DateRangePicker">
-          <DateRangePicker
-            defaultValue={[dayjs('2022-04-17'), dayjs('2022-04-21')]}
-          />
-        </DemoItem>
-        <DemoItem label="Controlled picker" component="DateRangePicker">
-          <DateRangePicker
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-          />
-        </DemoItem>
+             <h5  className='leave2' >Request Details</h5> <br />
+             <h6  className='leave3'  >Date:</h6>
+           
+            </CardContent> <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer 
+        components={[
+          'MultiInputDateTimeRangeField',
+          'SingleInputDateTimeRangeField',
+        ]}
+      >
+         <div style={{ marginLeft: '10px', marginRight: '10px',marginTop:'-5px' }}>
+                    <MultiInputDateTimeRangeField
+                      slotProps={{
+                        textField: ({ position }) => ({
+                          label: position === 'start' ? 'Start-Date' : 'End-Date',
+                        }),
+                      }}
+                    />
+                  </div>
+       
       </DemoContainer>
     </LocalizationProvider>
-            </CardContent>
             <CardActions>
               <Button size="small">Share</Button>
               <Button size="small">Learn More</Button>
