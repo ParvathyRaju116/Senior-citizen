@@ -42,8 +42,9 @@ function Profile() {
         });
         sessionStorage.setItem(
           "existingUser",
-          JSON.stringify(response.data.updatedUser)
+          JSON.stringify(response.data)
         );
+        setIsUpdate(true)
       }
     } catch (error) {
       console.log(error);
