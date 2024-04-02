@@ -8,16 +8,14 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
-import './AdminSidebar.css';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Dropdown from 'react-bootstrap/Dropdown';
 function AdminSidebar() {
 
  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'scroll initial' }}>
-      {/* Navbar */}
+      
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#9C6644" }}>
   <div className="container-fluid">
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +52,7 @@ function AdminSidebar() {
 
 
 
-      {/* Sidebar */}
+     
       <CDBSidebar textColor="#fff" style={{ background: 'linear-gradient(to bottom, #9C6644, #DDB892)' }}>
         <CDBSidebarHeader >
           <a className="text-decoration-none" style={{ color: 'inherit' }}>
@@ -89,16 +87,22 @@ function AdminSidebar() {
             <NavLink exact to="/admin-approval" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/admin-approval" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
-            </NavLink>
+            
             <NavLink exact to="" target="_blank" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="handshake">Virtual Assistance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-        
+        <CDBSidebarFooter style={{ textAlign: 'center' }}>
+          <div style={{ padding: '20px 100px' }}>
+          <Stack direction="row" spacing={2}>
+          <Avatar style={{ color: "white", backgroundColor:"#9C6644"}}>L</Avatar>
+      
+    </Stack>
+          
+          </div>
+        </CDBSidebarFooter>
       </CDBSidebar>
     </div>
   );
