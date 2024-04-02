@@ -24,7 +24,7 @@ function Feedback() {
                   <h4>Name</h4>
                 </TableCell>
                 <TableCell className='table-cell'>
-                  <h4>Comments</h4>
+                  <h4 className='text-center'>Comments</h4>
                 </TableCell>
                 <TableCell className='table-cell'>
                   <h4>Rating</h4>
@@ -42,7 +42,7 @@ function Feedback() {
                     <h6 className='mt-3 ms-3'>Midhun P M</h6>
                   </Stack>
                 </TableCell>
-                <TableCell className='table-cell'>"I am very happy and satisfied"</TableCell>
+                <TableCell className='table-cell text-center'>"I am very happy and satisfied"</TableCell>
                 <TableCell className='table-cell'>
                   <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
                 </TableCell>
