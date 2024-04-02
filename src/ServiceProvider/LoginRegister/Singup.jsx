@@ -25,8 +25,8 @@ function Login({ register }) {
 
   console.log(profile_img);
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  const handleRegister = async () => {
+   
 
     const {
       username,
@@ -58,40 +58,48 @@ function Login({ register }) {
         icon: "warning",
       });
     } else {
-      const result = await axios.post(
-        `http://localhost:5000/serviceProvier/register`,
-        userdata,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      try {
+        const result = await axios.post(
+          `http://localhost:5000/serviceProvier/register`,
+          userdata,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+  
+        if (result.status >= 200 && result.status < 300) {
+          navigate("/service-reg2");
+          Swal.fire({
+            title: "Primary Reg Completed",
+            icon: "Success",
+          });
+          setUserdata({
+            username: "",
+            email: "",
+            password: "",
+            mobile: "",
+            service: "",
+            specialization: "",
+            qualification: "",
+            exp_year: "",
+            rate: "",
+            experience_crt: null,
+          });
+        } else {
+          console.log(result.data);
+          Swal.fire({
+            title: "Something went wrong",
+            icon: "warning",
+          });
         }
-      );
-
-      if (result.status >= 200 && result.status < 300) {
-        navigate("/service-reg2");
+      } catch (error) {
         Swal.fire({
-          title: "Primary Reg Completed",
-          icon: "Success",
-        });
-        setUserdata({
-          username: "",
-          email: "",
-          password: "",
-          mobile: "",
-          service: "",
-          specialization: "",
-          qualification: "",
-          exp_year: "",
-          rate: "",
-          experience_crt: null,
-        });
-      } else {
-        console.log(result.data);
-        Swal.fire({
-          title: "Something went wrong",
+          title: "Email Already Taken ",
           icon: "warning",
         });
+        console.log(error);
       }
     }
   };
