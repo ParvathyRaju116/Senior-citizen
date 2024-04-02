@@ -24,7 +24,7 @@ function UserApproval() {
             <NavLink exact to="/profile" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list"> Service Providers List</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
+            <NavLink exact to="/admin-user" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">Users List</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
