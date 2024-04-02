@@ -5,6 +5,7 @@ import AdminDashboard from './Admin/Admin Dashboard/AdminDashboard';
 import Login from './User/UserLogin/Login';
 import UserHome from './User/UserHome/UserHome';
 import Profile from './User/Profile/Profile';
+import LeaveRequest from './Admin/Leave/LeaveRequest';
 import Complaints from './User/Complaints/Complaints';
 import Home from './Common/Home';
 import MyBookings from './User/Bookings/MyBookings';
@@ -20,6 +21,8 @@ function App() {
         <Route path='/user-register' element={<Login register/>}/>
         <Route path='/user-home' element={<UserHome/>}/>
         <Route path='/user-profile' element={<Profile/>}/>
+        <Route path='/admin-leave' element={<LeaveRequest/>}/>
+
         <Route path='/user-complaints' element={<Complaints/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/user-bookings' element={<MyBookings/>} />
