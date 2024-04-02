@@ -1,18 +1,18 @@
 .home-icon-container {
    color: linear-gradient(to bottom, #525a6d, #eaa0a2);
-    padding: 10px; /* Adjust padding as needed */
+    padding: 10px; 
    
     background-color: beige;
   }
   
   .icon-with-text {
     display: flex;
-    align-items: center; /* Vertically center the items */
+    align-items: center; 
   }
   
   .icon-with-text i {
     margin-right: 10px; 
-    margin-top: -80px;/* Adjust the margin as needed */
+    margin-top: -80px; 
   }
   .admin-details-container {
     display: flex;
@@ -46,16 +46,14 @@
   .iconhome{
     margin-top: -55px;
   }
-  /* .icon-with-text h6 {
-    
-  } */
+ 
   
   .admin-detail h6 {
     font-size: 16px;
     margin-top: -10px;
   }
   
-  /* Adjustments for smaller screens */
+  
   @media screen and (max-width: 768px) {
     .admin-details-container {
       flex-direction: column;

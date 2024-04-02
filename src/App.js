@@ -12,6 +12,7 @@ import MyBookings from './User/Bookings/MyBookings';
 import Singup from './ServiceProvider/LoginRegister/Singup'
 import Feedback from './Admin/AdminFeedback/Feedback';
 import Bookings from './Admin/AdminBookings/Bookings';
+import UserApproval from './Admin/Approvals/UserApproval';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/admin-leave' element={<LeaveRequest />} />
         <Route path='/admin-feedback' element={<Feedback />} />
         <Route path='/admin-bookings' element={<Bookings />} />
+        <Route path='/admin-approval' element={<UserApproval />} />
 
 
 

@@ -1,7 +1,7 @@
-/* Payment.css */
+
 .payment-table {
-    margin: 0 auto; /* Center the table */
-    width: 70%; 
+   
+    width: 90%; 
    height:200px;
     margin-bottom: 50px;
     border: 2px solid #9C6644 ;
@@ -18,11 +18,11 @@ background-color: #9C6644;
   
   .payment-table th,
   .payment-table td {
-    padding: 9px; /* Adjust spacing */
+    padding: 9px; 
   }
   
   
   .payment-table tfoot {
-    font-weight: bold; /* Style the footer */
+    font-weight: bold; 
   }
   

@@ -11,8 +11,7 @@ import { NavLink } from 'react-router-dom';
 import './AdminSidebar.css';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { deepOrange,  } from '@mui/material/colors';
-
+import Dropdown from 'react-bootstrap/Dropdown';
 function AdminSidebar() {
 
  
@@ -87,21 +86,19 @@ function AdminSidebar() {
             <NavLink exact to="" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Webinar/Workshop</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/admin-approval" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/admin-approval" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink exact to="" target="_blank" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="handshake">Virtual Assistance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-        <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div style={{ padding: '20px 100px' }}>
-          <Stack direction="row" spacing={2}>
-          <Avatar style={{ color: "white", backgroundColor:"#9C6644"}}>L</Avatar>
-      
-    </Stack>
-          
-          </div>
-        </CDBSidebarFooter>
+        
       </CDBSidebar>
     </div>
   );

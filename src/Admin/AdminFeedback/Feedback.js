@@ -27,7 +27,7 @@ function Feedback() {
                   <h4 className='text-center'>Comments</h4>
                 </TableCell>
                 <TableCell className='table-cell'>
-                  <h4>Rating</h4>
+                  <h4>Ratings</h4>
                 </TableCell>
                 <TableCell className='table-cell'>
                   <h4>Response</h4>

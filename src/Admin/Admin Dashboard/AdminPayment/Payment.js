@@ -13,8 +13,8 @@ export default function Payment() {
     return (
         <div>
             <h4 className='text-center m-4' style={{ color: "#9C6644" }}> Service Provider Payment history</h4>
-            <TableContainer component={Paper} className="payment-table p-2  ">
-                <Table aria-label="simple table "className='scroll'>
+            <TableContainer component={Paper} className="payment-table p-2  "  >
+                <Table aria-label="simple table "className='scroll' >
                     <TableHead>
                         <TableRow>
                             <TableCell>Service Provider</TableCell>
