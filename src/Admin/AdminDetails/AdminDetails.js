@@ -6,10 +6,11 @@ import Payment from '../Admin Dashboard/AdminPayment/Payment';
 function AdminDetails() {
 
   return (
-    <div >
-      <i className="fa fa-home icon-with-text"></i>
-      <h6 className='d1'>Dashboard</h6>
-
+    <div>
+      <div className="d-flex align-items-center">
+          <i className="iconhome fa fa-home icon-with-text"></i>
+          <h6 className='d1 ms-1'>Dashboard</h6>
+      </div>
       <div className="admin-details-container">
         {/* First Booking */}
         <div className="admin-detail">

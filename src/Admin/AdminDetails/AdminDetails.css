@@ -41,11 +41,14 @@
   
   .icon-with-text i {
     font-size: 24px;
+    margin-bottom: 100px;
   }
-  
-  .icon-with-text h6 {
-    margin-top: 10px;
+  .iconhome{
+    margin-top: -55px;
   }
+  /* .icon-with-text h6 {
+    
+  } */
   
   .admin-detail h6 {
     font-size: 16px;
@@ -63,8 +66,9 @@
     }}
 
     .d1{
-      margin-top:-25px;
-      margin-left: 40px;
+      margin-top:-40px;      
+    padding: 0;
+  
     }
     .b1{
       margin-right: 200px;
