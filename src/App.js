@@ -10,24 +10,33 @@ import Complaints from './User/Complaints/Complaints';
 import Home from './Common/Home';
 import MyBookings from './User/Bookings/MyBookings';
 import Singup from './ServiceProvider/LoginRegister/Singup'
+import Feedback from './Admin/AdminFeedback/Feedback';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/admin-dash' element={<AdminDashboard/>}/>
-        <Route path='/admin-login' element={<AdminLogin/>}/>
-        <Route path='/user-login' element={<Login/>}/>
-        <Route path='/user-register' element={<Login register/>}/>
-        <Route path='/user-home' element={<UserHome/>}/>
-        <Route path='/user-profile' element={<Profile/>}/>
-        <Route path='/admin-leave' element={<LeaveRequest/>}/>
+    //admin
+        <Route path='/admin-dash' element={<AdminDashboard />} />
+        <Route path='/admin-login' element={<AdminLogin />} />
+        <Route path='/admin-leave' element={<LeaveRequest />} />
+        <Route path='/admin-feedback' element={<Feedback />} />
 
-        <Route path='/user-complaints' element={<Complaints/>}/>
+
+
+//user
+        <Route path='/user-login' element={<Login />} />
+        <Route path='/user-register' element={<Login register />} />
+        <Route path='/user-home' element={<UserHome />} />
+        <Route path='/user-profile' element={<Profile />} />
+        <Route path='/user-bookings' element={<MyBookings />} />
+        <Route path='/user-complaints' element={<Complaints />} />
+
+   //serviceprovider
+        <Route path='/service-reg2' element={<Singup />} />
+        <Route path='/service-reg' element={<Singup register />} />
+
         <Route path='/' element={<Home />} />
-        <Route path='/user-bookings' element={<MyBookings/>} />
-        <Route path='/service-reg2' element={<Singup/>} />
-        <Route path='/service-reg' element={<Singup register/>} />
       </Routes>
     </div>
   );

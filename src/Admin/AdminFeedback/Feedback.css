@@ -1,0 +1,30 @@
+/* Feedback.css */
+.feed1 {
+    text-align: center;
+    color: #9C6644;
+  }
+  
+  .feed2 {
+    border: 2px solid #9C6644;
+  }
+  
+  .table-cell {
+    padding: 4px; 
+    text-align: center; 
+  }
+  
+  .table-row {
+    margin: 10px 0; 
+  }
+  
+  .feed5 {
+    margin-right: -250px; 
+  }
+  
+  @media (max-width: 600px) {
+    .table-cell {
+      font-size: 12px; 
+    }
+  }
+ 
+  
