@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
-import { useEffect, useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
-import { editApi } from "../../Services/allApi";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -21,12 +19,11 @@ function Profile() {
 
   const handleProfile = async () => {
     const reqBody = new FormData();
-    const { username, email, password, number, address } = profile;
-    reqBody.append("username", username);
-    reqBody.append("email", email);
-    reqBody.append("password", password);
-    reqBody.append("number", number);
-    reqBody.append("address", address);
+    reqBody.append("username", profile.username);
+    reqBody.append("email", profile.email);
+    reqBody.append("password", profile.password);
+    reqBody.append("number", profile.number);
+    reqBody.append("address", profile.address);
 
     try {
       const response = await axios.post(
@@ -37,14 +34,11 @@ function Profile() {
       if (response.status >= 200 && response.status <= 300) {
         console.log(response);
         Swal.fire({
-          title: "Updated Succesfully",
+          title: "Updated Successfully",
           icon: "success",
         });
-        sessionStorage.setItem(
-          "existingUser",
-          JSON.stringify(response.data)
-        );
-        setIsUpdate(true)
+        sessionStorage.setItem('existingUser', JSON.stringify(response.data.updatedUser));
+        setIsUpdate(true);
       }
     } catch (error) {
       console.log(error);
@@ -72,7 +66,6 @@ function Profile() {
     }
   }, [isUpdate]);
 
-
   return (
     <>
       <Header />
@@ -81,7 +74,7 @@ function Profile() {
           <div className="d-flex justify-content-between">
             <h3> Profile</h3>
             <button className="btn " onClick={() => setOpen(!open)}>
-              <i class="fa-solid fa-arrow-up-from-bracket fa-rotate-180 ms-auto"></i>
+              <i className="fa-solid fa-arrow-up-from-bracket fa-rotate-180 ms-auto"></i>
             </button>
           </div>
           <Collapse in={open}>
@@ -133,8 +126,9 @@ function Profile() {
               </div>
               <div className="mb-3">
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Password"
+                  disabled
                   className="form-control mt-3"
                   value={profile.password}
                   onChange={(e) =>
