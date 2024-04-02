@@ -10,6 +10,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import List from "./List";
+import { Container } from "@mui/material";
 
 function Bookings() {
   const Search = styled("div")(({ theme }) => ({
@@ -20,7 +21,7 @@ function Bookings() {
 
     marginLeft: 0,
 
-    width: "100%",
+    width: "10%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
       width: "80%",
@@ -39,7 +40,7 @@ function Bookings() {
 
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
-    width: "100%",
+    width: "70%",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -55,7 +56,9 @@ function Bookings() {
 
   return (
     <div>
-      <div className="m-5 p-5" style={{width:"100%"}}>
+      <Container>
+
+      <div className="m- 3 p-4" style={{width:"100%"}}>
         <h1 className="text-center book1">Booking List</h1>
         <Box sx={{ flexGrow: 1 }} className="m-5">
           <AppBar position="static" sx={{ backgroundColor: "#9C6644" }}>
@@ -65,7 +68,7 @@ function Bookings() {
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
-                sx={{ mr: 2 }}
+                sx={{ mr: 1 }}
               ></IconButton>
               <Typography
                 variant="h6"
@@ -94,6 +97,9 @@ function Bookings() {
         </Box>
         <List></List>
       </div>
+
+
+      </Container>
     </div>
   );
 }
