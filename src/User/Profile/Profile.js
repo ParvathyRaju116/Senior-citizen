@@ -3,10 +3,23 @@ import Header from "../Header/Header";
 import Collapse from "react-bootstrap/Collapse";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 function Profile() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [newPassword, setPassword] = useState({
+    password: "",
+    confirmPassword: "",
+  });
 
   const [profile, setProfile] = useState({
     username: "",
@@ -61,6 +74,26 @@ function Profile() {
       }
     }
   }, [isUpdate]);
+
+  const hadnleRestPassword = async () => {
+    const { password, confirmPassword } = newPassword;
+    if (password === confirmPassword) {
+      setPassword({
+        password: "",
+        confirmPassword: "",
+      });
+      Swal.fire({
+        title: "Password Changed",
+        icon: "success",
+      });
+      handleClose()
+    } else {
+      Swal.fire({
+        title: "Check Your Password",
+        icon: "warning",
+      });
+    }
+  };
 
   console.log(profile);
   return (
@@ -122,16 +155,9 @@ function Profile() {
                 />
               </div>
               <div className="mb-3">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  disabled
-                  className="form-control mt-3"
-                  value={profile.password}
-                  onChange={(e) =>
-                    setProfile({ ...profile, password: e.target.value })
-                  }
-                />
+                <button className="btn  btn-warning mt-3" onClick={handleShow}>
+                  Change Password
+                </button>
               </div>
               <button
                 type="button"
@@ -144,6 +170,53 @@ function Profile() {
           </Collapse>
         </div>
       </div>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "90%" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="filled-basic"
+              label="New Password"
+              variant="filled"
+              type="password"
+              onChange={(e) =>
+                setPassword({ ...newPassword, password: e.target.value })
+              }
+            />
+            <TextField
+              id="filled-basic"
+              label="Confirm Password"
+              variant="filled"
+              type="password"
+              onChange={(e) =>
+                setPassword({ ...newPassword, confirmPassword: e.target.value })
+              }
+            />
+          </Box>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={hadnleRestPassword}>
+            Change
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
