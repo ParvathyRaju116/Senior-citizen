@@ -8,7 +8,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
 import { getServiceProvidersApi } from "../../Services/allApi";
@@ -130,7 +129,7 @@ function ServiceApproval() {
       className="m-5 mx-2"
       style={{ margin: "auto", maxWidth: "100%", overflowX: "auto" }}
     >
-      <h3 className="text-center">Service Providers Approval List</h3>
+      <h3 className="text-center">Service Providers Request List</h3>
       <TableContainer
         component={Paper}
         style={{ maxHeight: "calc(100vh - 200px)", overflow: "auto" }}
