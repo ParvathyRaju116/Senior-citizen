@@ -78,15 +78,23 @@ function Profile() {
   const hadnleRestPassword = async () => {
     const { password, confirmPassword } = newPassword;
     if (password === confirmPassword) {
-      setPassword({
-        password: "",
-        confirmPassword: "",
-      });
-      Swal.fire({
-        title: "Password Changed",
-        icon: "success",
-      });
-      handleClose()
+      const response = await axios.post(
+        `http://localhost:5000/resetUserPassword/${id}`,
+        newPassword
+      );
+
+      if (response.status >= 200 && response.status <= 300) {
+        setPassword({
+          password: "",
+          confirmPassword: "",
+        });
+        Swal.fire({
+          title: "Password Changed",
+          icon: "success",
+        });
+        console.log(response.data);
+        handleClose();
+      }
     } else {
       Swal.fire({
         title: "Check Your Password",
