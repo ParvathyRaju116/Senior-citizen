@@ -58,11 +58,9 @@ function List() {
                   {" "}
                   <Stack direction="row" spacing={2}>
                     <Button variant="contained" color="success">
-                    Approve
+                  Confirm
                     </Button>
-                    <Button variant="outlined" color="error">
-                      Reject
-                    </Button>
+                    
                   </Stack>
                 </div>
               </td>
@@ -77,11 +75,9 @@ function List() {
                   {" "}
                   <Stack direction="row" spacing={2}>
                     <Button variant="contained" color="success">
-                      Approve
+                     Confirm
                     </Button>
-                    <Button variant="outlined" color="error">
-                      Reject
-                    </Button>
+                   
                   </Stack>
                 </div>{" "}
               </td>
@@ -96,11 +92,9 @@ function List() {
                   {" "}
                   <Stack direction="row" spacing={2}>
                     <Button variant="contained" color="success">
-                    Approve
+                    Confirm
                     </Button>
-                    <Button variant="outlined" color="error">
-                      Reject
-                    </Button>
+                    
                   </Stack>
                 </div>
               </td>
