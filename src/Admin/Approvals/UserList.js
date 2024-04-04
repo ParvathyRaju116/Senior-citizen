@@ -35,7 +35,7 @@ function UserList() {
     
     <UserAside></UserAside>
     <Container className='m-5'>
-       
+       <h4 className='text-center'>User List</h4>
        <TableContainer component={Paper} >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>

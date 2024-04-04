@@ -15,3 +15,10 @@ export const loginApi = async(user)=>{
 export const editApi = async (id, user) => {
     return await commonApi('PUT', `${baseurl}/editUser/${id}`, user);
 }
+
+//admi
+//get Service Providers List
+
+export const getServiceProvidersApi=async()=>{
+    return await commonApi('GET',`${baseurl}/allServiceProviders/list`,"","")
+}
