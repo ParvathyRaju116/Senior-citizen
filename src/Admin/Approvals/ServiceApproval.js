@@ -81,7 +81,45 @@ function ServiceApproval() {
     });
   };
 
+  const handleDelete =(email)=>{
+    const reqBody = new FormData()
+    reqBody.append("email",email)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Reject IT ",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await axios.delete(
+          `http://localhost:5000/reject/serviceProvider/request`,
+          reqBody
+        );
+        if(response?.status >=200 && response?.status <=300){
+          Swal.fire({
+            title: "Approved",
+            text: "Service Provider Rejected.",
+            icon: "success",
+          });
+          getServiceProviders();
+        }
+       else{
+        Swal.fire({
+          title: "Not Rejected",
+          text: "Service Provider Not Rejected.",
+          icon: "warning",
+        });
+       }
+      }
+    });
+  }
+
+
   if (spList === null) return <></>;
+  console.log(spList);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -153,7 +191,7 @@ function ServiceApproval() {
                         >
                           Approve
                         </Button>
-                        <Button variant="outlined" color="error">
+                        <Button variant="outlined" color="error" onClick={()=>handleDelete(i?.email)}>
                           Reject
                         </Button>
                       </Stack>
