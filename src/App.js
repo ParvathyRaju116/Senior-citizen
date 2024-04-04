@@ -15,6 +15,7 @@ import Bookings from './Admin/AdminBookings/Bookings';
 import UserApproval from './Admin/Approvals/UserApproval';
 import UserList from './Admin/Approvals/UserList';
 import ServiceProviderList from './Admin/Approvals/ServiceProviderList';
+import UserRequest from './ServiceProvider/UserRequest/UserRequest';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
    //serviceprovider
         <Route path='/service-reg2' element={<Singup />} />
         <Route path='/service-reg' element={<Singup register />} />
+        <Route path='/service-request' element={<UserRequest/>} />
 
         <Route path='/' element={<Home />} />
       </Routes>
