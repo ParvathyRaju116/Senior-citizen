@@ -8,9 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Pagination from "@mui/material/Pagination";
 import Navbar from '../Navbar/Navbar';
 
 
@@ -82,9 +80,6 @@ function UserRequest() {
         </TableBody>
       </Table>
     </TableContainer>
-    <Stack spacing={2} className="text-center mt-3">
-          <Pagination count={1} style={{ color: "#B08968" }} />
-        </Stack>
     </Container>
     </>
   )

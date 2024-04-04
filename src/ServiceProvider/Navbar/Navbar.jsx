@@ -11,10 +11,17 @@ import {
 } from 'mdb-react-ui-kit';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const [openNav, setOpenNav] = useState(false);
 
+    const navigate = useNavigate()
+
+    const logout = () => {
+        sessionStorage.clear()
+        navigate('/')
+    }
   
   return (
     <div>
@@ -45,7 +52,7 @@ function Navbar() {
               <MDBNavbarLink href='#'>Attendence</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Attendence</MDBNavbarLink>
+              <MDBNavbarLink onClick={logout}>Logout</MDBNavbarLink>
             </MDBNavbarItem>              
           </MDBNavbarNav>
         </MDBCollapse>
