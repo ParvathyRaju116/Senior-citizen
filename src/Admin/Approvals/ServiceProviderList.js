@@ -1,4 +1,3 @@
-import { Button, Container } from '@mui/material'
 import React from 'react'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -11,8 +10,11 @@ import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Pagination from "@mui/material/Pagination";
+import { Button, Container } from '@mui/material';
+import UserAside from './UserAside';
 
-function ServiceApproval() {
+
+function ServiceProviderList() {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor :'#B08968',
@@ -30,13 +32,11 @@ function ServiceApproval() {
           border: 0,
         },
       }));
-      
-      
-      
   return (
-    <Container className='p-4 m-4'>
-    
-    <TableContainer component={Paper} >
+    <div style={{ display: 'flex' }}  >
+      <UserAside></UserAside>
+<Container className='m-5 pe-2'>  
+      <TableContainer component={Paper} >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow >
@@ -50,7 +50,6 @@ function ServiceApproval() {
             <StyledTableCell >Qualification</StyledTableCell>
             <StyledTableCell >Rate</StyledTableCell>
             <StyledTableCell >Certificate</StyledTableCell>
-            <StyledTableCell className='text-align-right'  >Action</StyledTableCell>
 
           </TableRow>
         </TableHead>
@@ -78,31 +77,21 @@ function ServiceApproval() {
                 <Button style={{color:"black"}} >View</Button>
               </StyledTableCell>
 
-              <StyledTableCell >
-              <div  >
-                  {" "}
-                  <Stack direction="row" spacing={2}>
-                    <Button variant="contained" color="success">
-                    Approve
-                    </Button>
-                    <Button variant="outlined" color="error">
-                      Reject
-                    </Button>
-                  </Stack>
-                </div>
-
-              </StyledTableCell>
 
             </StyledTableRow>
           
         </TableBody>
       </Table>
     </TableContainer>
+
     <Stack spacing={2} className="text-center mt-3">
           <Pagination count={1} style={{ color: "#B08968" }} />
         </Stack>
-    </Container>
+        </Container>
+
+
+    </div>
   )
 }
 
-export default ServiceApproval
+export default ServiceProviderList

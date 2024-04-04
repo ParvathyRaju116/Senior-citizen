@@ -21,7 +21,7 @@ function UserApproval() {
               <CDBSidebarMenuItem icon="message">ServiceProvider Request</CDBSidebarMenuItem>
             </NavLink>
            
-            <NavLink exact to="/profile" activeClassName="activeClicked">
+            <NavLink exact to="/admin-service" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list"> Service Providers List</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/admin-user" activeClassName="activeClicked">
@@ -36,7 +36,7 @@ function UserApproval() {
         </CDBSidebarFooter>
       </CDBSidebar>
       
-      {/* ServiceApproval Component */}
+     
       <ServiceApproval />
     </div>
   )

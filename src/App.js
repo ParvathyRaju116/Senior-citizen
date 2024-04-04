@@ -14,6 +14,7 @@ import Feedback from './Admin/AdminFeedback/Feedback';
 import Bookings from './Admin/AdminBookings/Bookings';
 import UserApproval from './Admin/Approvals/UserApproval';
 import UserList from './Admin/Approvals/UserList';
+import ServiceProviderList from './Admin/Approvals/ServiceProviderList';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/admin-bookings' element={<Bookings />} />
         <Route path='/admin-approval' element={<UserApproval />} />
         <Route path='/admin-user' element={< UserList/>} />
+        <Route path='/admin-service' element={< ServiceProviderList/>} />
 
 
 
