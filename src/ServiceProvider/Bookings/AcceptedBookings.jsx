@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import Navbar from '../Navbar/Navbar';
 
 
-function UserRequest() {
+function AcceptedBookings() {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor :'#B08968',
@@ -32,22 +32,20 @@ function UserRequest() {
         },
       }));
   return (
-      <>
-          <Navbar/>
-    <Container className='p-4 m-4 ms-5 ps-5'>
-    
-    <TableContainer component={Paper} >
+    <>
+          <Navbar />
+          <Container className='mt-5'>
+          <TableContainer component={Paper} >
       <Table aria-label="customized table">
         <TableHead>
           <TableRow >
           <StyledTableCell> Sl.No</StyledTableCell>
           <StyledTableCell>User Name</StyledTableCell>
-          <StyledTableCell>Dr Name</StyledTableCell>
-          <StyledTableCell>Service</StyledTableCell>
-          <StyledTableCell>Date</StyledTableCell>
-          <StyledTableCell>Time</StyledTableCell>
-          <StyledTableCell>Rate</StyledTableCell>
-          <StyledTableCell>Action</StyledTableCell>
+            <StyledTableCell>Dr Name</StyledTableCell>
+            <StyledTableCell>Service</StyledTableCell>
+            <StyledTableCell>Date</StyledTableCell>
+            <StyledTableCell>Time</StyledTableCell>
+            <StyledTableCell>Rate</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -57,34 +55,19 @@ function UserRequest() {
                1
               </StyledTableCell>
               <StyledTableCell className='text-align-center'>Arya</StyledTableCell>
-                <StyledTableCell className='text-align-center'>Ajinsa</StyledTableCell>
-                <StyledTableCell className='text-align-center'>Day Care</StyledTableCell>
+              <StyledTableCell className='text-align-center'>Ajinsa</StyledTableCell>
+             <StyledTableCell className='text-align-center'>Day Care</StyledTableCell>
               <StyledTableCell className='text-align-center'>12/04/2024</StyledTableCell>
               <StyledTableCell className='text-align-center'>10:30</StyledTableCell>
               <StyledTableCell className='text-align-center'>5000</StyledTableCell>
-              <StyledTableCell >
-              <div  >
-                  {" "}
-                  <Stack direction="row" spacing={2}>
-                    <Button variant="contained" color="success">
-                    Approve
-                    </Button>
-                    <Button variant="outlined" color="error">
-                      Reject
-                    </Button>
-                  </Stack>
-                </div>
-
-              </StyledTableCell>
-
             </StyledTableRow>
           
         </TableBody>
       </Table>
     </TableContainer>
-    </Container>
+          </Container>
     </>
   )
 }
 
-export default UserRequest
+export default AcceptedBookings

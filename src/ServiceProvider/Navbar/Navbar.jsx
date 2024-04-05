@@ -11,7 +11,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
     const [openNav, setOpenNav] = useState(false);
@@ -43,13 +43,13 @@ function Navbar() {
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Bookings</MDBNavbarLink>
+              <MDBNavbarLink ><Link to={'/service-bookings'} style={{textDecoration:'none',color:'black'}}>Bookings</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Attendence</MDBNavbarLink>
+              <MDBNavbarLink><Link to={'/service-attendence'} style={{textDecoration:'none',color:'black'}}>Attendence</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Attendence</MDBNavbarLink>
+              <MDBNavbarLink><Link to={'/service-request'} style={{textDecoration:'none',color:'black'}}>Request</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink onClick={logout}>Logout</MDBNavbarLink>
