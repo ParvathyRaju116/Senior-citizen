@@ -22,3 +22,7 @@ export const editApi = async (id, user) => {
 export const getServiceProvidersApi=async()=>{
     return await commonApi('GET',`${baseurl}/allServiceProviders/list`,"","")
 }
+//get approved service providers
+export const getApprovedServiceProvidersApi=async()=>{
+    return await commonApi('GET',`${baseurl}/approvedServiceProviders/list`,"","")
+}
