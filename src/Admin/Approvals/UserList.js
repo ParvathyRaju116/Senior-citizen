@@ -1,5 +1,5 @@
 import {   Container } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,6 +11,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Pagination from "@mui/material/Pagination";
 import UserAside from './UserAside';
+import { getUsersApi } from '../../Services/allApi';
+
 function UserList() {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -30,6 +32,22 @@ function UserList() {
         },
       }));
       
+
+      const [userList, setUserList] = useState([]);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 7;
+  const getUsers = async () => {
+    try {
+      const result = await getUsersApi();
+      setUserList(result?.data?.allUsersList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getUsers()   }, []);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);}
   return (
     <div style={{ display: 'flex' }}>
     
@@ -46,33 +64,39 @@ function UserList() {
             <StyledTableCell >E-mail</StyledTableCell>
             <StyledTableCell >Phone Number</StyledTableCell>
             <StyledTableCell >Address</StyledTableCell>
-            <StyledTableCell className='text-align-right'  >Action</StyledTableCell>
 
           </TableRow>
         </TableHead>
         <TableBody>
-         
+        {userList
+              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+              .map((i, index) => (
             <StyledTableRow>
               
-            <StyledTableCell className='text-align-center'>1</StyledTableCell>
+            <StyledTableCell className='text-align-center'>{index + 1}</StyledTableCell>
 
             
-              <StyledTableCell className='text-align-center'>Ajinsa</StyledTableCell>
-              <StyledTableCell className='text-align-center'>ajinsa@gmail.com</StyledTableCell>
-              <StyledTableCell className='text-align-center'>1234567891</StyledTableCell>
-              <StyledTableCell className='text-align-center'>Kakanad,Ernakulam </StyledTableCell>
-              <StyledTableCell className='text-align-center'> <i className="fa-regular fa-2x fa-trash-can" style={{ color: '#B08968' }}></i>
- </StyledTableCell>
+              <StyledTableCell className='text-align-center'>{i?.username}</StyledTableCell>
+              <StyledTableCell className='text-align-center'> {i?.email}  </StyledTableCell>
+              <StyledTableCell className='text-align-center'>{i?.number}</StyledTableCell>
+              <StyledTableCell className='text-align-center'>{i?.address} </StyledTableCell>
+              
 
               
         
              </StyledTableRow>
-          
+          ))}
         </TableBody>
+        
       </Table>
     </TableContainer>
     <Stack spacing={2} className="text-center mt-3">
-          <Pagination count={0} style={{ color: "#B08968" }} />
+          <Pagination count={0} style={{ color: "#B08968" }} /><Pagination
+          count={Math.ceil(userList.length / itemsPerPage)}
+          page={page}
+          onChange={handleChangePage}
+          style={{ color: "#B08968" }}
+        />
         </Stack>
     </Container>
     </div>
