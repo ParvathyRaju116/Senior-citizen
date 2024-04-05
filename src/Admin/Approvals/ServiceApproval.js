@@ -61,23 +61,41 @@ function ServiceApproval() {
       confirmButtonText: "Approve It",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await axios.post(
-          `http://localhost:5000/approve/serviceProvider`,
-          item
-        );
-        if (response?.status >= 200 && response?.status <= 300) {
-          Swal.fire({
-            title: "Approved",
-            text: "Service Provider Approved.",
-            icon: "success",
-          });
-          getServiceProviders();
-        } else {
-          Swal.fire({
-            title: "Not Approved",
-            text: "Service Provider Not Approved.",
-            icon: "warning",
-          });
+        try {
+          const response = await axios.post(
+            `http://localhost:5000/approve/serviceProvider`,
+            item
+          );
+
+          if (response?.status >= 200 && response?.status <= 300) {
+            Swal.fire({
+              title: "Approved",
+              text: "Service Provider Approved.",
+              icon: "success",
+            });
+            getServiceProviders();
+          } else {
+            Swal.fire({
+              title: "Not Approved",
+              text: "Service Provider Not Approved.",
+              icon: "warning",
+            });
+          }
+        } catch (error) {
+          if (error.response.status === 401) {
+            Swal.fire({
+              title: "Error",
+              text: "The user with same mail is approved already so Reject It",
+              icon: "error",
+            });
+          } else {
+            Swal.fire({
+              title: "Oops",
+              text: "Something went Wrong",
+              icon: "error",
+            });
+          }
+          console.error("Error rejecting service provider:", error);
         }
       }
     });
@@ -96,25 +114,42 @@ function ServiceApproval() {
       confirmButtonText: "Reject IT ",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await axios.delete(
-          `http://localhost:5000/reject/serviceProvider/request`,
-          { data: email } // Use 'data' option to pass the payload
-        );
+        try {
+          const response = await axios.delete(
+            `http://localhost:5000/reject/serviceProvider/request`,
+            { data: email } // Use 'data' option to pass the payload
+          );
 
-        if (response?.status >= 200 && response?.status <= 300) {
-          Swal.fire({
-            title: "Rejected",
-            text: "Service Provider Rejected.",
-            icon: "success",
-          });
-          console.log(response);
-          getServiceProviders();
-        } else {
-          Swal.fire({
-            title: "Not Rejected",
-            text: "Service Provider Not Rejected.",
-            icon: "warning",
-          });
+          if (response?.status >= 200 && response?.status <= 300) {
+            Swal.fire({
+              title: "Rejected",
+              text: "Service Provider Rejected.",
+              icon: "success",
+            });
+            console.log(response);
+            getServiceProviders();
+          } else {
+            Swal.fire({
+              title: "Not Rejected",
+              text: "Service Provider Not Rejected.",
+              icon: "warning",
+            });
+          }
+        } catch (error) {
+          if (error.response.status === 401) {
+            Swal.fire({
+              title: "Error",
+              text: "The email Is alredy Approved So Reject it",
+              icon: "error",
+            });
+          } else {
+            Swal.fire({
+              title: "Oops",
+              text: "Something went Wrong",
+              icon: "error",
+            });
+          }
+          console.error("Error rejecting service provider:", error);
         }
       }
     });
@@ -130,7 +165,7 @@ function ServiceApproval() {
       style={{ margin: "auto", maxWidth: "100%", overflowX: "auto" }}
     >
       <h2 className="text-center">Service Providers Request List</h2>
-      {spList.length >0 ? (
+      {spList.length > 0 ? (
         <>
           <TableContainer
             component={Paper}
