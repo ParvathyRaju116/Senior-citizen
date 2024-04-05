@@ -23,6 +23,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
+      <Route path='/' element={<Home />} />
+
     //admin
         <Route path='/admin-dash' element={<AdminDashboard />} />
         <Route path='/admin-login' element={<AdminLogin />} />
@@ -32,8 +34,6 @@ function App() {
         <Route path='/admin-approval' element={<UserApproval />} />
         <Route path='/admin-user' element={< UserList/>} />
         <Route path='/admin-service' element={< ServiceProviderList/>} />
-
-
 
 //user
         <Route path='/user-login' element={<Login />} />
@@ -50,7 +50,6 @@ function App() {
         <Route path='/service-attendence' element={<Attendence/>} />
         <Route path='/service-bookings' element={<AcceptedBookings/>} />
 
-        <Route path='/' element={<Home />} />
       </Routes>
     </div>
   );

@@ -30,10 +30,10 @@ function Login({ register }) {
       try {
         const result = await registerApi(userdata);
         console.log(result);
-        if (result.status >= 200 && result.status < 300) {
+        if (result.status >= 200 && result.status <= 300) {
           Swal.fire({
             title: "Registration Successfull",
-            icon: "Success",
+            icon: "success",
           });
           setUserdata({
             username: "",
@@ -78,7 +78,7 @@ function Login({ register }) {
       const result = await loginApi(userdata);
       console.log(result);
 
-      if (result.status === 200) {
+      if (result.status>= 200 && result.status <=300) {
         Swal.fire({
           title: "Login Successfull",
           icon: "Success",

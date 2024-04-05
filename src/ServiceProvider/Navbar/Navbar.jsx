@@ -38,11 +38,6 @@ function Navbar() {
         <MDBCollapse navbar open={openNav}>
           <MDBNavbarNav>
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='#'>
-                Home
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
               <MDBNavbarLink ><Link to={'/service-bookings'} style={{textDecoration:'none',color:'black'}}>Bookings</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
