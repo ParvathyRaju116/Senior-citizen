@@ -25,6 +25,10 @@ function ServiceApproval() {
     },
   }));
 
+  const [mail, setMail] = useState({
+    email: "",
+  });
+
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     // hide last border
     "&:last-child td, &:last-child th": {
@@ -33,7 +37,7 @@ function ServiceApproval() {
   }));
 
   // state
-  const [spList, setSpList] = useState(null);
+  const [spList, setSpList] = useState([]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -61,28 +65,27 @@ function ServiceApproval() {
           `http://localhost:5000/approve/serviceProvider`,
           item
         );
-        if(response?.status >=200 && response?.status <=300){
+        if (response?.status >= 200 && response?.status <= 300) {
           Swal.fire({
             title: "Approved",
             text: "Service Provider Approved.",
             icon: "success",
           });
           getServiceProviders();
+        } else {
+          Swal.fire({
+            title: "Not Approved",
+            text: "Service Provider Not Approved.",
+            icon: "warning",
+          });
         }
-       else{
-        Swal.fire({
-          title: "Not Approved",
-          text: "Service Provider Not Approved.",
-          icon: "warning",
-        });
-       }
       }
     });
   };
 
-  const handleDelete =(email)=>{
-    const reqBody = new FormData()
-    reqBody.append("email",email)
+  const handleDelete = (emailuser) => {
+    const email = { email: emailuser }; // Create an object with email property
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -95,30 +98,27 @@ function ServiceApproval() {
       if (result.isConfirmed) {
         const response = await axios.delete(
           `http://localhost:5000/reject/serviceProvider/request`,
-          reqBody
+          { data: email } // Use 'data' option to pass the payload
         );
-        if(response?.status >=200 && response?.status <=300){
+
+        if (response?.status >= 200 && response?.status <= 300) {
           Swal.fire({
-            title: "Approved",
+            title: "Rejected",
             text: "Service Provider Rejected.",
             icon: "success",
           });
+          console.log(response);
           getServiceProviders();
+        } else {
+          Swal.fire({
+            title: "Not Rejected",
+            text: "Service Provider Not Rejected.",
+            icon: "warning",
+          });
         }
-       else{
-        Swal.fire({
-          title: "Not Rejected",
-          text: "Service Provider Not Rejected.",
-          icon: "warning",
-        });
-       }
       }
     });
-  }
-
-
-  if (spList === null) return <></>;
-  console.log(spList);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -129,86 +129,101 @@ function ServiceApproval() {
       className="m-5 mx-2"
       style={{ margin: "auto", maxWidth: "100%", overflowX: "auto" }}
     >
-      <h3 className="text-center">Service Providers Request List</h3>
-      <TableContainer
-        component={Paper}
-        style={{ maxHeight: "calc(100vh - 200px)", overflow: "auto" }}
-      >
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell> Sl.No</StyledTableCell>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell>E-mail</StyledTableCell>
-              <StyledTableCell>Service</StyledTableCell>
-              <StyledTableCell>Specialization</StyledTableCell>
-              <StyledTableCell>Qualification</StyledTableCell>
-              <StyledTableCell>Rate</StyledTableCell>
-              <StyledTableCell>Certificate</StyledTableCell>
-              <StyledTableCell className="text-align-right">
-                Action
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {spList
-              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-              .map((i, index) => (
-                <StyledTableRow>
-                  <StyledTableCell component="th" scope="row">
-                    {index + 1}
+      <h2 className="text-center">Service Providers Request List</h2>
+      {spList.length >0 ? (
+        <>
+          <TableContainer
+            component={Paper}
+            style={{ maxHeight: "calc(100vh - 200px)", overflow: "auto" }}
+          >
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell> Sl.No</StyledTableCell>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell>E-mail</StyledTableCell>
+                  <StyledTableCell>Service</StyledTableCell>
+                  <StyledTableCell>Specialization</StyledTableCell>
+                  <StyledTableCell>Qualification</StyledTableCell>
+                  <StyledTableCell>Rate</StyledTableCell>
+                  <StyledTableCell>Certificate</StyledTableCell>
+                  <StyledTableCell className="text-align-right">
+                    Action
                   </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.username}
-                  </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.email}
-                  </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.service}
-                  </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.specialization}
-                  </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.qualification}
-                  </StyledTableCell>
-                  <StyledTableCell className="text-align-center">
-                    {i?.rate}
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <Button style={{ color: "black" }}>View</Button>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <div>
-                      {" "}
-                      <Stack direction="row" spacing={2}>
-                        <Button
-                          variant="contained"
-                          color="success"
-                          onClick={() => handleResponse(i)}
-                        >
-                          Approve
-                        </Button>
-                        <Button variant="outlined" color="error" onClick={()=>handleDelete(i?.email)}>
-                          Reject
-                        </Button>
-                      </Stack>
-                    </div>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Stack spacing={2} className="text-center mt-3">
-        <Pagination
-          count={Math.ceil(spList.length / itemsPerPage)}
-          page={page}
-          onChange={handleChangePage}
-          style={{ color: "#B08968" }}
-        />
-      </Stack>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {spList
+                  .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                  .map((i, index) => (
+                    <StyledTableRow>
+                      <StyledTableCell component="th" scope="row">
+                        {index + 1}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.username}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.email}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.service}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.specialization}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.qualification}
+                      </StyledTableCell>
+                      <StyledTableCell className="text-align-center">
+                        {i?.rate}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button style={{ color: "black" }}>View</Button>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <div>
+                          {" "}
+                          <Stack direction="row" spacing={2}>
+                            <Button
+                              variant="contained"
+                              color="success"
+                              onClick={() => handleResponse(i)}
+                            >
+                              Approve
+                            </Button>
+                            <Button
+                              variant="outlined"
+                              color="error"
+                              onClick={() => handleDelete(i?.email)}
+                            >
+                              Reject
+                            </Button>
+                          </Stack>
+                        </div>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Stack spacing={2} className="text-center mt-3">
+            <Pagination
+              count={Math.ceil(spList.length / itemsPerPage)}
+              page={page}
+              onChange={handleChangePage}
+              style={{ color: "#B08968" }}
+            />
+          </Stack>
+        </>
+      ) : (
+        <>
+          {" "}
+          <h3 className="text-center text-danger">
+            No Request Availabe!!!
+          </h3>{" "}
+        </>
+      )}
     </Container>
   );
 }
