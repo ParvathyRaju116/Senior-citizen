@@ -26,3 +26,7 @@ export const getServiceProvidersApi=async()=>{
 export const getApprovedServiceProvidersApi=async()=>{
     return await commonApi('GET',`${baseurl}/approvedServiceProviders/list`,"","")
 }
+//get All Users
+export const getUsersApi=async()=>{
+    return await commonApi('GET',`${baseurl}/users/list`,"","")
+}
