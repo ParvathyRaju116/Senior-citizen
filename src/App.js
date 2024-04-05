@@ -16,6 +16,8 @@ import UserApproval from './Admin/Approvals/UserApproval';
 import UserList from './Admin/Approvals/UserList';
 import ServiceProviderList from './Admin/Approvals/ServiceProviderList';
 import UserRequest from './ServiceProvider/UserRequest/UserRequest';
+import Attendence from './ServiceProvider/Attendence/Attendence';
+import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
         <Route path='/service-reg2' element={<Singup />} />
         <Route path='/service-reg' element={<Singup register />} />
         <Route path='/service-request' element={<UserRequest/>} />
+        <Route path='/service-attendence' element={<Attendence/>} />
+        <Route path='/service-bookings' element={<AcceptedBookings/>} />
 
         <Route path='/' element={<Home />} />
       </Routes>
