@@ -57,10 +57,6 @@ function Login({ register }) {
         }
       } catch (error) {
         console.log(error);
-        Swal.fire({
-          title: "Something Went Wrong check Connection",
-          icon: "warning",
-        });
       }
     }
   };
@@ -78,7 +74,7 @@ function Login({ register }) {
       const result = await loginApi(userdata);
       console.log(result);
 
-      if (result.status>= 200 && result.status <=300) {
+      if (result.status >= 200 && result.status <= 300) {
         Swal.fire({
           title: "Login Successfull",
           icon: "Success",

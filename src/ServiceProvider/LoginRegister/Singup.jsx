@@ -83,6 +83,7 @@ function Login({ register }) {
             qualification: "",
             exp_year: "",
             rate: "",
+            location: "",
             experience_crt: null,
           });
         } else if (result?.response?.status === 400) {
@@ -93,13 +94,12 @@ function Login({ register }) {
           });
         }
       } catch (error) {
-        if(error?.response?.status === 400){
+        if (error?.response?.status === 400) {
           Swal.fire({
             title: "Email Already Taken ",
             icon: "warning",
           });
-        }
-        else{
+        } else {
           Swal.fire({
             title: "Something Went Wrong",
             icon: "warning",
@@ -260,6 +260,19 @@ function Login({ register }) {
                     value={userdata.service}
                     onChange={(e) =>
                       setUserdata({ ...userdata, service: e.target.value })
+                    }
+                  ></input>
+                </div>
+                <div className="mb-3">
+                  <input
+                    name=""
+                    id=""
+                    type="text"
+                    placeholder="Location"
+                    className="input-field"
+                    value={userdata.location}
+                    onChange={(e) =>
+                      setUserdata({ ...userdata, location: e.target.value })
                     }
                   ></input>
                 </div>
