@@ -197,6 +197,7 @@ function AddBlog() {
                 Add
               </button>
             </div>
+            
           </Form>
         </div>
       </Container>
@@ -205,3 +206,4 @@ function AddBlog() {
 }
 
 export default AddBlog;
+
