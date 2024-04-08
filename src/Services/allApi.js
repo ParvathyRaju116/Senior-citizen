@@ -30,3 +30,11 @@ export const getApprovedServiceProvidersApi=async()=>{
 export const getUsersApi=async()=>{
     return await commonApi('GET',`${baseurl}/users/list`,"","")
 }
+
+export const getAllBlogs = async()=>{
+    return await commonApi(`GET`,`${baseurl}/blogs/all-blogs`,"","")
+}
+
+export const getOneBlog = async(id)=>{
+    return await commonApi(`GET`,`${baseurl}/blogs/view-blog/${id}`,"","")
+}

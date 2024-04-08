@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { getAllBlogs, getOneBlog } from "../../Services/allApi";
 
 const style = {
   position: "absolute",
@@ -18,33 +19,74 @@ const style = {
 
 function Blog() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [oneBlog, setOneBlog] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const handleOpen = async (id) => {
+    try {
+      const response = await getOneBlog(id);
+      if (response.status >= 200 && response.status <= 300) {
+        setOneBlog(response?.data?.blog);
+      }
+
+      setOpen(true);
+    } catch (error) {}
+  };
   const handleClose = () => setOpen(false);
+
+  const handleGetBlogs = async () => {
+    try {
+      const response = await getAllBlogs();
+
+      if (response.status >= 200 && response.status <= 300) {
+        setBlogs(response?.data?.allBlogs);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetBlogs();
+  }, []);
+
   return (
     <>
       <div className="pt-5">
         <h1 className="text-center">BLOGS</h1>
         <marquee>
-          <div
-            className="shadow d-flex justify-content-center align-items-center flex-column p-4"
-            style={{ width: "400px", height: "auto" }}
-          >
-            <img
-              src="https://bighearts.com.ph/wp-content/uploads/2017/10/reasons-elderly-care-important.jpg"
-              alt="no image"
-              style={{ width: "350px", height: "250px" }}
-              className="p-3"
-            />
-            <h6>Date: 12/01/2024</h6>
-            <p
-              className="align-items-center mb-0 ms-4"
-              style={{ whiteSpace: "pre-line" }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-              obcaecati veritatis! Sapiente quia a voluptatem.....{" "}
-              <Button onClick={handleOpen}>Read more</Button>
-            </p>
-          </div>
+          {blogs.length > 0 ? (
+            blogs.map((item) => (
+              <>
+                <div
+                  className="shadow d-flex justify-content-center align-items-center flex-column p-4"
+                  style={{ width: "400px", height: "auto" }}
+                >
+                  <div>
+                    {" "}
+                    <img
+                      src="https://bighearts.com.ph/wp-content/uploads/2017/10/reasons-elderly-care-important.jpg"
+                      alt="no_image"
+                      style={{ width: "350px", height: "250px" }}
+                      className="p-3"
+                    />
+                  </div>
+                  <h6>Title : {item?.title}</h6>
+                  <h6>Date: {item?.date}</h6>
+                  <p
+                    className="align-items-center mb-0 ms-4"
+                    style={{ whiteSpace: "pre-line" }}
+                  >
+                    {item?.description}{" "}
+                    <Button onClick={() => handleOpen(item?._id)}>
+                      Read more
+                    </Button>
+                  </p>
+                </div>
+              </>
+            ))
+          ) : (
+            <h1> No Blogs Added!!!</h1>
+          )}
         </marquee>
       </div>
 
@@ -65,21 +107,17 @@ function Blog() {
               >
                 <img
                   src="https://bighearts.com.ph/wp-content/uploads/2017/10/reasons-elderly-care-important.jpg"
-                  alt="no image"
+                  alt="no_image"
                   style={{ width: "350px", height: "250px" }}
                   className="p-3"
                 />
-                <h6>Date: 12/01/2024</h6>
+                <h5>Title: {oneBlog?.title}</h5>
+                <h6>Date: {oneBlog?.date}</h6>
                 <p
                   className="align-items-center mb-0"
                   style={{ whiteSpace: "pre-line" }}
                 >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Commodi, obcaecati veritatis! Sapiente quia a voluptatem Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-                  incidunt ipsam cum saepe earum, unde deleniti, quidem
-                  reiciendis suscipit enim cupiditate architecto quis,
-                  exercitationem non aliquam debitis illum iure! Aperiam.
+                  {oneBlog?.description}
                 </p>
               </div>
             </Typography>
