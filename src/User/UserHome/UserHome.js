@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import "./userhome.css";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../Footer/Footer";
+import Blog from "../Blog/Blog";
 
 function UserHome() {
   return (
@@ -98,6 +99,7 @@ function UserHome() {
           </Row>
         </Container>
       </div>
+      <Blog/>
       <Footer/>
     </>
   );
