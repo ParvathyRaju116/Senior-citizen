@@ -19,6 +19,7 @@ import UserRequest from './ServiceProvider/UserRequest/UserRequest';
 import Attendence from './ServiceProvider/Attendence/Attendence';
 import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
 import AddBlog from './Admin/AdminBlog/AddBlog';
+import Blog from './User/Blog/Blog';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/user-profile' element={<Profile />} />
         <Route path='/user-bookings' element={<MyBookings />} />
         <Route path='/user-complaints' element={<Complaints />} />
+        <Route path='/user-blog' element={<Blog />} />
 
    //serviceprovider
         <Route path='/service-reg2' element={<Singup />} />
