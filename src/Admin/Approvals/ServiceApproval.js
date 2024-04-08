@@ -255,7 +255,7 @@ function ServiceApproval() {
         <>
           {" "}
           <h3 className="text-center text-danger">
-            No Request Availabe!!!
+            No Request Available!!!
           </h3>{" "}
         </>
       )}

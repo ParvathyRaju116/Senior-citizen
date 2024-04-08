@@ -14,7 +14,7 @@ function UserApproval() {
   return (
     <div style={{ display: 'flex' }}>
     
-      <CDBSidebar  textColor="#fff" backgroundColor="#333" style={{ background: 'linear-gradient(to bottom, #9C6644, #DDB892)', width: '280px',height:"100vh" }}>
+      <CDBSidebar  textColor="#fff" backgroundColor="#333" style={{ background: 'linear-gradient(to bottom, #9C6644, #DDB892)', width: '400px',height:"100vh" }}>
         <CDBSidebarContent className="sidebar-content " >
           <CDBSidebarMenu  >
             <NavLink exact to="/admin-approval" activeClassName="activeClicked">
@@ -26,6 +26,9 @@ function UserApproval() {
             </NavLink>
             <NavLink exact to="/admin-user" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">Users List</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/admin-user" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="list">ServiceProvider Attendance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>

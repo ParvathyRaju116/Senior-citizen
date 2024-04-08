@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -9,6 +8,7 @@ import {
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
+
 function UserAside() {
   return (
     <div>
@@ -18,7 +18,7 @@ function UserAside() {
         style={{
           background: "linear-gradient(to bottom, #9C6644, #DDB892)",
          
-          
+          width: '300px',
           height: "100vh",
         }}
       >
@@ -39,12 +39,15 @@ function UserAside() {
             <NavLink exact to="/admin-user" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">Users List</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/admin-user" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="list">ServiceProvider Attendance</CDBSidebarMenuItem>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div style={{ padding: "20px 5px" }}>
             <Button style={{ color: "white" }}>
-              <h5>Log Out </h5>
+              <h5 >Back </h5>
             </Button>
           </div>
         </CDBSidebarFooter>

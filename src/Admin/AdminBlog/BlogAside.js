@@ -10,46 +10,12 @@ import {
 import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-function AdminSidebar() {
+function BlogAside() {
 
  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'scroll initial' }}>
       
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#9C6644" }}>
-  <div className="container-fluid">
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav ms-auto">
-      <div className="dropdown">
-    </div>
-       
-    <li className="nav-item mx-2"  >
-        <a className="nav-link" href="#">
-        <i className="fa fa-bell" style={{ color: 'white' }} title="Notification"     ></i>
-
-          </a> 
-        </li>
-        <li className="nav-item mx-2"  >
-        <a className="nav-link" href="#">
-        <i className="fa fa-envelope" style={{ color: 'white' }} title="Leave Request"     ></i>
-
-          </a> 
-        </li>
-        <li> 
-
-        <a className="nav-link" href="#">
-      <i className="fa fa-power-off" style={{ color: 'white', marginRight: '5px' }} title="Log Out"></i>
-    </a>
-        </li>
-      
-      </ul>
-    </div>
-  </div>
-</nav>
-
 
 
      
@@ -109,4 +75,4 @@ function AdminSidebar() {
   );
 }
 
-export default AdminSidebar;
+export default BlogAside;

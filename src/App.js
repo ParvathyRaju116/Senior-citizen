@@ -18,6 +18,7 @@ import ServiceProviderList from './Admin/Approvals/ServiceProviderList';
 import UserRequest from './ServiceProvider/UserRequest/UserRequest';
 import Attendence from './ServiceProvider/Attendence/Attendence';
 import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
+import AddBlog from './Admin/AdminBlog/AddBlog';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/admin-approval' element={<UserApproval />} />
         <Route path='/admin-user' element={< UserList/>} />
         <Route path='/admin-service' element={< ServiceProviderList/>} />
+        <Route path='/admin-blog' element={< AddBlog/>} />
 
 //user
         <Route path='/user-login' element={<Login />} />

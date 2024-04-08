@@ -91,7 +91,7 @@ function UserList() {
       </Table>
     </TableContainer>
     <Stack spacing={2} className="text-center mt-3">
-          <Pagination count={0} style={{ color: "#B08968" }} /><Pagination
+          <Pagination
           count={Math.ceil(userList.length / itemsPerPage)}
           page={page}
           onChange={handleChangePage}
