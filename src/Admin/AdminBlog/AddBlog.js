@@ -96,7 +96,8 @@ function AddBlog() {
             description: "",
             image: null,
           });
-          document.getElementById("formFile").value = ""; // Clear file input
+          document.getElementById("formFile").value = null;
+          document.getElementById("image").value = null; // Clear file input
           Swal.fire({
             title: "Blog Added",
             icon: "success",
@@ -155,7 +156,13 @@ function AddBlog() {
                   ]}
                 >
                   <DemoItem>
-                    <DatePicker onChange={handleDateChange} />
+                    <input
+                    type="date"
+                    className="rounded border border-2 p-2"
+                      id="image"
+                      onChange={handleDateChange}
+                     
+                    />
                   </DemoItem>
                 </DemoContainer>
               </div>
