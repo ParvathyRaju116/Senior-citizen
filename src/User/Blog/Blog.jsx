@@ -51,8 +51,9 @@ function Blog() {
 
   return (
     <>
+      {" "}
+      <h1 className="text-center">BLOGS</h1>
       <div className="pt-5">
-        <h1 className="text-center">BLOGS</h1>
         <marquee>
           {blogs.length > 0 ? (
             blogs.map((item) => (
@@ -89,7 +90,6 @@ function Blog() {
           )}
         </marquee>
       </div>
-
       {/* modal */}
       <div>
         <Modal

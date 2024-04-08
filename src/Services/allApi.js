@@ -38,3 +38,10 @@ export const getAllBlogs = async()=>{
 export const getOneBlog = async(id)=>{
     return await commonApi(`GET`,`${baseurl}/blogs/view-blog/${id}`,"","")
 }
+
+//admin Add blogs
+
+export const addBlogsApi = async(reqBody,header)=>{
+    return await commonApi(`POST`,`${baseurl}/blogs/add-blogs`,reqBody,header)
+}
+

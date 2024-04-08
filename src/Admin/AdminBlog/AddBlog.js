@@ -9,6 +9,9 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import { addBlogsApi } from "../../Services/allApi";
+import Swal from "sweetalert2";
 
 function AddBlog() {
   const [addBlog, setAddBlog] = useState({
@@ -64,7 +67,50 @@ function AddBlog() {
     }
   };
 
-  console.log(addBlog);
+  const handleDateChange = (date) => {
+    const formattedDate = dayjs(date).format("MM/DD/YYYY");
+    setAddBlog({ ...addBlog, date: formattedDate });
+  };
+
+  const header = {
+    "Content-Type": "multipart/form-data",
+  };
+
+  const handleAddBlog = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const { title, date, description, image } = addBlog;
+    if (!title || !date || !description || !image) {
+      Swal.fire({
+        title: "Fill the Blog Form",
+        icon: "warning",
+      });
+    } else {
+      try {
+        const response = await addBlogsApi(addBlog, header);
+        if (response.status >= 200 && response.status <= 300) {
+          console.log(response);
+          setAddBlog({
+            title: "",
+            date: null,
+            description: "",
+            image: null,
+          });
+          document.getElementById("formFile").value = ""; // Clear file input
+          Swal.fire({
+            title: "Blog Added",
+            icon: "success",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        Swal.fire({
+          title: "Blog Not Added",
+          icon: "warning",
+        });
+      }
+    }
+  };
 
   return (
     <div style={{ display: "flex" }}>
@@ -89,6 +135,7 @@ function AddBlog() {
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label></Form.Label>
               <Form.Control
+                value={addBlog.title}
                 type="text"
                 placeholder="title"
                 onChange={(e) =>
@@ -108,9 +155,7 @@ function AddBlog() {
                   ]}
                 >
                   <DemoItem>
-                    <DatePicker
-                      onChange={(date) => setAddBlog({ ...addBlog, date })}
-                    />
+                    <DatePicker onChange={handleDateChange} />
                   </DemoItem>
                 </DemoContainer>
               </div>
@@ -121,6 +166,7 @@ function AddBlog() {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Control
+                value={addBlog.description}
                 as="textarea"
                 rows={3}
                 placeholder="Description"
@@ -139,6 +185,7 @@ function AddBlog() {
               <button
                 className="btn btn "
                 style={{ backgroundColor: "#B08968", color: "white" }}
+                onClick={handleAddBlog}
               >
                 Add
               </button>
