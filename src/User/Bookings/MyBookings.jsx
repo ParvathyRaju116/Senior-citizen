@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 const style = {
   position: 'absolute',
@@ -19,10 +20,8 @@ const style = {
   p: 4,
 };
 
-
-
 function MyBookings() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -31,7 +30,7 @@ function MyBookings() {
       <Header />
       <Container style={{ marginTop: '50px' }}>
         <h1 className='text-center mb-3'>Booking Details</h1>
-        <Col md={4} className=' d-flex justify-content-center align-items-center' style={{ width: '400px', height: '400px' }}>
+        <Col md={4} className='d-flex justify-content-center align-items-center' style={{ width: '400px', height: '400px' }}>
           <div style={{ width: '400px', height: 'auto' }} className='div2 text-center mb-5 p-3'>
             <div className='mt-5 text-light'>
               <p>Dr Name : Aryamol</p>
@@ -40,8 +39,7 @@ function MyBookings() {
               <p>Booking Time : 05:30</p>
               <p>Rate : 5000</p>
               <p>Action : Approved</p>
-              <Button onClick={handleOpen}>Feeadback</Button>
- 
+              <Button onClick={handleOpen}>Feedback</Button>
             </div>
           </div>
         </Col>
@@ -55,12 +53,15 @@ function MyBookings() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography id="modal-modal-title" variant="h6" component="h2" className='mb-3'>
+            Add Your Feedback
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          <Typography id="modal-modal-description" xl={{ mt: 2 }}>
+            <TextField style={{ width: '100%'}} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" />
           </Typography>
+          <div className="d-flex justify-content-center">
+            <button className='btn btn-outline-success mt-3'>Submit</button>
+          </div>
         </Box>
       </Modal>
     </>
