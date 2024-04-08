@@ -2,14 +2,32 @@ import React, { useState } from 'react';
 import Header from '../Header/Header';
 import { Container, Col } from 'react-bootstrap';
 import './mybookings.css';
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
 
 function MyBookings() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <>
       <Header />
       <Container style={{ marginTop: '50px' }}>
         <h1 className='text-center mb-3'>Booking Details</h1>
@@ -22,25 +40,30 @@ function MyBookings() {
               <p>Booking Time : 05:30</p>
               <p>Rate : 5000</p>
               <p>Action : Approved</p>
-              <Button
-                onClick={() => setOpen(!open)}
-                aria-controls="example-collapse-text"
-                aria-expanded={open}
-              >
-                Click
-              </Button>
-              <Collapse in={open}>
-                <div id="example-collapse-text">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                  terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                  labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-              </Collapse>
+              <Button onClick={handleOpen}>Feeadback</Button>
+ 
             </div>
           </div>
         </Col>
       </Container>
-    </div>
+
+      {/* Modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+    </>
   );
 }
 
