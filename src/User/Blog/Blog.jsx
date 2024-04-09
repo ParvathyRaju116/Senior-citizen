@@ -61,7 +61,7 @@ function Blog() {
             blogs.map((item) => (
               <div
                 key={item._id}
-                className="shadow d-flex flex-column p-4 rounded"
+                className="shadow d-flex flex-column p-4"
                 style={{ width: "400px", height: "auto" }}
               >
                 <div>
