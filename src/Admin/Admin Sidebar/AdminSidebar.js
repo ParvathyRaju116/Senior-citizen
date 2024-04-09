@@ -88,7 +88,7 @@ function AdminSidebar() {
               <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
             </NavLink>
             
-            <NavLink exact to="" target="_blank" activeClassName="activeClicked">
+            <NavLink exact to="/admin-webinar"  activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="handshake">Webinar</CDBSidebarMenuItem>
             </NavLink>
           

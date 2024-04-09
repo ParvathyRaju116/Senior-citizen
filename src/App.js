@@ -19,16 +19,17 @@ import UserRequest from './ServiceProvider/UserRequest/UserRequest';
 import Attendence from './ServiceProvider/Attendence/Attendence';
 import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
 import AddBlog from './Admin/AdminBlog/AddBlog';
-import Blog from './User/Blog/Blog';
+import UserBlog from './User/Blog/UserBlog';
 import Webinar from './User/Webinar/Webinar';
+import AdminWebinar from './Admin/AdminWebinar/AdminWebinar';
+
 
 function App() {
   return (
     <div className="App">
       <Routes>
       <Route path='/' element={<Home />} />
-
-    //admin
+{/*  //admin */}
         <Route path='/admin-dash' element={<AdminDashboard />} />
         <Route path='/admin-login' element={<AdminLogin />} />
         <Route path='/admin-leave' element={<LeaveRequest />} />
@@ -40,7 +41,7 @@ function App() {
         <Route path='/admin-blog' element={< AddBlog/>} />
         <Route path='/admin-webinar' element={<AdminWebinar />} />
 
-//user
+{/* //user */}
         <Route path='/user-login' element={<Login />} />
         <Route path='/user-register' element={<Login register />} />
         <Route path='/user-home' element={<UserHome />} />
@@ -50,7 +51,7 @@ function App() {
         <Route path='/user-blog' element={<UserBlog />} />
         <Route path='/user-webinar' element={<Webinar />} />
 
-   //serviceprovider
+   {/* //serviceprovider */}
         <Route path='/service-reg2' element={<Singup />} />
         <Route path='/service-reg' element={<Singup register />} />
         <Route path='/service-request' element={<UserRequest/>} />
