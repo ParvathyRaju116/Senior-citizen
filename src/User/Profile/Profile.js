@@ -7,20 +7,17 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import {useNavigate} from 'react-router-dom'
 
 function Profile() {
   const [open, setOpen] = useState(true);
   const [isUpdate, setIsUpdate] = useState(false);
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const navigate = useNavigate()
   const [newPassword, setPassword] = useState({
     password: "",
     confirmPassword: "",
   });
-
   const [profile, setProfile] = useState({
     username: "",
     email: "",
@@ -29,6 +26,9 @@ function Profile() {
     address: "",
   });
   const [id, setId] = useState(null);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleProfile = async () => {
     try {
@@ -48,6 +48,28 @@ function Profile() {
           JSON.stringify(response.data.updatedUser)
         );
         setIsUpdate(true);
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Something went wrong",
+        icon: "warning",
+      });
+    }
+  };
+
+  const handleDeleteProfile = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:5000/deleteUser/${id}`);
+
+      if (response.status >= 200 && response.status <= 300) {
+        Swal.fire({
+          title: "Profile Deleted",
+          icon: "success",
+        });
+        // Clear session storage or perform any other cleanup tasks
+        sessionStorage.clear()
+        navigate('/')
       }
     } catch (error) {
       console.log(error);
@@ -162,9 +184,12 @@ function Profile() {
                   }
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-3 d-flex">
                 <button className="btn  btn-warning mt-3" onClick={handleShow}>
                   Change Password
+                </button>
+                <button className="btn  btn-danger mt-3 ms-3" onClick={handleDeleteProfile}>
+                  Delete Profile
                 </button>
               </div>
               <button

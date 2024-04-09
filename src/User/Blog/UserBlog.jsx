@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getAllBlogs } from "../../Services/allApi";
 import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCardImage,
-  MDBRipple,
-} from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
+    MDBCard,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText,
+    MDBCardImage,
+    MDBRipple,
+  } from "mdb-react-ui-kit";
+import Header from "../Header/Header";
 
-function Blog() {
+function UserBlog() {
   const [blogs, setBlogs] = useState([]);
 
   const handleGetBlogs = async () => {
     try {
       const response = await getAllBlogs();
       if (response.status >= 200 && response.status <= 300) {
+        console.log(response.data.allBlogs
+          );
         setBlogs(response?.data?.allBlogs);
       }
     } catch (error) {
@@ -29,15 +31,16 @@ function Blog() {
   }, []);
 
   return (
-    <>
-      <h1 className="text-center">BLOGS</h1>
+      <>
+          <Header/>
+      <h1 className="text-center mt-3">All Blogs</h1>
 
       <div className="container">
         <div className="row">
           {blogs.length > 0 ? (
-            blogs.slice(0, 4).map((item) => (
-              <div className="col-lg-3 p-3" key={item._id}>
-                <MDBCard>
+            blogs.map((item) => (
+                <div className="col-lg-3 p-3">
+                <MDBCard className="shadow">
                   <MDBRipple
                     rippleColor="light"
                     rippleTag="div"
@@ -58,8 +61,8 @@ function Blog() {
                     </a>
                   </MDBRipple>
                   <MDBCardBody>
-                    <MDBCardTitle>Title: {item?.title}</MDBCardTitle>
-                    <MDBCardTitle>Date: {item?.date}</MDBCardTitle>
+                    <MDBCardTitle className="text-center fs-3">{item?.title}</MDBCardTitle>
+                    <MDBCardTitle>{item?.date}</MDBCardTitle>
                     <MDBCardText>{item?.description}</MDBCardText>
                   </MDBCardBody>
                 </MDBCard>
@@ -68,16 +71,10 @@ function Blog() {
           ) : (
             <h1 className="text-center mt-4 text-danger">No Blogs Available</h1>
           )}
-
-          <div className="text-center">
-            <Link>
-              <p><Link to={'/user-blog'}>View More....</Link></p>
-            </Link>
-          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default Blog;
+export default UserBlog;
