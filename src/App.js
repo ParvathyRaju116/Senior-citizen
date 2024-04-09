@@ -19,8 +19,9 @@ import UserRequest from './ServiceProvider/UserRequest/UserRequest';
 import Attendence from './ServiceProvider/Attendence/Attendence';
 import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
 import AddBlog from './Admin/AdminBlog/AddBlog';
-import Blog from './User/Blog/Blog';
 import Webinar from './User/Webinar/Webinar';
+import UserBlog from './User/Blog/UserBlog'
+import AdminWebinar from './Admin/AdminWebinar/AdminWebinar'
 
 function App() {
   return (
