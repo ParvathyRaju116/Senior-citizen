@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import Accordion from "react-bootstrap/Accordion";
 import Table from "react-bootstrap/Table";
 import Pagination from "@mui/material/Pagination";
+import axios from "axios";
 
 function AddBlog() {
   const [addBlog, setAddBlog] = useState({
@@ -116,31 +117,81 @@ function AddBlog() {
   };
   const [showTable, setShowTable] = useState(true);
 
-
   //list Blog
 
-
-  const[listBlogs,setListBlogs]=useState([])
+  const [listBlogs, setListBlogs] = useState([]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);}
-    const getBlogs = async () => {
-      try {
-        const result = await getAllBlogApi();
-        setListBlogs(result?.data?.allBlogs);
-      } catch (error) {
-        console.log(error);
+    setPage(newPage);
+  };
+  const getBlogs = async () => {
+    try {
+      const result = await getAllBlogApi();
+      setListBlogs(result?.data?.allBlogs);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const handleDelete = (itemid) => {
+    const id = { id: itemid }; // Create an object with email property
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete ",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.delete(
+            `http://localhost:5000/blog/delete-blog`,
+            { data: id } // Use 'data' option to pass the payload
+          );
+
+          if (response?.status >= 200 && response?.status <= 300) {
+            Swal.fire({
+              title: "Deleted",
+              text: "Blog Deleted.",
+              icon: "success",
+            });
+            console.log(response);
+            getBlogs();
+          } else {
+            Swal.fire({
+              title: "Not Deleted",
+              text: "Blog Not Deleted",
+              icon: "warning",
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "Oops",
+            text: "Something went Wrong",
+            icon: "error",
+          });
+          console.error("Error in Deleting:", error);
+        }
       }
-    };
-    useEffect(() => {
-      getBlogs()   }, []);
+    });
+  };
 
   return (
     <div style={{ display: "flex" }}>
       <BlogAside></BlogAside>
       <Container className="p-5 text-center" style={{ width: "50%" }}>
-        <Accordion defaultActiveKey={null} className="ms-5" onSelect={() => setShowTable(!showTable)}>
+        <Accordion
+          defaultActiveKey={null}
+          className="ms-5"
+          onSelect={() => setShowTable(!showTable)}
+        >
           <Accordion.Item eventKey="0">
             <Accordion.Header>Add Blogs</Accordion.Header>
             <Accordion.Body>
@@ -230,8 +281,16 @@ function AddBlog() {
         </Accordion>
         {showTable && (
           <>
-            <h2 className="my-5 text-center" style={{color:"#9C6644"}}> Listing Blogs</h2>
-            <Table striped bordered className="mt-2 " style={{ border: "3px solid #9C6644" }}>
+            <h2 className="my-5 text-center" style={{ color: "#9C6644" }}>
+              {" "}
+              Listing Blogs
+            </h2>
+            <Table
+              striped
+              bordered
+              className="mt-2 "
+              style={{ border: "3px solid #9C6644" }}
+            >
               <thead>
                 <tr>
                   <th>Sl No</th>
@@ -242,21 +301,40 @@ function AddBlog() {
                 </tr>
               </thead>
               <tbody>
-                {listBlogs.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((i, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{i.title}</td>
-                    <td>{i.date}</td>
-                    <td style={{ maxWidth: "300px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {i.description}
-                    </td>
-                    <td>
-                      {i.image && (
-                        <img src={i.image}  style={{ maxWidth: "100px" }} />
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                {listBlogs
+                  .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                  .map((i, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{i.title}</td>
+                      <td>{i.date}</td>
+                      <td
+                        style={{
+                          maxWidth: "300px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {i.description}
+                      </td>
+                      <td>
+                        {i.image && (
+                          <img src={i.image} style={{ maxWidth: "100px" }} />
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          className="p-2 btn"
+                          onClick={() => handleDelete(i?._id)}
+                        >
+                          <i
+                            class="fa-sharp fa-solid fa-trash fa-lg  "
+                            style={{ color: "red" }}
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
             <Stack spacing={2} className="text-center mt-3">
@@ -266,7 +344,7 @@ function AddBlog() {
                 onChange={handleChangePage}
                 style={{ color: "#B08968" }}
               />
-            </Stack>   
+            </Stack>
           </>
         )}
       </Container>

@@ -59,26 +59,40 @@ function Profile() {
   };
 
   const handleDeleteProfile = async () => {
-    try {
-      const response = await axios.delete(`http://localhost:5000/deleteUser/${id}`);
-
-      if (response.status >= 200 && response.status <= 300) {
-        Swal.fire({
-          title: "Profile Deleted",
-          icon: "success",
-        });
-        // Clear session storage or perform any other cleanup tasks
-        sessionStorage.clear()
-        navigate('/')
+    // Show confirmation dialog before deleting the profile
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover your profile!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.delete(`http://localhost:5000/deleteUser/${id}`);
+  
+          if (response.status >= 200 && response.status <= 300) {
+            Swal.fire({
+              title: "Profile Deleted",
+              icon: "success",
+            });
+            // Clear session storage or perform any other cleanup tasks
+            sessionStorage.clear();
+            navigate('/');
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            title: "Something went wrong",
+            icon: "warning",
+          });
+        }
       }
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        title: "Something went wrong",
-        icon: "warning",
-      });
-    }
+    });
   };
+  
 
   useEffect(() => {
     if (sessionStorage.getItem("existingUser")) {

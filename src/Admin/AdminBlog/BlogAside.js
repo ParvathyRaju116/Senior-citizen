@@ -54,7 +54,7 @@ function BlogAside() {
               <CDBSidebarMenuItem icon="hand">Approval Request</CDBSidebarMenuItem>
             </NavLink>
             
-            <NavLink exact to="/admin-webinar" target="_blank" activeClassName="activeClicked">
+            <NavLink exact to="/admin-webinar"  activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="handshake">Webinar</CDBSidebarMenuItem>
             </NavLink>
           
