@@ -45,6 +45,12 @@ export const addBlogsApi = async(reqBody,header)=>{
     return await commonApi(`POST`,`${baseurl}/blogs/add-blogs`,reqBody,header)
 }
 
+//get all webinar
+export const getAllwebinarApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/webinar/all-webinar`, "", "")
+}
+
+//get all blogs
 export const getAllBlogApi = async()=>{
     return await commonApi(`GET`,`${baseurl}/blogs/all-blogs`,"","")
 }
