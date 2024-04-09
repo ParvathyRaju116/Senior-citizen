@@ -71,30 +71,37 @@ function Login({ register }) {
         icon: "warning",
       });
     } else {
-      const result = await loginApi(userdata);
-      console.log(result);
+      try {
+        const result = await loginApi(userdata);
+        console.log(result);
 
-      if (result.status >= 200 && result.status <= 300) {
-        Swal.fire({
-          title: "Login Successfull",
-          icon: "Success",
-        });
-        sessionStorage.setItem("token", result.data.token);
-        sessionStorage.setItem(
-          "existingUser",
-          JSON.stringify(result.data.existingUser)
-        );
-        setUserdata({
-          email: "",
-          password: "",
-        });
-        navigate("/user-home");
-      } else {
+        if (result.status >= 200 && result.status <= 300) {
+          Swal.fire({
+            title: "Login Successfull",
+            icon: "Success",
+          });
+          sessionStorage.setItem("token", result.data.token);
+          sessionStorage.setItem(
+            "existingUser",
+            JSON.stringify(result.data.existingUser)
+          );
+          setUserdata({
+            email: "",
+            password: "",
+          });
+          navigate("/user-home");
+        } else {
+          Swal.fire({
+            title: "Wrong Email or password",
+            icon: "warning",
+          });
+          console.log(result.response.data);
+        }
+      } catch (error) {
         Swal.fire({
           title: "Something went wrong",
           icon: "warning",
         });
-        console.log(result.response.data);
       }
     }
   };
