@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./webinar.css";
 import { getAllwebinarApi } from "../../Services/allApi";
+import {
+  MDBCard,
+  MDBCardImage,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardLink,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBBtn
+} from "mdb-react-ui-kit";
 
 function Webinar() {
   const [webinar, setWebinar] = useState([]);
@@ -9,8 +20,8 @@ function Webinar() {
   const getAllWebinar = async () => {
     try {
       const result = await getAllwebinarApi();
-    console.log(result);
-    setWebinar(result.data);
+      console.log(result);
+      setWebinar(result?.data?.allWebinar);
     } catch (error) {
       console.log(error);
     }
@@ -125,39 +136,47 @@ function Webinar() {
         </button>
       </div>
       <div className="container mt-5">
-        <div className="col-md-4">
-          {webinar?.length===0?
+        <div className="row">
+          {webinar?.length > 0 ? (
             webinar?.map((item) => (
-              <div className="card">
-            <img
-              src="https://elder-care-india.com/wp-content/uploads/2024/01/role-of-nurses-in-the-care-of-elderly-patients.jpg"
-              className="card-img-top"
-              alt="Webinar"
-            />
-            <div className="card-body">
-              <h5 className="card-title text-center text-danger display-6">
-                {item.title}
-              </h5>
-              <p className="card-text ms-5">
-                    <strong>Topics:{item.topics}</strong>{" "}
-              </p>
-              <p className="card-text ms-5">
-                <strong>Date:12/05/2024</strong>{" "}
-              </p>
-              <p className="card-text ms-5">
-                <strong>Time:05:30</strong>{" "}
-              </p>
-              <p className="card-text ms-5">
-                <strong>Description:fdgdfgfdgd</strong>{" "}
-              </p>
-              <p className="card-text ms-5">
-                <strong>Speaker:fdgdgdf</strong>{" "}
-              </p>
-            </div>
-            </div>
-        ))
-        : <h1>No Webinars Available</h1>  
-        }
+              <div className="col-md-4 p-4">
+                <MDBCard>
+                  <MDBCardImage
+                    position="top"
+                    alt="..."
+                    src="https://mdbootstrap.com/img/new/standard/city/062.webp"
+                  />
+                  <MDBCardBody>
+                    <MDBCardTitle>{item?.title}</MDBCardTitle>
+                    <MDBCardText>{item?.description}</MDBCardText>
+                  </MDBCardBody>
+                  <MDBListGroup flush>
+                    <MDBListGroupItem>
+                      <b>Date: </b>
+                      {item?.date}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Time: </b>
+                      {item?.time}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Speaker: </b>
+                      {item?.speaker}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Topics: </b>
+                      {item?.topics}
+                    </MDBListGroupItem>
+                  </MDBListGroup>
+                  <MDBCardBody>
+                    <MDBBtn>Book</MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
+              </div>
+            ))
+          ) : (
+            <h1>No Webinars Available</h1>
+          )}
         </div>
       </div>
     </div>

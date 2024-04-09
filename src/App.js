@@ -21,7 +21,6 @@ import AcceptedBookings from './ServiceProvider/Bookings/AcceptedBookings';
 import AddBlog from './Admin/AdminBlog/AddBlog';
 import Blog from './User/Blog/Blog';
 import Webinar from './User/Webinar/Webinar';
-import UserBlog from './User/Blog/UserBlog';
 
 function App() {
   return (
@@ -39,6 +38,7 @@ function App() {
         <Route path='/admin-user' element={< UserList/>} />
         <Route path='/admin-service' element={< ServiceProviderList/>} />
         <Route path='/admin-blog' element={< AddBlog/>} />
+        <Route path='/admin-webinar' element={<AdminWebinar />} />
 
 //user
         <Route path='/user-login' element={<Login />} />
