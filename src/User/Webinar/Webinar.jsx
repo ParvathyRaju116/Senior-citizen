@@ -11,10 +11,23 @@ import {
   MDBCardLink,
   MDBListGroup,
   MDBListGroupItem,
-  MDBBtn
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
 } from "mdb-react-ui-kit";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Swal from "sweetalert2";
 
 function Webinar() {
+  const [staticModal, setStaticModal] = useState(false);
+
+  const toggleOpen = () => setStaticModal(!staticModal);
   const [webinar, setWebinar] = useState([]);
 
   const getAllWebinar = async () => {
@@ -24,6 +37,30 @@ function Webinar() {
       setWebinar(result?.data?.allWebinar);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const [book, setBook] = useState({
+    name: "",
+    age: "",
+    number: "",
+    email: "",
+  });
+
+  const handleBookng = () => {
+    const { name, age, number, email } = book;
+
+    if (!name || !age || !number || !email) {
+      Swal.fire({
+        title: "Fill The Form",
+        icon: "error",
+      });
+    }else{
+      Swal.fire({
+        title: "Booking Completed",
+        icon: "success",
+      });
+      toggleOpen()
     }
   };
 
@@ -169,7 +206,7 @@ function Webinar() {
                     </MDBListGroupItem>
                   </MDBListGroup>
                   <MDBCardBody>
-                    <MDBBtn>Book</MDBBtn>
+                    <MDBBtn onClick={toggleOpen}>Book</MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
               </div>
@@ -179,6 +216,76 @@ function Webinar() {
           )}
         </div>
       </div>
+      <MDBModal
+        staticBackdrop
+        tabIndex="-1"
+        open={staticModal}
+        setOpen={setStaticModal}
+      >
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Book Webinar</MDBModalTitle>
+              <MDBBtn
+                className="btn-close"
+                color="none"
+                onClick={toggleOpen}
+              ></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>
+              <Box
+                component="form"
+                sx={{
+                  "& > :not(style)": { m: 1, width: "90%" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  id="filled-basic"
+                  label="Enter Your  Name "
+                  variant="filled"
+                  value={book.name}
+                  onChange={(e) => setBook({ ...book, name: e.target.value })}
+                />
+
+                <TextField
+                  id="filled-basic"
+                  label=" Enter Your Age"
+                  variant="filled"
+                  type="number"
+                  value={book.age}
+                  onChange={(e) => setBook({ ...book, age: e.target.value })}
+                />
+                <TextField
+                  id="filled-basic"
+                  label="Enter Your Email ID"
+                  variant="filled"
+                  type="email"
+                  value={book.email}
+                  onChange={(e) => setBook({ ...book, email: e.target.value })}
+                />
+                <TextField
+                  id="filled-basic"
+                  label="Enter Your Phone number"
+                  variant="filled"
+                  type="tel"
+                  value={book.number}
+                  onChange={(e) => setBook({ ...book, number: e.target.value })}
+                />
+              </Box>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={toggleOpen}>
+                Close
+              </MDBBtn>
+              <button className="btn btn-success" onClick={handleBookng}>
+                Submit
+              </button>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </div>
   );
 }

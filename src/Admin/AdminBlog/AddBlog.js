@@ -99,6 +99,7 @@ function AddBlog() {
             description: "",
             image: null,
           });
+          getBlogs();
           document.getElementById("formFile").value = null;
           document.getElementById("image").value = null; // Clear file input
           Swal.fire({
