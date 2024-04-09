@@ -45,3 +45,6 @@ export const addBlogsApi = async(reqBody,header)=>{
     return await commonApi(`POST`,`${baseurl}/blogs/add-blogs`,reqBody,header)
 }
 
+export const getAllBlogApi = async()=>{
+    return await commonApi(`GET`,`${baseurl}/blogs/all-blogs`,"","")
+}
