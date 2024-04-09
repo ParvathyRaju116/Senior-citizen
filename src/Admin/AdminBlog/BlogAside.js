@@ -14,7 +14,7 @@ function BlogAside() {
 
  
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'scroll initial' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', overflow: 'scroll initial',minHeight:"100vh" }}>
       
 
 

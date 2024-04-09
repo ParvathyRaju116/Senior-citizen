@@ -89,7 +89,7 @@ function AdminSidebar() {
             </NavLink>
             
             <NavLink exact to="" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="handshake">Virtual Assistance</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="handshake">Webinar</CDBSidebarMenuItem>
             </NavLink>
           
           </CDBSidebarMenu>
