@@ -176,7 +176,7 @@ function AdminWebinar() {
             text: "Something went Wrong",
             icon: "error",
           });
-          console.error("Error rejecting service provider:", error);
+          console.error("Error in Deleting Webinar:", error);
         }
       }
     });
