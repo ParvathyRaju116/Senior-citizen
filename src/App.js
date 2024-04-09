@@ -22,6 +22,7 @@ import AddBlog from './Admin/AdminBlog/AddBlog';
 import UserBlog from './User/Blog/UserBlog';
 import Webinar from './User/Webinar/Webinar';
 import AdminWebinar from './Admin/AdminWebinar/AdminWebinar';
+import SignIn from './ServiceProvider/LoginRegister/SignIn';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path='/service-request' element={<UserRequest/>} />
         <Route path='/service-attendence' element={<Attendence/>} />
         <Route path='/service-bookings' element={<AcceptedBookings/>} />
+        <Route path='/service-login' element={<SignIn/>} />
 
       </Routes>
     </div>

@@ -60,3 +60,8 @@ export const addWebApi = async(reqBody,header)=>{
 export const getAllWebsApi = async()=>{
     return await commonApi(`GET`,`${baseurl}/webinar/all-webinar`,"","")
 }
+
+//login service provider
+export const serviceproviderloginApi = async(service)=>{
+    return await commonApi('POST',`${baseurl}/serviceProvider/login`,service,"")
+}
