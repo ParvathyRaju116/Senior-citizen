@@ -1,4 +1,3 @@
-import { Container } from '@mui/material'
 import React from 'react'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -8,15 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Navbar from '../Navbar/Navbar';
 
-
-function AcceptedBookings() {
+function AcceptedLeave() {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor :'#B08968',
           color: theme.palette.common.white,
-          width: '150px', // Adjust the width here
+          width: '50px', // Adjust the width here
         },
         [`&.${tableCellClasses.body}`]: {
           fontSize: 14,
@@ -31,20 +28,17 @@ function AcceptedBookings() {
         },
       }));
   return (
-    <>
-          <Navbar />
-          <Container className='mt-5'>
-          <TableContainer component={Paper} >
+    <div>
+      <TableContainer component={Paper} >
       <Table aria-label="customized table">
         <TableHead>
           <TableRow >
           <StyledTableCell> Sl.No</StyledTableCell>
-          <StyledTableCell>User Name</StyledTableCell>
-            <StyledTableCell>Dr Name</StyledTableCell>
-            <StyledTableCell>Service</StyledTableCell>
-            <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell>Time</StyledTableCell>
-            <StyledTableCell>Rate</StyledTableCell>
+            <StyledTableCell>Service Provider</StyledTableCell>
+            <StyledTableCell>Start Date</StyledTableCell>
+            <StyledTableCell>End Date</StyledTableCell>
+            <StyledTableCell>Reason</StyledTableCell>
+            <StyledTableCell>Status</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,19 +48,17 @@ function AcceptedBookings() {
                1
               </StyledTableCell>
               <StyledTableCell className='text-align-center'>Arya</StyledTableCell>
-              <StyledTableCell className='text-align-center'>Ajinsa</StyledTableCell>
-             <StyledTableCell className='text-align-center'>Day Care</StyledTableCell>
-              <StyledTableCell className='text-align-center'>12/04/2024</StyledTableCell>
-              <StyledTableCell className='text-align-center'>10:30</StyledTableCell>
-              <StyledTableCell className='text-align-center'>5000</StyledTableCell>
+             <StyledTableCell className='text-align-center'>12/04/2024</StyledTableCell>
+              <StyledTableCell className='text-align-center'>18/04/2024</StyledTableCell>
+              <StyledTableCell className='text-align-center'>fhvdsjvhjdsvjhdfjhgdsfhgds</StyledTableCell>
+              <StyledTableCell className='text-align-center'>Pending</StyledTableCell>
             </StyledTableRow>
           
         </TableBody>
       </Table>
     </TableContainer>
-          </Container>
-    </>
+    </div>
   )
 }
 
-export default AcceptedBookings
+export default AcceptedLeave

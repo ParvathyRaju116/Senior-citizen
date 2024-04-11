@@ -23,7 +23,7 @@ import UserBlog from './User/Blog/UserBlog';
 import Webinar from './User/Webinar/Webinar';
 import AdminWebinar from './Admin/AdminWebinar/AdminWebinar';
 import SignIn from './ServiceProvider/LoginRegister/SignIn';
-
+import Leave from './ServiceProvider/LeaveRequest/Leave';
 
 function App() {
   return (
@@ -59,6 +59,7 @@ function App() {
         <Route path='/service-attendence' element={<Attendence/>} />
         <Route path='/service-bookings' element={<AcceptedBookings/>} />
         <Route path='/service-login' element={<SignIn/>} />
+        <Route path='/service-leave' element={<Leave/>} />
 
       </Routes>
     </div>

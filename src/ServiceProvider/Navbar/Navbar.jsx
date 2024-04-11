@@ -44,7 +44,10 @@ function Navbar() {
               <MDBNavbarLink><Link to={'/service-attendence'} style={{textDecoration:'none',color:'black'}}>Attendence</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink><Link to={'/service-request'} style={{textDecoration:'none',color:'black'}}>Request</Link></MDBNavbarLink>
+              <MDBNavbarLink><Link to={'/service-request'} style={{textDecoration:'none',color:'black'}}>BookingRequest</Link></MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+              <MDBNavbarLink><Link to={'/service-leave'} style={{textDecoration:'none',color:'black'}}>LeaveReaquest</Link></MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink onClick={logout}>Logout</MDBNavbarLink>
