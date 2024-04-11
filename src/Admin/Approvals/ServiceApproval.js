@@ -13,6 +13,7 @@ import Pagination from "@mui/material/Pagination";
 import { getServiceProvidersApi } from "../../Services/allApi";
 import axios from "axios";
 import Swal from "sweetalert2";
+import baseurl from "../../Services/baseurl";
 
 function ServiceApproval() {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -63,7 +64,7 @@ function ServiceApproval() {
       if (result.isConfirmed) {
         try {
           const response = await axios.post(
-            `http://localhost:5000/approve/serviceProvider`,
+            `${baseurl}/approve/serviceProvider`,
             item
           );
 
