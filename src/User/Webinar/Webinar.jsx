@@ -55,12 +55,18 @@ function Webinar() {
         title: "Fill The Form",
         icon: "error",
       });
-    }else{
+    } else {
       Swal.fire({
         title: "Booking Completed",
         icon: "success",
       });
-      toggleOpen()
+      setBook({
+        name: "",
+        age: "",
+        number: "",
+        email: "",
+      });
+      toggleOpen();
     }
   };
 
