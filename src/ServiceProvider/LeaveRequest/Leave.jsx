@@ -67,7 +67,7 @@ function Leave() {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer components={["DateRangePicker"]}>
                         <DateRangePicker
-                          localeText={{ start: "Check-in", end: "Check-out" }}
+                          localeText={{ start: "Start-Date", end: "End-Date" }}
                         />
                       </DemoContainer>
                     </LocalizationProvider>
