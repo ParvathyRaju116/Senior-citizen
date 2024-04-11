@@ -79,8 +79,9 @@ function AdminWebinar() {
     setAddWeb({ ...addWeb, date: formattedDate });
   };
   const handleTimeChange = (time) => {
-    const formattedTime = dayjs(time).format("hh:mm A");
-    setAddWeb({ ...addWeb, time: formattedTime });
+    if (time) {
+      setAddWeb({ ...addWeb, time: time });
+    }
   };
 
   const header = {
@@ -120,6 +121,7 @@ function AdminWebinar() {
           });
           document.getElementById("formFile").value = null;
           document.getElementById("image").value = null;
+          document.getElementById("time").value = null;
           Swal.fire({
             title: "Webinar  Added",
             icon: "success",
@@ -287,9 +289,14 @@ function AdminWebinar() {
                         </DemoItem>
                       </DemoContainer>
                     </div>
-                    <DemoItem>
-                      <TimePicker onChange={(time) => handleTimeChange(time)} />
-                    </DemoItem>
+                    <div className="mb-3">
+                      <input
+                        id="time"
+                        type="time"
+                        className="form-control"
+                        onChange={(e) => handleTimeChange(e.target.value)}
+                      />
+                    </div>
                     <Form.Group
                       className="mb-3"
                       controlId="exampleForm.ControlTextarea1"
