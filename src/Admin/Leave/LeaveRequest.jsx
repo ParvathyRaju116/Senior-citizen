@@ -19,7 +19,6 @@ import Swal from "sweetalert2";
 function LeaveRequest() {
   const [leaveReq, setLeaveReq] = useState([]);
 
-
   useEffect(() => {
     getAlltheReqs();
   }, []);
@@ -68,18 +67,18 @@ function LeaveRequest() {
             });
           }
         } catch (error) {
-          
-            Swal.fire({
-              title: "Oops",
-              text: "Something went Wrong",
-              icon: "error",
-            });
-          
+          Swal.fire({
+            title: "Oops",
+            text: "Something went Wrong",
+            icon: "error",
+          });
+
           console.error("Error rejecting service provider:", error);
         }
       }
     });
   };
+  console.log(leaveReq);
 
   const handleDelete = (item) => {
     const res = { id: item };
@@ -145,16 +144,21 @@ function LeaveRequest() {
                       className="image-wrapper my-4"
                       style={{
                         backgroundColor: "beige",
-                        borderRadius: "50%",
-                        width: "60%",
+                        borderRadius: "20%",
+                        width: "50%",
+                        height: "300%",
                         margin: "auto",
-                        padding: "10px",
                       }}
                     >
                       <CardMedia
                         className="m-auto my-3"
-                        sx={{ height: 100, borderRadius: "50%", width: "100%" }}
-                        image="https://i.postimg.cc/NfFdngDQ/download-removebg-preview.png"
+                        style={{
+                          height: 100,
+                          
+                          borderRadius: "20px",
+                          width: "100%",
+                        }}
+                        image={i?.image}
                         title="green iguana"
                       />
                     </div>
@@ -165,7 +169,7 @@ function LeaveRequest() {
                         component="div"
                         style={{ marginTop: "-35px", textAlign: "center" }}
                       >
-                        Dr. Ajinsa P A
+                        Dr. {i?.name}
                       </Typography>
                       <Typography
                         variant="body2"

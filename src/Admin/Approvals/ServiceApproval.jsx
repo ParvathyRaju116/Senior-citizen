@@ -14,6 +14,16 @@ import { getServiceProvidersApi } from "../../Services/allApi";
 import axios from "axios";
 import Swal from "sweetalert2";
 import baseurl from "../../Services/baseurl";
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+} from "mdb-react-ui-kit";
 
 function ServiceApproval() {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -25,6 +35,13 @@ function ServiceApproval() {
       fontSize: 14,
     },
   }));
+  const [certificate, setCertificate] = useState("");
+  const [staticModal, setStaticModal] = useState(false);
+
+  const toggleOpen = (item) => {
+    setCertificate(item);
+    setStaticModal(!staticModal);
+  };
 
   const [mail, setMail] = useState({
     email: "",
@@ -159,6 +176,7 @@ function ServiceApproval() {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+  console.log(spList);
 
   return (
     <Container
@@ -215,7 +233,12 @@ function ServiceApproval() {
                         {i?.rate}
                       </StyledTableCell>
                       <StyledTableCell>
-                        <Button style={{ color: "black" }}>View</Button>
+                        <Button
+                          style={{ color: "black" }}
+                          onClick={() => toggleOpen(i?.experience_crt)}
+                        >
+                          View
+                        </Button>
                       </StyledTableCell>
                       <StyledTableCell>
                         <div>
@@ -251,6 +274,34 @@ function ServiceApproval() {
               style={{ color: "#B08968" }}
             />
           </Stack>
+          <MDBModal
+            staticBackdrop
+            tabIndex="-1"
+            open={staticModal}
+            setOpen={setStaticModal}
+          >
+            <MDBModalDialog>
+              <MDBModalContent>
+                <MDBModalHeader>
+                  <MDBModalTitle>Certificate</MDBModalTitle>
+                  <MDBBtn
+                    className="btn-close"
+                    color="none"
+                    onClick={toggleOpen}
+                  ></MDBBtn>
+                </MDBModalHeader>
+                <MDBModalBody>
+                  <img src={certificate} alt="" style={{height:"100%",width:"100%"}}  />
+                </MDBModalBody>
+                <MDBModalFooter>
+                  <MDBBtn color="secondary" onClick={toggleOpen}>
+                    Close
+                  </MDBBtn>
+                  <MDBBtn onClick={toggleOpen} >Ok</MDBBtn>
+                </MDBModalFooter>
+              </MDBModalContent>
+            </MDBModalDialog>
+          </MDBModal>
         </>
       ) : (
         <>

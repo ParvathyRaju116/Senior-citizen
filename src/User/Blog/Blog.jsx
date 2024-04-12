@@ -44,9 +44,10 @@ function Blog() {
                     className="bg-image hover-overlay"
                   >
                     <MDBCardImage
-                      src="https://mdbootstrap.com/img/new/standard/nature/111.webp"
+                      src={item?.image}
                       fluid
                       alt="..."
+                      style={{ height: "200px", width: "100%" }}
                     />
                     <a>
                       <div
@@ -71,7 +72,9 @@ function Blog() {
 
           <div className="text-center">
             <Link>
-              <p><Link to={'/user-blog'}>View More....</Link></p>
+              <p>
+                <Link to={"/user-blog"}>View More....</Link>
+              </p>
             </Link>
           </div>
         </div>

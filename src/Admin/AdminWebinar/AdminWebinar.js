@@ -373,6 +373,7 @@ function AdminWebinar() {
                         <td
                           style={{
                             maxWidth: "300px",
+
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                           }}
@@ -381,7 +382,15 @@ function AdminWebinar() {
                         </td>
                         <td>
                           {i.image && (
-                            <img src={i?.image} style={{ maxWidth: "100px" }} />
+                            <img
+                              src={i?.image}
+                              alt="....noimgae found"
+                              style={{
+                                maxWidth: "100px",
+                                height: "70px",
+                                width: "90px",
+                              }}
+                            />
                           )}
                         </td>
                         <td>
