@@ -32,7 +32,6 @@ function LeaveRequest() {
       const response = await axios.get(`${baseurl}/request/leave-request`);
 
       if (response.status >= 200 && response.status <= 300) {
-        console.log(response?.data?.allReq);
         setLeaveReq(response?.data?.allReq);
       }
     } catch (error) {}
