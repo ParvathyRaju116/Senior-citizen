@@ -19,9 +19,6 @@ import Swal from "sweetalert2";
 function LeaveRequest() {
   const [leaveReq, setLeaveReq] = useState([]);
 
-  const [responseId, setResponseId] = useState({
-    id: "",
-  });
 
   useEffect(() => {
     getAlltheReqs();
