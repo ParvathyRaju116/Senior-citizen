@@ -26,6 +26,7 @@ function Header() {
           <Navbar.Brand className='fw-bolder'>LiveCare</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+
             <Dropdown className='ms-auto'>
               <Dropdown.Toggle variant="link" id="dropdown-basic">
                 <Avatar
@@ -43,6 +44,9 @@ function Header() {
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
+          <i class="fa-regular fa-2x fa-envelope"></i>
+
+        
         </Container>
       </Navbar>
     </>

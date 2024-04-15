@@ -26,6 +26,7 @@ function UserHome() {
               <button className="btn btn-primary ms-5 mt-3">
                 GET IN TOUCH
               </button>
+              
             </Col>
             <Col md={6}></Col>
           </Row>
