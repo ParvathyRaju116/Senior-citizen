@@ -9,8 +9,15 @@ import {
 import { NavLink } from 'react-router-dom';
 import { Button } from '@mui/material';
 import ServiceApproval from './ServiceApproval';
+import {useNavigate} from 'react-router-dom'
 
 function UserApproval() {
+  const logout = () => {
+    sessionStorage.clear()
+    navigate('/')
+}
+const navigate = useNavigate()
+
   return (
     <div style={{ display: 'flex' }}>
     
@@ -27,14 +34,14 @@ function UserApproval() {
             <NavLink exact to="/admin-user" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">Users List</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/admin-user" activeClassName="activeClicked">
+            <NavLink exact to="/admin-attendance" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">ServiceProvider Attendance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div style={{ padding: '20px 5px' }}>
-            <Button style={{ color: "white" }}><h5>Log Out </h5></Button>
+            <Button  onClick={logout} style={{ color: "white" }}><h5>Log Out </h5></Button>
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

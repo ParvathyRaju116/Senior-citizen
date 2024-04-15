@@ -10,8 +10,15 @@ import {
 import { NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-function AdminSidebar() {
+import {useNavigate} from 'react-router-dom'
 
+function AdminSidebar() {
+const navigate=useNavigate()
+  const logout=()=>{
+    sessionStorage.clear()
+    navigate('/')
+
+  }
  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'scroll initial' }}>
@@ -41,7 +48,7 @@ function AdminSidebar() {
         <li> 
 
         <a className="nav-link" href="#">
-      <i className="fa fa-power-off" style={{ color: 'white', marginRight: '5px' }} title="Log Out"></i>
+      <i className="fa fa-power-off" style={{ color: 'white', marginRight: '5px' }} onClick={logout} title="Log Out"></i>
     </a>
         </li>
       
@@ -98,7 +105,7 @@ function AdminSidebar() {
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div style={{ padding: '20px 100px' }}>
           <Stack direction="row" spacing={2}>
-          <Avatar style={{ color: "white", backgroundColor:"#9C6644"}}>L</Avatar>
+          <Avatar onClick={logout} style={{ color: "white", backgroundColor:"#9C6644"}}>L</Avatar>
       
     </Stack>
           

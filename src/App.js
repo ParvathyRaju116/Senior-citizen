@@ -42,6 +42,9 @@ function App() {
         <Route path='/admin-service' element={< ServiceProviderList/>} />
         <Route path='/admin-blog' element={< AddBlog/>} />
         <Route path='/admin-webinar' element={<AdminWebinar />} />
+        <Route path='/admin-attendance' element={<ServiceAttendance />} />
+        <Route path='/admin-chat' element={<AdminChat />} />
+
 
 {/* //user */}
         <Route path='/user-login' element={<Login />} />

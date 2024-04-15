@@ -65,3 +65,9 @@ export const getAllWebsApi = async()=>{
 export const serviceproviderloginApi = async(service)=>{
     return await commonApi('POST',`${baseurl}/serviceProvider/login`,service,"")
 }
+
+//get attendance
+
+export const getAllAttendanceApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/service-providers/attenedence`, "", "")
+}
