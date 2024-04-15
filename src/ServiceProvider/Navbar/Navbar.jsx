@@ -37,6 +37,9 @@ function Navbar() {
         </MDBNavbarToggler>
         <MDBCollapse navbar open={openNav}>
           <MDBNavbarNav>
+          <MDBNavbarItem>
+              <MDBNavbarLink><Link to={'/service-dash'} style={{textDecoration:'none',color:'black'}}>Dashboard</Link></MDBNavbarLink>
+            </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink ><Link to={'/service-bookings'} style={{textDecoration:'none',color:'black'}}>Bookings</Link></MDBNavbarLink>
             </MDBNavbarItem>
