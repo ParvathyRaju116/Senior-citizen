@@ -26,6 +26,7 @@ import SignIn from "./ServiceProvider/LoginRegister/SignIn";
 import Leave from "./ServiceProvider/LeaveRequest/Leave";
 import Dashboard from "./ServiceProvider/Dashboard/Dashboard";
 import ServiceAttendance from "./Admin/AdminAttendance/AdminAttendance";
+import BookSP from "./User/Bookings/BookSP";
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
         <Route path="/user-complaints" element={<Complaints />} />
         <Route path="/user-blog" element={<UserBlog />} />
         <Route path="/user-webinar" element={<Webinar />} />
+        <Route path="/user-booknow" element={<BookSP />} />
+
 
         {/* //serviceprovider */}
         <Route path="/service-reg2" element={<Singup />} />
