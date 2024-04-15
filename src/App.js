@@ -25,7 +25,7 @@ import AdminWebinar from "./Admin/AdminWebinar/AdminWebinar";
 import SignIn from "./ServiceProvider/LoginRegister/SignIn";
 import Leave from "./ServiceProvider/LeaveRequest/Leave";
 import Dashboard from "./ServiceProvider/Dashboard/Dashboard";
-import ServiceAttendance from "./Admin/Approvals/ServiceAttendance"
+import ServiceAttendance from "./Admin/Approvals/ServiceAttendance";
 import AdminChat from "./Admin/Chat/AdminChat";
 import BookSP from "./User/Bookings/BookSP";
 
