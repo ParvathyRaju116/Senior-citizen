@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./mybookings.css";
 import dayjs from "dayjs";
+import Swal from "sweetalert2";
 
 function BookSP() {
   const [booking, setBooking] = useState({
@@ -28,6 +29,52 @@ function BookSP() {
   const handleEndTimeChange = (time) => {
     if (time) {
       setBooking({ ...booking, endingTime: time });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const {
+      typeOfCare,
+      startingTime,
+      endingTime,
+      startDate,
+      endDate,
+      location,
+    } = booking;
+
+    if (
+      !typeOfCare ||
+      !startingTime ||
+      !endingTime ||
+      !startDate ||
+      !endDate ||
+      !location
+    ) {
+      Swal.fire({
+        title: "Please fill the form",
+        icon: "warning",
+      });
+    } else {
+      Swal.fire({
+        title: "Booking Completed",
+        icon: "success",
+      });
+
+      setBooking({
+        typeOfCare: "",
+        startingTime: "",
+        endingTime: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+      });
+
+      // Reset date input fields
+      document.querySelectorAll(".date").forEach((input) => {
+        input.value = "";
+      });
     }
   };
 
@@ -61,6 +108,7 @@ function BookSP() {
             <input
               type="text"
               className="form-control"
+              value={booking.typeOfCare}
               onChange={(e) =>
                 setBooking({ ...booking, typeOfCare: e.target.value })
               }
@@ -92,8 +140,7 @@ function BookSP() {
             <label htmlFor="">start Date</label>
             <input
               type="date"
-              className="form-control"
-              value={booking.startDate}
+              className="form-control date"
               onChange={(e) => handleStartDateChange(e.target.value)}
               min={new Date().toISOString().split("T")[0]}
             />
@@ -102,7 +149,7 @@ function BookSP() {
             <label htmlFor="">end Date</label>
             <input
               type="date"
-              className="form-control"
+              className="form-control date"
               min={new Date().toISOString().split("T")[0]}
               onChange={(e) => handleEndDateChange(e.target.value)}
             />
@@ -112,13 +159,17 @@ function BookSP() {
             <input
               type="text"
               className="form-control"
+              value={booking.location}
               onChange={(e) =>
                 setBooking({ ...booking, location: e.target.value })
               }
             />
           </div>
           <div>
-            <button className="btn btn-outline-primary ms-5 w-75 px-3">
+            <button
+              className="btn btn-outline-primary ms-5 w-75 px-3"
+              onClick={(e) => handleSubmit(e)}
+            >
               BOOK
             </button>
           </div>
