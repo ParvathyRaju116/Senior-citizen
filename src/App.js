@@ -24,8 +24,7 @@ import Webinar from './User/Webinar/Webinar';
 import AdminWebinar from './Admin/AdminWebinar/AdminWebinar';
 import SignIn from './ServiceProvider/LoginRegister/SignIn';
 import Leave from './ServiceProvider/LeaveRequest/Leave';
-import ServiceAttendance from './Admin/Approvals/ServiceAttendance';
-import AdminChat from './Admin/Chat/AdminChat';
+import Dashboard from './ServiceProvider/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -65,6 +64,7 @@ function App() {
         <Route path='/service-bookings' element={<AcceptedBookings/>} />
         <Route path='/service-login' element={<SignIn/>} />
         <Route path='/service-leave' element={<Leave/>} />
+        <Route path='/service-dash' element={<Dashboard/>} />
 
       </Routes>
     </div>
