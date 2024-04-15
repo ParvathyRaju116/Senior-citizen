@@ -5,10 +5,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { MultiInputDateTimeRangeField } from "@mui/x-date-pickers-pro/MultiInputDateTimeRangeField";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -97,7 +95,7 @@ function LeaveRequest() {
           const response = await axios.post(
             `${baseurl}/leave-request/reject`,
             res
-            // Use 'data' option to pass the payload
+           
           );
 
           if (response?.status >= 200 && response?.status <= 300) {
@@ -229,7 +227,7 @@ function LeaveRequest() {
           </div>
         </div>
       ) : (
-        <h1 className="text-center text-danger mt-5">No Leave Req Found</h1>
+        <h1 className="text-center text-danger mt-5">No Leave Request Found!!!</h1>
       )}
     </div>
   );

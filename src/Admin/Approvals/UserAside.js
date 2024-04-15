@@ -39,14 +39,14 @@ function UserAside() {
             <NavLink exact to="/admin-user" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">Users List</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/admin-user" activeClassName="activeClicked">
+            <NavLink exact to="/admin-attendance" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list">ServiceProvider Attendance</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div style={{ padding: "20px 5px" }}>
-            <Button style={{ color: "white" }}>
+            <Button href="/admin-dash" style={{ color: "white" }}>
               <h5 >Back </h5>
             </Button>
           </div>
