@@ -55,6 +55,7 @@ function App() {
         <Route path="/user-blog" element={<UserBlog />} />
         <Route path="/user-webinar" element={<Webinar />} />
 
+
         {/* //serviceprovider */}
         <Route path="/service-reg2" element={<Singup />} />
         <Route path="/service-reg" element={<Singup register />} />

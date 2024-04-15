@@ -4,8 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Avatar } from '@mui/material';
 import './Headre.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link, useNavigate } from 'react-router-dom';
+import {Link,  useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import ChatBox from '../Chat/ChatBox';
+
 
 function Header() {
   const navigate = useNavigate();
@@ -44,9 +46,7 @@ function Header() {
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Collapse>
-          <i class="fa-regular fa-2x fa-envelope"></i>
-
-        
+          <ChatBox></ChatBox>
         </Container>
       </Navbar>
     </>
