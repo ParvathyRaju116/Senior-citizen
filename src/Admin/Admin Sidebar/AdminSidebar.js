@@ -40,8 +40,8 @@ const navigate=useNavigate()
           </a> 
         </li>
         <li className="nav-item mx-2"  >
-        <a className="nav-link" href="#">
-        <i className="fa fa-envelope" style={{ color: 'white' }} title="Leave Request"     ></i>
+        <a className="nav-link" href="/admin-chat">
+        <i className="fa fa-envelope" style={{ color: 'white' }} title="Chat"     ></i>
 
           </a> 
         </li>
