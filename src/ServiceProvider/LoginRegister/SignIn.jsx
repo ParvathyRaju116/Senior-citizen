@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { serviceproviderloginApi } from "../../Services/allApi";
 import Swal from "sweetalert2";
 
 function SignIn() {
+  const navigate =useNavigate()
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -38,6 +39,7 @@ function SignIn() {
           email: "",
           password: "",
         });
+        navigate('/service-dash')
       } else {
         Swal.fire({
           title: "Something went wrong",
