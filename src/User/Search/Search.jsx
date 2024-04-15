@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllServiceprovider } from "../../Services/allApi";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 function Search() {
   const [data, setData] = useState([]);
@@ -90,13 +92,8 @@ function Search() {
           <div className="row">
             {data.length > 0 ? (
               data.map((item, index) => (
-                <div key={index} className="col-md-3">
+                <div key={index} className="col-md-3 p-3">
                   <div className="card" style={{ width: "18rem" }}>
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp"
-                      className="card-img-top"
-                      alt="Chicago Skyscrapers"
-                    />
                     <div className="card-body">
                       <h5 className="card-title">{item.service}</h5>
                     </div>
@@ -114,12 +111,7 @@ function Search() {
                       <li className="list-group-item px-4">{item.email}</li>
                     </ul>
                     <div className="card-body">
-                      <a href="#" className="card-link">
-                        Card link
-                      </a>
-                      <a href="#" className="card-link">
-                        Another link
-                      </a>
+                     <Modal service={item} />
                     </div>
                   </div>
                 </div>

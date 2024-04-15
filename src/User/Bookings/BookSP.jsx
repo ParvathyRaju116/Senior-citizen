@@ -114,10 +114,6 @@ function BookSP() {
               }
             />
           </div>
-          {/* <div className='mb-3'>
-                <label htmlFor="">Services</label>
-              <input type="text"  className='form-control'/>
-            </div> */}
           <div className="mb-3">
             <label htmlFor="">starting Time</label>
             <input
