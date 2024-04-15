@@ -27,7 +27,6 @@ import Leave from "./ServiceProvider/LeaveRequest/Leave";
 import Dashboard from "./ServiceProvider/Dashboard/Dashboard";
 import ServiceAttendance from "./Admin/Approvals/ServiceAttendance"
 import AdminChat from "./Admin/Chat/AdminChat";
-import ServiceAttendance from "./Admin/AdminAttendance/AdminAttendance";
 import BookSP from "./User/Bookings/BookSP";
 
 function App() {
