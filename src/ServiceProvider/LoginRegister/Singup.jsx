@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginApi, registerApi } from "../../Services/allApi";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Label } from "@mui/icons-material";
 
 function Login({ register }) {
   const registerForm = register ? true : false;
@@ -109,7 +114,9 @@ function Login({ register }) {
       }
     }
   };
-
+  const handleServiceChange = (event) => {
+    setUserdata({ ...userdata, service: event.target.value });
+  };
   const handleSecondReg = async () => {
     const reqBody = new FormData();
 
@@ -137,6 +144,7 @@ function Login({ register }) {
         });
         setUserdata({ email: "" });
         setProfile_img(null);
+        navigate('/service-login')
       }
     } catch (error) {
       console.log(error);
@@ -250,19 +258,21 @@ function Login({ register }) {
             {registerForm ? (
               <>
                 {" "}
-                <div className="mb-3">
-                  <input
-                    name=""
-                    id=""
-                    type="text"
-                    placeholder="Service"
-                    className="input-field"
-                    value={userdata.service}
-                    onChange={(e) =>
-                      setUserdata({ ...userdata, service: e.target.value })
-                    }
-                  ></input>
+                <div className="mb-3 w-75 ms-5 px-5">
+                 <FormControl fullWidth >
+                    <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={userdata.service}
+    onChange={handleServiceChange}
+  >
+    <MenuItem value="doctor">Doctor</MenuItem>
+    <MenuItem value="nurse">Nurse</MenuItem>
+    <MenuItem value="care taker">Care taker</MenuItem>
+  </Select>
+                 </FormControl>
                 </div>
+              
                 <div className="mb-3">
                   <input
                     name=""

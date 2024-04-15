@@ -20,7 +20,7 @@ function Header() {
   };
 
   const handleService = () => {
-    navigate("/service-reg");
+    navigate("/service-login");
   };
 
   return (
@@ -73,7 +73,7 @@ function Header() {
                     style={{ textDecoration: "none", color: "black" }}
                     onClick={handleService}
                   >
-                    Service Provide
+                    <Link to={'/service-login'} style={{color:'black'}}>Service Provide</Link>
                   </span>
                 </Dropdown.Item>
               </Link>
