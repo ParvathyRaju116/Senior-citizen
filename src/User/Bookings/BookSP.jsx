@@ -3,7 +3,7 @@ import './mybookings.css'
 
 function BookSP() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh',width:'100%'}} className='shadow'>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh',width:'100%'}} className='shadow1'>
       <div style={{width:'400px',display: 'flex', justifyContent: 'center', alignItems: 'center',backgroundColor:'white'}} className='shadow p-3'>
           <form style={{ width: '300px' }} >
             <h4 className='mb-3 ms-4'>Book Service Provider</h4>
