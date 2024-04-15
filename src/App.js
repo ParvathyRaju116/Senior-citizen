@@ -25,7 +25,8 @@ import AdminWebinar from "./Admin/AdminWebinar/AdminWebinar";
 import SignIn from "./ServiceProvider/LoginRegister/SignIn";
 import Leave from "./ServiceProvider/LeaveRequest/Leave";
 import Dashboard from "./ServiceProvider/Dashboard/Dashboard";
-import ServiceAttendance from "./Admin/AdminAttendance/AdminAttendance";
+import ServiceAttendance from "./Admin/Approvals/ServiceAttendance"
+import AdminChat from "./Admin/Chat/AdminChat";
 
 function App() {
   return (
@@ -43,7 +44,8 @@ function App() {
         <Route path="/admin-service" element={<ServiceProviderList />} />
         <Route path="/admin-blog" element={<AddBlog />} />
         <Route path="/admin-webinar" element={<AdminWebinar />} />
-        <Route path="/admin-attendance" element={<ServiceAttendance />} />
+        <Route path="/admin-attendance" element={<ServiceAttendance/>} />
+        <Route path="/admin-chat" element={<AdminChat/>} />
 
         {/* //user */}
         <Route path="/user-login" element={<Login />} />
