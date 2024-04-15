@@ -3,6 +3,7 @@ import { getAllServiceprovider } from "../../Services/allApi";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
+import Header from "../Header/Header";
 
 function Search() {
   const [data, setData] = useState([]);
@@ -55,6 +56,7 @@ function Search() {
 
   return (
     <>
+    <Header/>
       <div className="container d-flex justify-content-center mt-5">
         <div>
           <input
@@ -92,7 +94,7 @@ function Search() {
           <div className="row">
             {data.length > 0 ? (
               data.map((item, index) => (
-                <div key={index} className="col-md-3 p-3">
+                <div key={index} className="col-md-4 p-3">
                   <div className="card" style={{ width: "18rem" }}>
                     <div className="card-body">
                       <h5 className="card-title">{item.service}</h5>
