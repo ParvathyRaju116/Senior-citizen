@@ -71,3 +71,9 @@ export const serviceproviderloginApi = async(service)=>{
 export const getAllAttendanceApi = async () => {
     return await commonApi(`GET`, `${baseurl}/service-providers/attenedence`, "", "")
 }
+
+//get all service provider
+
+export const getAllServiceprovider = async (data) => {
+    return await commonApi(`POST`, `${baseurl}/search/service-provider`, data, "")
+}
