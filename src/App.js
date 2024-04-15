@@ -72,6 +72,7 @@ function App() {
         <Route path="/service-login" element={<SignIn />} />
         <Route path="/service-leave" element={<Leave />} />
         <Route path="/service-dash" element={<Dashboard />} />
+
       </Routes>
     </div>
   );
