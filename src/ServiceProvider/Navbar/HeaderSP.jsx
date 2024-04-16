@@ -35,7 +35,8 @@ function HeaderSP() {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to='/service-dash' style={{ textDecoration: 'none', color: 'black' }}>Dashboard</Dropdown.Item>
-                <Dropdown.Item as={Link} to='/service-bookings' style={{ textDecoration: 'none', color: 'black' }}>AcceptedBookings</Dropdown.Item>
+                <Dropdown.Item as={Link} to='/all-bookings' style={{ textDecoration: 'none', color: 'black' }}>Bookings</Dropdown.Item>
+               <Dropdown.Item as={Link} to='/service-bookings' style={{ textDecoration: 'none', color: 'black' }}>AcceptedBookings</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/service-attendence' style={{ textDecoration: 'none', color: 'black' }}>Attendence</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/service-request' style={{ textDecoration: 'none', color: 'black' }}>UserRequest</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/service-leave' style={{ textDecoration: 'none', color: 'black' }}>Leave</Dropdown.Item> 

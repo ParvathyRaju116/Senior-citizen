@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, InputBase, IconButton, Divider, TextField } from '@mui/material'; // Import IconButton, Divider, and TextField
-import { Search as SearchIcon, Send as SendIcon } from '@mui/icons-material'; // Import the search and send icons
+import { Container, InputBase, IconButton, Divider, TextField } from '@mui/material'; 
+import { Search as SearchIcon, Send as SendIcon } from '@mui/icons-material'; 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
