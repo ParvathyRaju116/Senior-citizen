@@ -90,7 +90,7 @@ export const getUserAPI = async () => {
     return await commonApi(`GET`, `${baseurl}/users/list`, "", "")
 }
 export const getAllRejectedBookings = async () => {
-    return await commonApi(`GET`, `${baseurl}/rejected-bookings`, "", "")
+    return await commonApi(`GET`, `${baseurl}/bookings/rejected-bookings`, "", "")
 }
 
 export const getAllBookingsApi = async () => {

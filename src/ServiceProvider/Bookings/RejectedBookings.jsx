@@ -16,7 +16,6 @@ function RejectedBookings() {
 
   const getRejectedBookings = async () => {
     const result = await getAllRejectedBookings();
-    console.log(result);
     setRejected(result.data.rejectedBookings.map(booking => ({
       ...booking,
       startDate: formatDate(booking.startDate),
