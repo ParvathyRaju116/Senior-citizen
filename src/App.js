@@ -28,6 +28,7 @@ import Dashboard from "./ServiceProvider/Dashboard/Dashboard";
 import ServiceAttendance from "./Admin/Approvals/ServiceAttendance";
 import AdminChat from "./Admin/Chat/AdminChat";
 import BookSP from "./User/Bookings/BookSP";
+import Search from "./User/Search/Search";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="/user-blog" element={<UserBlog />} />
         <Route path="/user-webinar" element={<Webinar />} />
         <Route path="/user-booknow" element={<BookSP />} />
+        <Route path="/user-search" element={<Search />} />
 
 
 
@@ -70,6 +72,7 @@ function App() {
         <Route path="/service-login" element={<SignIn />} />
         <Route path="/service-leave" element={<Leave />} />
         <Route path="/service-dash" element={<Dashboard />} />
+
       </Routes>
     </div>
   );
