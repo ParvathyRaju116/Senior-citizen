@@ -113,7 +113,7 @@ function Search() {
                       <li className="list-group-item px-4">{item.email}</li>
                     </ul>
                     <div className="card-body">
-                     <Modal service={item} />
+                     <Modal servicess={item} />
                     </div>
                   </div>
                 </div>
