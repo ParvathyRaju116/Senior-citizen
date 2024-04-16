@@ -173,4 +173,3 @@ function Leave() {
 }
 
 export default Leave;
-
