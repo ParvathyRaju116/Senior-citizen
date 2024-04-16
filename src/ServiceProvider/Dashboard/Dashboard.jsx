@@ -9,9 +9,9 @@ function Dashboard() {
       <HeaderSP />
    
         <Carousel>
-          <Carousel.Item>
+          <Carousel.Item >
             <img
-              className="d-block w-100"
+              className="d-block w-100 "
               src="https://www.silverts.com/givingcare/wp-content/uploads/2022/05/young-nurse-helping-old-elderly-disable-man.jpg"
               alt="First slide"
             />
