@@ -49,7 +49,7 @@ function Modal({ servicess }) {
     serviceProviderName: servicess.username,
     service: servicess.service,
     serviceProviderId: servicess._id,
-    profile_img: servicess.experience_crt,
+    profile_img: servicess.profile_img,
     serviceProviderEmail: servicess.email,
     serviceProviderMobile: servicess.mobile,
     rate: servicess.rate,
@@ -135,6 +135,10 @@ function Modal({ servicess }) {
         }
       } catch (error) {
         console.log(error);
+        Swal.fire({
+          title: "Something went wrong",
+          icon: "warning",
+        });
       }
     }
   };
