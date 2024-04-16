@@ -82,8 +82,3 @@ export const getAllServiceprovider = async (data) => {
 export const getAllAcceptedBookings = async () => {
     return await commonApi(`GET`, `${baseurl}/bookings/accepted-bookings`, "", "")
 }
-
-//get all rejected bookings
-export const getAllRejectedBookings = async () => {
-    return await commonApi(`GET`, `${baseurl}/bookings/rejected-bookings`, "", "")
-}
