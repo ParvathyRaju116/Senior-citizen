@@ -6,7 +6,7 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from "cdbreact";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
 
 function UserAside() {
@@ -46,9 +46,12 @@ function UserAside() {
         </CDBSidebarContent>
         <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div style={{ padding: "20px 5px" }}>
-            <Button href="/admin-dash" style={{ color: "white" }}>
+            <Link to={"/admin-dash"}>
+            <Button  style={{ color: "white" }}>
               <h5 >Back </h5>
             </Button>
+            </Link>
+            
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

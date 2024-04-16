@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import HeaderSP from "../Navbar/HeaderSP";
 import dayjs from "dayjs";
-import { TimePicker } from "@mui/x-date-pickers";
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Swal from "sweetalert2";
@@ -93,7 +91,7 @@ function Attendence() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Navbar />
+      <HeaderSP />
       <div className="d-flex justify-content-center align-items-center pt-5">
         <form
           style={{ width: "400px", height: "400px" }}

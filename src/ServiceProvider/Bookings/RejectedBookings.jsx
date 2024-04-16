@@ -1,12 +1,10 @@
 import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getAllAcceptedBookings } from '../../Services/allApi';
-import './Accepted.css'
-import HeaderSP from '../Navbar/HeaderSP';
+import HeaderSP from '../Navbar/HeaderSP'
+import { getAllRejectedBookings } from '../../Services/allApi'
 
-function AcceptedBookings() {
-
-  const [accepted,setAccepted] = useState([])
+function RejectedBookings() {
+  const [rejected, setRejected] = useState([])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -16,28 +14,27 @@ function AcceptedBookings() {
     return `${day}/${month}/${year}`;
   }
 
-  const getAcceptedBookings = async () => {
-    const result = await getAllAcceptedBookings();
-    const formattedBookings = result.data.acceptedBookings.map(booking => ({
+  const getRejectedBookings = async () => {
+    const result = await getAllRejectedBookings();
+    setRejected(result.data.rejectedBookings.map(booking => ({
       ...booking,
       startDate: formatDate(booking.startDate),
       endDate: formatDate(booking.endDate)
-    }));
-    setAccepted(formattedBookings);
+    })));
   }
 
   useEffect(() => {
-    getAcceptedBookings();
+    getRejectedBookings();
   }, []);
 
   return (
-    <>
-      <HeaderSP/>
+    <div>
+      <HeaderSP />
       <Container className='mt-5'>
-        <h1 className='text-center text-primary'>Accepted Bookings</h1>
-        {accepted?.length > 0 ? (
-          accepted.map((item) => (
-            <div className="card2 card col-md-4 mt-5 text-center shadow" style={{ width: '18rem',backgroundColor:'' }} key={item.id}>
+        <h1 className='text-center text-primary'>Rejected Bookings</h1>
+        {rejected?.length > 0 ? (
+          rejected.map((item) => (
+            <div className="card2 card col-md-4 mt-5 text-center shadow" style={{ width: '18rem', backgroundColor: '' }} key={item.id}>
               <ul className="list-group list-group-light list-group-small">
                 <li className="list-group-item px-3">Username : {item.userName}</li>
                 <li className="list-group-item px-3">Service Provider Name : {item.serviceProviderName}</li>
@@ -55,11 +52,11 @@ function AcceptedBookings() {
             </div>
           ))
         ) : (
-          <h1 className='text-center text-danger'>No Accepted Booking Available</h1>  
-        )}
+            <h1 className='text-center text-danger'>No Rejected Bookings Available</h1>
+          )}
       </Container>
-    </>
+    </div>
   )
 }
 
-export default AcceptedBookings;
+export default RejectedBookings

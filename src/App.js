@@ -29,6 +29,8 @@ import ServiceAttendance from "./Admin/Approvals/ServiceAttendance";
 import AdminChat from "./Admin/Chat/AdminChat";
 import BookSP from "./User/Bookings/BookSP";
 import Search from "./User/Search/Search";
+import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
+import AllBookings from "./ServiceProvider/Bookings/AllBookings";
 
 function App() {
   return (
@@ -72,6 +74,8 @@ function App() {
         <Route path="/service-login" element={<SignIn />} />
         <Route path="/service-leave" element={<Leave />} />
         <Route path="/service-dash" element={<Dashboard />} />
+        <Route path="/service-rejectedbookings" element={<RejectedBookings />} />
+        <Route path="/all-bookings" element={<AllBookings />} />
 
       </Routes>
     </div>

@@ -10,50 +10,15 @@ import { Container } from '@mui/material';
 import Table from 'react-bootstrap/Table';
 import { getAllAttendanceApi } from '../../Services/allApi';
 import Pagination from "@mui/material/Pagination";
+import dayjs from 'dayjs'; 
 
 function ServiceAttendance() {
-  const ProSpan = styled('span')({
-    display: 'inline-block',
-    height: '1em',
-    width: '1em',
-    verticalAlign: 'middle',
-    marginLeft: '0.3em',
-    marginBottom: '0.08em',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundImage: 'url(https://mui.com/static/x/pro.svg)',
-  });
-
-  function Label({ componentName, isProOnly }) {
-    const content = (
-      <span>
-        <strong>{componentName}</strong> for view attendance
-      </span>
-    );
-
-    if (isProOnly) {
-      return (
-        <Stack direction="row" spacing={0.5} component="span">
-          <Tooltip title="Included on Pro package">
-            <a
-              href="https://mui.com/x/introduction/licensing/#pro-plan"
-              aria-label="Included on Pro package"
-            >
-              <ProSpan />
-            </a>
-          </Tooltip>
-          {content}
-        </Stack>
-      );
-    }
-
-    return content;
-  }
-
-  const [attendance, setAttendance] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [page, setPage] = useState(1);
-  const itemsPerPage = 5;
+  // State variables
+  const [attendance, setAttendance] = useState([]); 
+  const [selectedDate, setSelectedDate] = useState(null); 
+  const [page, setPage] = useState(1); 
+  const itemsPerPage = 5; 
+  const dateFormat = 'DD-MM-YYYY'; 
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -76,17 +41,19 @@ function ServiceAttendance() {
     getAttendance();
   }, []);
 
+  const formattedDate = selectedDate ? dayjs(selectedDate).format(dateFormat) : null;
+
   const filteredAttendance = selectedDate
     ? attendance.filter(
         (entry) =>
-          new Date(entry.date).toISOString().slice(0, 10) ===
-          selectedDate.toISOString().slice(0, 10)
+          dayjs(entry.date).format(dateFormat) === formattedDate
       )
-    : attendance;
+    : [];
 
   return (
     <Container>
       <h1 className='mt-5 text-center' style={{ color: "#B08968" }} >Service Provider Attendance</h1>
+     
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer
           components={[
@@ -96,45 +63,60 @@ function ServiceAttendance() {
             'DateRangePicker',
           ]}
         >
-          <DemoItem label={<Label componentName="Choose Date" valueType="date" />}>
-            <DatePicker onChange={handleDateChange} />
+          <DemoItem label="Choose Date">
+            <DatePicker 
+              onChange={handleDateChange} 
+              placeholder={dateFormat.toUpperCase()} // Set placeholder with date format
+            />
           </DemoItem>
         </DemoContainer>
       </LocalizationProvider>
-      <div className='mt-5 text-center'>
-        <Table bordered style={{ border: "1px solid black" }}>
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>E-mail</th>
-              <th>Time In</th>
-              <th>Time Out</th>
-              <th>Working Hours</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredAttendance.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((entry, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{}</td>
-                <td>{entry.time_in}</td>
-                <td>{entry.time_out}</td>
-                <td>{entry.working_hours}</td>
-                <td>{entry.status}</td>
+     
+      {selectedDate && filteredAttendance.length > 0 && (
+        <div className='mt-5 text-center'>
+          <Table bordered style={{ border: "1px solid black" }}>
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>E-mail</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Working Hours</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-        <Stack spacing={2} className="text-center mt-3">
-          <Pagination
-            count={Math.ceil(filteredAttendance.length / itemsPerPage)}
-            page={page}
-            onChange={handleChangePage}
-            style={{ color: "#B08968" }}
-          />
-        </Stack>
-      </div>
+            </thead>
+            <tbody>
+              {filteredAttendance
+                .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                .map((entry, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{entry.email}</td>
+                    <td>{entry.time_in}</td>
+                    <td>{entry.time_out}</td>
+                    <td>{entry.working_hours}</td>
+                    <td>{entry.status}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+         
+          <Stack spacing={2} className="text-center mt-3">
+            <Pagination
+              count={Math.ceil(filteredAttendance.length / itemsPerPage)}
+              page={page}
+              onChange={handleChangePage}
+              style={{ color: "#B08968" }}
+            />
+          </Stack>
+        </div>
+      )}
+      
+      {selectedDate && filteredAttendance.length === 0 && (
+        <div className="mt-5 text-center">
+          <p>No attendance available for {formattedDate}</p>
+        </div>
+      )}
     </Container>
   );
 }
