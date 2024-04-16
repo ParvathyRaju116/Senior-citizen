@@ -1,70 +1,36 @@
 import { Container } from '@mui/material'
-import React from 'react'
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar';
+import { getAllAcceptedBookings } from '../../Services/allApi';
 
 
 function AcceptedBookings() {
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-          backgroundColor :'#B08968',
-          color: theme.palette.common.white,
-          width: '150px', // Adjust the width here
-        },
-        [`&.${tableCellClasses.body}`]: {
-          fontSize: 14,
-        },
-      }));
-      
-      const StyledTableRow = styled(TableRow)(({ theme }) => ({
-        
-        // hide last border
-        '&:last-child td, &:last-child th': {
-          border: 0,
-        },
-      }));
+
+const [accepted,setAccepted] = useState([])
+  const getAcceptedBookings = async () => {
+    const result = await getAllAcceptedBookings()
+    console.log(result.data.acceptedBookings
+    );
+    setAccepted(result.data.acceptedBookings
+    )
+  }
+
+  useEffect(() => {
+    getAcceptedBookings()
+  },[])
   return (
     <>
-          <Navbar />
-          <Container className='mt-5'>
-          <TableContainer component={Paper} >
-      <Table aria-label="customized table">
-        <TableHead>
-          <TableRow >
-          <StyledTableCell> Sl.No</StyledTableCell>
-          <StyledTableCell>User Name</StyledTableCell>
-            <StyledTableCell>Dr Name</StyledTableCell>
-            <StyledTableCell>Service</StyledTableCell>
-            <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell>Time</StyledTableCell>
-            <StyledTableCell>Rate</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-         
-            <StyledTableRow>
-              <StyledTableCell component="th" scope="row">
-               1
-              </StyledTableCell>
-              <StyledTableCell className='text-align-center'>Arya</StyledTableCell>
-              <StyledTableCell className='text-align-center'>Ajinsa</StyledTableCell>
-             <StyledTableCell className='text-align-center'>Day Care</StyledTableCell>
-              <StyledTableCell className='text-align-center'>12/04/2024</StyledTableCell>
-              <StyledTableCell className='text-align-center'>10:30</StyledTableCell>
-              <StyledTableCell className='text-align-center'>5000</StyledTableCell>
-            </StyledTableRow>
-          
-        </TableBody>
-      </Table>
-    </TableContainer>
-          </Container>
+      <Navbar />
+      <Container className='mt-5'>
+      <h1 className='text-center text-primary'>Accepted Bookings</h1>
+        {<div className="card col-md-4 mt-5" style={{ width: '18rem' }}>
+          <ul className="list-group list-group-light list-group-small">
+            <li className="list-group-item px-3">Username : </li>
+            <li className="list-group-item px-3">Dapibus ac facilisis in</li>
+            <li className="list-group-item px-3">Vestibulum at eros</li>
+          </ul>
+        </div>}
+      </Container>
     </>
   )
 }
