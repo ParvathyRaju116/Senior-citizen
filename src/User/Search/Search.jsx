@@ -97,7 +97,7 @@ function Search() {
                 <div key={index} className="col-md-4 p-3">
                   <div className="card shadow text-center" style={{ width: "18rem" }}>
                     <div className="card-body">
-                      <h5 className="card-title">{item.service}</h5>
+                    <h5 className="card-title" style={{ textTransform: 'uppercase' }}>{item.service}</h5>
                     </div>
                     <ul className="list-group list-group-light list-group-small">
                       <li className="list-group-item px-4">Username : {item.username}</li>
