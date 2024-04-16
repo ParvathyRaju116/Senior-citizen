@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import Navbar from '../Navbar/Navbar';
+import HeaderSP from '../Navbar/HeaderSP';
 import { getAllBookingrequest } from '../../Services/allApi';
 
 
@@ -36,7 +36,7 @@ function UserRequest() {
       
   return (
       <>
-          <Navbar/>
+          <HeaderSP/>
     <Container className='p-4 m-4 ms-5 ps-5'>
     
     <TableContainer component={Paper} >

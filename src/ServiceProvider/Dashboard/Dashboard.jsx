@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
+import HeaderSP from '../Navbar/HeaderSP';
 import Carousel from 'react-bootstrap/Carousel';
 import './dashboard.css';
 
 function Dashboard() {
   return (
     <>
-      <Navbar />
+      <HeaderSP />
    
         <Carousel>
           <Carousel.Item>
