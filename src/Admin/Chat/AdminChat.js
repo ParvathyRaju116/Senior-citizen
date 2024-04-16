@@ -9,16 +9,20 @@ import { Row, Col } from 'react-bootstrap';
 
 function AdminChat() {
   const [message, setMessage] = useState('');
-
+  const [selectedUser, setSelectedUser] = useState(null); 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
 
   const handleSendMessage = () => {
-    // Implement sending the message logic here
+   
     console.log('Sending message:', message);
-    // Clear the message input field after sending
+   
     setMessage('');
+  };
+
+  const handleUserSelect = (user) => {
+    setSelectedUser(user);
   };
 
   return (
@@ -28,6 +32,7 @@ function AdminChat() {
       <Container className='mt-5 '  style={{ backgroundColor: 'white' }}>
      
         <Row  >
+        
           <Col lg={4} style={{borderRight:"15px solid #FAF9F6 "}}  >
          
             <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -40,7 +45,7 @@ function AdminChat() {
               />
             </div>
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-              <ListItem alignItems="flex-start">
+              <ListItem alignItems="flex-start" button onClick={() => handleUserSelect("Ajinsa P A")}>
                 <ListItemText
                   primary="Ajinsa P A"
                   secondary={
@@ -58,7 +63,26 @@ function AdminChat() {
                 />
               </ListItem>
               <Divider component="li" />
-              <ListItem alignItems="flex-start">
+              
+              <ListItem alignItems="flex-start" button onClick={() => handleUserSelect("Parvathy")}>
+                <ListItemText
+                  primary="Parvathy"
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                      </Typography>
+                      {" — Hlo i want to know about your service…"}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider component="li" />
+              <ListItem alignItems="flex-start" button onClick={() => handleUserSelect("Midun")}>
                 <ListItemText
                   primary="Midun"
                   secondary={
@@ -76,9 +100,9 @@ function AdminChat() {
                 />
               </ListItem>
               <Divider component="li" />
-              <ListItem alignItems="flex-start">
+              <ListItem alignItems="flex-start" button onClick={() => handleUserSelect("Arya")}>
                 <ListItemText
-                  primary="Parvathy"
+                  primary="Arya"
                   secondary={
                     <React.Fragment>
                       <Typography
@@ -88,66 +112,68 @@ function AdminChat() {
                         color="text.primary"
                       >
                       </Typography>
-                      {' — Hlo i want to know about your service…"'}
+                      {" — Hlo i want to know about your service…"}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider component="li" />
+              <ListItem alignItems="flex-start" button onClick={() => handleUserSelect("Anu")}>
+                <ListItemText
+                  primary="Anu"
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                      </Typography>
+                      {" — Hlo i want to know about your service…"}
                     </React.Fragment>
                   }
                 />
               </ListItem>
               <Divider component="li" />
             </List>
+            
           </Col>
-          <Col lg={8}  >
-            <h5 className='ms-3 mt-2'>Ajinsa</h5>
+        
+          <Col lg={8}  style={{ position: 'relative' }}>
+            <h5 className='ms-3 mt-2'>{selectedUser || "Select a user"}</h5>
             <Divider component="li" />
 
-            <div className="chat_body poppins-regular">
-              <div className="admin_chat">
-                <p>
-                  <div className="admin_title">Admin</div>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam
-                  doloremque possimus explicabo, eveniet, accusamus animi soluta
-                  optio eum commodi sunt, delectus nobis voluptatibus. Eius dolor,
-                  expedita repudiandae amet eaque animi.
-                </p>
-              </div>
-              <div className="user_chat">
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam
-                  doloremque possimus explicabo, eveniet, accusamus animi soluta
-                  optio eum commodi sunt, delectus nobis voluptatibus. Eius dolor,
-                  expedita repudiandae amet eaque animi.
-                </p>
-              </div>
-              <div className="user_chat">
-                <p>Hi</p>
-              </div>
-              <div className="admin_chat">
-                <p>
-                  <div className="admin_title">Admin</div>
-                  Hello
-                </p>
-              </div>
-              <div className="admin_chat">
-                <p>
-                  <div className="admin_title">Admin</div>
-                  Lorem ipsum, dolor sit amet consectetur.
-                </p>
-              </div>
-
-              {/* Message Form */}
-              <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
-                <TextField
-                  id="outlined-basic"
-                  label="Type a message"
-                  variant="outlined"
-                  fullWidth
-                  value={message}
-                  onChange={handleMessageChange}
-                />
-                <IconButton aria-label="send" onClick={handleSendMessage}>
-                  <SendIcon />
-                </IconButton>
-              </div>
+            <div className="chat_body poppins-regular "  >
+              {/* Render chat messages based on selectedUser */}
+              {selectedUser && (
+                <React.Fragment>
+                  <div className="admin_chat">
+                    <p>
+                      <div className="admin_title">{selectedUser}</div>
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam
+                      doloremque possimus explicabo, eveniet, accusamus animi soluta
+                      optio eum commodi sunt, delectus nobis voluptatibus. Eius dolor,
+                      expedita repudiandae amet eaque animi.
+                    </p>
+                  </div>
+                
+                </React.Fragment>
+              )}
+            </div>
+           
+            <div className="chat_input" style={{ position: 'absolute', bottom: 0, width: '100%', backgroundColor: '#fff', padding: '10px' }}>
+              <input 
+                className='form-control'
+                type="text"
+                placeholder="Type your message..."
+                value={message}
+                onChange={handleMessageChange}
+                style={{ flex: 1, padding: '10px', marginRight: '10px' }}
+              />
+              <IconButton aria-label="send" onClick={handleSendMessage}>
+                <SendIcon />
+              </IconButton>
             </div>
           </Col>
         </Row>
