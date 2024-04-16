@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import HeaderSP from "../Navbar/HeaderSP";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -89,7 +89,7 @@ function Leave() {
   return (
     <div>
       <div className="mb-5">
-        <Navbar />
+        <HeaderSP />
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <Accordion
