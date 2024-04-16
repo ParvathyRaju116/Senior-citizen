@@ -95,22 +95,22 @@ function Search() {
             {data.length > 0 ? (
               data.map((item, index) => (
                 <div key={index} className="col-md-4 p-3">
-                  <div className="card" style={{ width: "18rem" }}>
+                  <div className="card shadow text-center" style={{ width: "18rem" }}>
                     <div className="card-body">
                       <h5 className="card-title">{item.service}</h5>
                     </div>
                     <ul className="list-group list-group-light list-group-small">
-                      <li className="list-group-item px-4">{item.username}</li>
+                      <li className="list-group-item px-4">Username : {item.username}</li>
                       <li className="list-group-item px-4">
-                        {item.specialization}
+                      Specialization : {item.specialization}
                       </li>
                       <li className="list-group-item px-4">
-                        {item.qualification}
+                      Qualification : {item.qualification}
                       </li>
-                      <li className="list-group-item px-4">{item.mobile}</li>
-                      <li className="list-group-item px-4">{item.location}</li>
-                      <li className="list-group-item px-4">{item.exp_year}</li>
-                      <li className="list-group-item px-4">{item.email}</li>
+                      <li className="list-group-item px-4">Phone no : {item.mobile}</li>
+                      <li className="list-group-item px-4">Location : {item.location}</li>
+                      <li className="list-group-item px-4">Year of experience : {item.exp_year}</li>
+                      <li className="list-group-item px-4">Email : {item.email}</li>
                     </ul>
                     <div className="card-body">
                      <Modal servicess={item} />
