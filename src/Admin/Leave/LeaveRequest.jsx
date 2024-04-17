@@ -169,13 +169,7 @@ function LeaveRequest() {
                       >
                         Dr. {i?.name}
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        style={{ marginTop: "-5px", textAlign: "center" }}
-                      >
-                        Cardiologist
-                      </Typography>
+                     
                       <h5 className="leave2">Request Details</h5> <br />
                       <h6 className="leave3">Date:</h6>
                     </CardContent>{" "}
