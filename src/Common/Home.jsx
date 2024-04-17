@@ -18,10 +18,6 @@ function Header() {
     navigate("/user-login");
   };
 
-  const handleService = () => {
-    navigate("/service-login");
-  };
-
   return (
     <>
       <Navbar expand="lg" style={{ height: "70px", width: "100%" }}>
@@ -63,19 +59,16 @@ function Header() {
                   </span>
                 </Dropdown.Item>
               </Link>
-              <Link
-                to="/service-reg"
-                style={{ textDecoration: "none", color: "black" }}
-              >
+              
                 <Dropdown.Item as="span">
                   <span
                     style={{ textDecoration: "none", color: "black" }}
-                    onClick={handleService}
+                    
                   >
-                    <Link to={'/service-login'} style={{color:'black'}}>Service Provide</Link>
+                    <Link to={'/service-login'} style={{color:'black'}}>Service Provider</Link>
                   </span>
                 </Dropdown.Item>
-              </Link>
+              
             </Dropdown.Menu>
           </Dropdown>
         </Container>

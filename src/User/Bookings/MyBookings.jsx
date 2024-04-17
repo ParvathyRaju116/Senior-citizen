@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import { Container, Col } from 'react-bootstrap';
 import './mybookings.css';
@@ -11,7 +11,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Payment from './Payment';
 import Swal from 'sweetalert2';
-import { addreviewApi } from '../../Services/allApi';
+import { getUnpaidbillsApi } from '../../Services/allApi';
 
 const style = {
   position: 'absolute',
@@ -29,6 +29,7 @@ function MyBookings() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const token = sessionStorage.getItem("token")
 
   const [feedback, setFeedback] = useState({ rating: 5, comments: "" });
   const [hover, setHover] = useState(-1);
@@ -40,18 +41,34 @@ function MyBookings() {
     5: 'Excellent',
   };
   console.log(feedback);
-  
- 
 
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
   }
 
+  
+  const getUnpaidbills = async () => {
+    const reqHeader = {
+      "Content-Type": "application/json",
+      "Authorization": `Token ${token}`,
+    };
+    try {
+      // Add authorization header
+      const result = await getUnpaidbillsApi(reqHeader)
+      console.log(result);
+    } catch (error) {
+      console.error('Error fetching unpaid bills:', error);
+    }
+  }
+
+  useEffect(()=>{
+    getUnpaidbills()
+  },[])
   return (
     <>
       <Header />
       <Container style={{ marginTop: '50px' }}>
-        <h1 className='text-center mb-3'>Booking Details</h1>
+        <h1 className='text-center mb-5'>Booking Details</h1>
         <Col md={4} className='d-flex justify-content-center align-items-center' style={{ width: '400px', height: '400px' }}>
           <div style={{ width: '400px', height: 'auto' }} className='div2 text-center mb-5 p-3'>
             <div className='mt-5 text-light'>
@@ -62,7 +79,7 @@ function MyBookings() {
               <p>Rate : 5000</p>
               <p>Action : Approved</p>
               <Button onClick={handleOpen}>Feedback</Button>
-              <Payment/>
+              <Payment />
             </div>
           </div>
         </Col>
@@ -80,25 +97,25 @@ function MyBookings() {
             Add Your Feedback
           </Typography>
           <Typography id="modal-modal-description" xl={{ mt: 2 }}>
-          <Stack spacing={1}>
-          <Rating
-                    name="hover-feedback"
-                    value={feedback.rating}
-                    precision={1}
-                    getLabelText={getLabelText}
-                    onChange={(event, newValue) => {
-                      setFeedback({ ...feedback, rating: newValue });
-                    }}
-                    onChangeActive={(event, newHover) => {
-                      setHover(newHover);
-                    }}
-                    size="large"
-                  />
-                  {feedback.rating !== null && (
-                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : feedback.rating]}</Box>
-                  )}
-    </Stack> 
-            <TextField style={{ width: '100%'}} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" value={feedback.comments} onChange={e => setFeedback({ ...feedback, comments: e.target.value })}/>
+            <Stack spacing={1}>
+              <Rating
+                name="hover-feedback"
+                value={feedback.rating}
+                precision={1}
+                getLabelText={getLabelText}
+                onChange={(event, newValue) => {
+                  setFeedback({ ...feedback, rating: newValue });
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHover(newHover);
+                }}
+                size="large"
+              />
+              {feedback.rating !== null && (
+                <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : feedback.rating]}</Box>
+              )}
+            </Stack>
+            <TextField style={{ width: '100%' }} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" value={feedback.comments} onChange={e => setFeedback({ ...feedback, comments: e.target.value })} />
           </Typography>
           <div className="d-flex justify-content-center">
             <button className='btn btn-outline-success mt-3' >Submit</button>
