@@ -5,22 +5,26 @@ import Header from "../Header/Header";
 
 function Search() {
   const [data, setData] = useState([]);
+  const [services, setServices] = useState([]);
   const [search, setSearch] = useState({
     service: "",
     location: ""
   });
 
-  const getAllServiceprovider = async () => {
-    try {
-      const result = await getAllServiceproviderApi();
-      setData(result.data.allServiceProviders);
-    } catch (error) {
-      console.error("Error fetching service providers:", error);
-    }
-  };
-
   useEffect(() => {
-    getAllServiceprovider();
+    const fetchData = async () => {
+      try {
+        const result = await getAllServiceproviderApi();
+        console.log(result.data.allServiceProviders);
+        setData(result.data.allServiceProviders);
+        // Extracting unique service names from the data
+        const uniqueServices = Array.from(new Set(result.data.allServiceProviders.map(item => item.service)));
+        setServices(uniqueServices);
+      } catch (error) {
+        console.error("Error fetching service providers:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const filteredData = data.filter((item) => {
@@ -28,20 +32,22 @@ function Search() {
     const locationMatch = item.location.toLowerCase().includes(search.location.toLowerCase());
     return serviceMatch && locationMatch;
   });
-  
 
   return (
     <>
       <Header />
       <div className="container d-flex justify-content-center mt-5">
         <div>
-          <input
-            type="text"
-            placeholder="service"
-            className="form-control"
+          <select
             value={search.service}
             onChange={(e) => setSearch({ ...search, service: e.target.value })}
-          />
+            className="form-select"
+          >
+            <option value="">Select Service</option>
+            {services.map((service, index) => (
+              <option key={index} value={service}>{service}</option>
+            ))}
+          </select>
         </div>
         <div className="ms-3">
           <input
@@ -68,8 +74,11 @@ function Search() {
                     <li className="list-group-item px-4">Specialization : {item.specialization}</li>
                     <li className="list-group-item px-4">Qualification : {item.qualification}</li>
                     <li className="list-group-item px-4">Phone no : {item.mobile}</li>
-                    <li className="list-group-item px-4">Location : {item.location}</li>
                     <li className="list-group-item px-4">Year of experience : {item.exp_year}</li>
+                    <li className="list-group-item px-4">Service : {item.service}</li>
+                    <li className="list-group-item px-4">Specialization : {item.specialization}</li>
+
+                    <li className="list-group-item px-4">Location : {item.location}</li>
                     <li className="list-group-item px-4">Email : {item.email}</li>
                   </ul>
                   <div className="card-body">
