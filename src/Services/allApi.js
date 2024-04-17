@@ -109,3 +109,6 @@ export const getAllBookingsNumberApi = async () => {
 export const getBookingAdminApi = async () => {
     return await commonApi(`GET`, `${baseurl}/bookings/accepted-bookings`, "", "")
 }
+export const getPaymentApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/history/transaction-history`, "", "")
+}
