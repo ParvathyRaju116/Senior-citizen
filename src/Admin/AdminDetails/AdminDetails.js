@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './AdminDetails.css';
 import ServiceGraph from '../AdminGraph/ServiceGraph';
 import Payment from '../Admin Dashboard/AdminPayment/Payment';
-import { getAllSP, getUserAPI } from '../../Services/allApi';
+import { getAllBookingsNumberApi, getAllSP, getUserAPI } from '../../Services/allApi';
 
 function AdminDetails() {
   const [service, setService] = useState([]);
   const [user, setUser] = useState([]);
+const[booking,setBooking]=useState([])
 
   const getService = async () => {
     try {
@@ -34,10 +35,21 @@ function AdminDetails() {
   useEffect(() => {
     getAllUser();
   }, []);
+  const getAllBookings = async () => {
+    try {
+      const result = await getAllBookingsNumberApi();
+      setBooking(result.data?.acceptedBookings);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllBookings();
+  }, []);
 
 
-
-  console.log(user);
+  console.log(booking);
 
   return (
     <div>
@@ -58,7 +70,7 @@ function AdminDetails() {
         </div>
        
         <div className="admin-detail">
-          <h5 className='mt-2 me-1 p-1 b1'>400</h5>
+          <h5 className='mt-2 me-1 p-1 b1'>{booking.length}</h5>
           <h6 className='b3'>Appointments</h6>
         </div>
       </div>
