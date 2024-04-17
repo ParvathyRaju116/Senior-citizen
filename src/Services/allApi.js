@@ -110,3 +110,6 @@ export const getAllBookingsNumberApi = async () => {
 export const getUnpaidbillsApi = async () => {
     return await commonApi(`GET`, `${baseurl}/maternalcare/primarybooking/billunpaid/view`, "", "")
 }
+export const getBookingAdminApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/bookings/accepted-bookings`, "", "")
+}

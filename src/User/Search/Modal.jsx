@@ -29,11 +29,9 @@ const style = {
 
 function Modal({ servicess }) {
   const [staticModal, setStaticModal] = useState(false);
-
   const token = sessionStorage.getItem("token");
 
   const toggleOpen = () => setStaticModal(!staticModal);
-  const [open, setOpen] = useState(false);
 
   const [booking, setBooking] = useState({
     typeOfCare: "",
@@ -45,11 +43,13 @@ function Modal({ servicess }) {
     location: "",
     serviceProviderName: servicess.username,
     service: servicess.service,
-    serviceProviderId: servicess.serviceProvidersId,
+    serviceProviderId: servicess.serviceProviderId,
     profile_img: servicess.profile_img,
     serviceProviderEmail: servicess.email,
     serviceProviderMobile: servicess.mobile,
     rate: servicess.rate,
+    workinghours: 0,
+    amountPaid: "",
   });
 
   const handleStartDateChange = (date) => {
@@ -63,15 +63,11 @@ function Modal({ servicess }) {
   };
 
   const handleStartTimeChange = (time) => {
-    if (time) {
-      setBooking({ ...booking, startingTime: time });
-    }
+    setBooking({ ...booking, startingTime: time });
   };
 
   const handleEndTimeChange = (time) => {
-    if (time) {
-      setBooking({ ...booking, endingTime: time });
-    }
+    setBooking({ ...booking, endingTime: time });
   };
 
   const handleSubmit = async (e) => {
@@ -84,6 +80,7 @@ function Modal({ servicess }) {
       startDate,
       endDate,
       location,
+      workinghours,
     } = booking;
 
     if (
@@ -92,7 +89,8 @@ function Modal({ servicess }) {
       !endingTime ||
       !startDate ||
       !endDate ||
-      !location
+      !location ||
+      workinghours === 0
     ) {
       Swal.fire({
         title: "Please fill the form",
@@ -110,7 +108,6 @@ function Modal({ servicess }) {
           }
         );
         if (result.status >= 200 && result.status <= 300) {
-          console.log(result);
           Swal.fire({
             title: "Booking Completed",
             icon: "success",
@@ -123,6 +120,8 @@ function Modal({ servicess }) {
             startDate: "",
             endDate: "",
             location: "",
+            workinghours: 0,
+            amountPaid: 0,
           });
           toggleOpen();
 
@@ -139,8 +138,15 @@ function Modal({ servicess }) {
       }
     }
   };
-  console.log(servicess);
-  console.log(booking);
+
+  const handleAmountfind = (item) => {
+    const totalAmount = item * booking.rate;
+    setBooking({
+      ...booking,
+      workinghours: Number(item),
+      amountPaid: totalAmount,
+    });
+  };
 
   return (
     <div>
@@ -227,7 +233,16 @@ function Modal({ servicess }) {
                       }
                     />
                   </div>
-                  <div></div>
+                  <div className="mb-3 text-start">
+                    <label htmlFor="">Hours</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      value={booking.workinghours}
+                      onChange={(e) => handleAmountfind(e.target.value)}
+                    />
+                  </div>
+                  <h2>Total Amount: {booking.amountPaid} &#8377;</h2>
                 </form>
               </MDBModalBody>
               <MDBModalFooter>

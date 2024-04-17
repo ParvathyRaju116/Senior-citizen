@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { Col, Row } from "react-bootstrap";
-import { getAllBookingsApi } from "../../Services/allApi";
+import axios from "axios";
+import baseurl from "../../Services/baseurl";
+import {
+  MDBCard,
+  MDBCardHeader,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBCardBody,
+} from "mdb-react-ui-kit";
+import Swal from "sweetalert2";
 
 function AllBookings() {
-  const [bookings, setBookings] = useState({});
+  const [bookings, setBookings] = useState([]);
+  const token = sessionStorage.getItem("token");
+  const [id, setId] = useState({ id: "" });
 
   const getBookings = async () => {
     try {
-      const result = await getAllBookingsApi();
-      setBookings(result?.data?.allUsersList);
+      const result = await axios.get(`${baseurl}/bookings/user-bookings`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      if (result.status >= 200 && result.status <= 300) {
+        console.log(result?.data?.userBookings);
+        setBookings(result?.data?.userBookings);
+      } else {
+        console.log(result);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -22,68 +37,177 @@ function AllBookings() {
   useEffect(() => {
     getBookings();
   }, []);
-  console.log(bookings);
+
+  const handleAccept = async (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Approve It",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          setId({ id: item });
+          console.log(id);
+          const response = await axios.post(
+            `${baseurl}/userBooking/serviceProvider/accept`,
+            id
+          );
+
+          if (response?.status >= 200 && response?.status <= 300) {
+            Swal.fire({
+              title: "Approved",
+              text: "Booking Approved",
+              icon: "success",
+            });
+            getBookings();
+          } else {
+            Swal.fire({
+              title: "Not Approved",
+              text: "Booking Not Approved",
+              icon: "warning",
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "Oops",
+            text: "Something went Wrong",
+            icon: "error",
+          });
+
+          console.error(error);
+        }
+      }
+    });
+  };
+
+  const handleDelete = (item) => {
+    // Create an object with email property
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Reject IT ",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          setId({ id: item });
+          console.log(id);
+          const response = await axios.post(
+            `${baseurl}/userBooking/serviceProvider/reject`,
+            id
+          );
+
+          if (response?.status >= 200 && response?.status <= 300) {
+            Swal.fire({
+              title: "Rejected",
+              text: "Booking Rejected",
+              icon: "success",
+            });
+            getBookings();
+            console.log(response);
+          } else {
+            Swal.fire({
+              title: "Not Rejected",
+              text: "Booking not Rejected",
+              icon: "warning",
+            });
+          }
+        } catch (error) {
+          Swal.fire({
+            title: "Oops",
+            text: "Something went Wrong",
+            icon: "error",
+          });
+
+          console.error(error);
+        }
+      }
+    });
+  };
 
   return (
     <div>
       <Container>
         <h1 className="text-center mt-5">Bookings</h1>
         <Row>
-          <Col lg={4} className="">
-            <Card sx={{ borderRadius:"10px",boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;" }} className="p-3">
-              <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  UserName :
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Service Provider Name :
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Service :
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Care:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Start Date:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  End Date:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Starting Time:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Ending Time:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Location:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Rate:
-                </Typography>
-                <Typography gutterBottom variant="h6" component="div">
-                  Service Provider Status:
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  style={{ backgroundColor: "green", color: "white" }}
-                  className="btn"
-                  size="small"
-                >
-                  Approve
-                </Button>
-                <Button
-                  style={{ backgroundColor: "red", color: "white" }}
-                  className="btn "
-                  size="small"
-                >
-                  Reject
-                </Button>
-              </CardActions>
-            </Card>
-          </Col>
+          {bookings.length > 0 ? (
+            bookings.map((i) => (
+              <Col lg={4} className="mb-2">
+                {" "}
+                <MDBCard>
+                  <MDBCardHeader className="bg-balck">
+                    <b>Name: </b>
+                    {i?.userName.toUpperCase()}
+                  </MDBCardHeader>
+                  <MDBListGroup flush>
+                    <MDBListGroupItem>
+                      <b>Email: </b>
+                      {i?.userEmail}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Care Type: </b>
+                      {i?.typeOfCare}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Location: </b>
+                      {i?.location}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Start Date: </b>
+                      {i?.startDate.slice(0, 10)}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>End Date: </b>
+                      {i?.endDate.slice(0, 10)}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>Start Time: </b>
+                      {i?.startingTime}
+                    </MDBListGroupItem>
+                    <MDBListGroupItem>
+                      <b>End Time: </b>
+                      {i?.endingTime}
+                    </MDBListGroupItem>
+                  </MDBListGroup>
+                  <MDBCardBody>
+                    {i?.serviceProviderStatus === "pending" ? (
+                      <div
+                        className="d-flex "
+                        style={{ justifyContent: "space-between" }}
+                      >
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(i?._id)}
+                        >
+                          Reject
+                        </button>
+                        <button
+                          className="btn btn-success"
+                          onClick={() => handleAccept(i?._id)}
+                        >
+                          Accept
+                        </button>
+                      </div>
+                    ) : (
+                      <MDBListGroupItem>
+                        <b>Waiting For Admin Confermation</b>
+                      </MDBListGroupItem>
+                    )}
+                  </MDBCardBody>
+                </MDBCard>
+              </Col>
+            ))
+          ) : (
+            <h2 className="text-center mt-5">No Bookings Found</h2>
+          )}
         </Row>
       </Container>
     </div>
