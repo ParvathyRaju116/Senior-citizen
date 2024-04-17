@@ -10,15 +10,20 @@ import { Container } from '@mui/material';
 import Table from 'react-bootstrap/Table';
 import { getAllAttendanceApi } from '../../Services/allApi';
 import Pagination from "@mui/material/Pagination";
-import dayjs from 'dayjs'; 
+import dayjs from 'dayjs';
+import 'dayjs/locale/en'; // Import the locale you need
+import localizedFormat from 'dayjs/plugin/localizedFormat'; // Import the plugin for localized formats
+
+dayjs.locale('en'); // Set default locale
+dayjs.extend(localizedFormat); // Extend dayjs with the localizedFormat plugin
 
 function ServiceAttendance() {
   // State variables
-  const [attendance, setAttendance] = useState([]); 
-  const [selectedDate, setSelectedDate] = useState(null); 
-  const [page, setPage] = useState(1); 
-  const itemsPerPage = 5; 
-  const dateFormat = 'DD-MM-YYYY'; 
+  const [attendance, setAttendance] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
+  const dateFormat = 'DD-MM-YYYY';
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -45,15 +50,15 @@ function ServiceAttendance() {
 
   const filteredAttendance = selectedDate
     ? attendance.filter(
-        (entry) =>
-          dayjs(entry.date).format(dateFormat) === formattedDate
-      )
+      (entry) =>
+        dayjs(entry.date, dateFormat).format(dateFormat) === formattedDate
+    )
     : [];
 
   return (
     <Container>
       <h1 className='mt-5 text-center' style={{ color: "#B08968" }} >Service Provider Attendance</h1>
-     
+
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer
           components={[
@@ -64,14 +69,14 @@ function ServiceAttendance() {
           ]}
         >
           <DemoItem label="Choose Date">
-            <DatePicker 
-              onChange={handleDateChange} 
-              placeholder={dateFormat.toUpperCase()} // Set placeholder with date format
+            <DatePicker
+              onChange={handleDateChange}
+              placeholder={dateFormat.toUpperCase()}
             />
           </DemoItem>
         </DemoContainer>
       </LocalizationProvider>
-     
+
       {selectedDate && filteredAttendance.length > 0 && (
         <div className='mt-5 text-center'>
           <Table bordered style={{ border: "1px solid black" }}>
@@ -91,16 +96,16 @@ function ServiceAttendance() {
                 .map((entry, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{entry.email}</td>
+                    <td>{entry.serviceProviderEmail}</td>
                     <td>{entry.time_in}</td>
                     <td>{entry.time_out}</td>
                     <td>{entry.working_hours}</td>
-                    <td>{entry.status}</td>
+                    <td>{entry.present?"PRESENT":"🔴"}</td>
                   </tr>
                 ))}
             </tbody>
           </Table>
-         
+
           <Stack spacing={2} className="text-center mt-3">
             <Pagination
               count={Math.ceil(filteredAttendance.length / itemsPerPage)}
@@ -111,7 +116,7 @@ function ServiceAttendance() {
           </Stack>
         </div>
       )}
-      
+
       {selectedDate && filteredAttendance.length === 0 && (
         <div className="mt-5 text-center">
           <p>No attendance available for {formattedDate}</p>
