@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 
 const style = {
   position: 'absolute',
@@ -57,6 +59,9 @@ function MyBookings() {
             Add Your Feedback
           </Typography>
           <Typography id="modal-modal-description" xl={{ mt: 2 }}>
+          <Stack spacing={1}>
+      <Rating name="size-medium" className='mb-3' defaultValue={2} />
+    </Stack> 
             <TextField style={{ width: '100%'}} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" />
           </Typography>
           <div className="d-flex justify-content-center">

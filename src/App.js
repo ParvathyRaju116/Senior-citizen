@@ -15,7 +15,6 @@ import Bookings from "./Admin/AdminBookings/Bookings";
 import UserApproval from "./Admin/Approvals/UserApproval";
 import UserList from "./Admin/Approvals/UserList";
 import ServiceProviderList from "./Admin/Approvals/ServiceProviderList";
-import UserRequest from "./ServiceProvider/UserRequest/UserRequest";
 import Attendence from "./ServiceProvider/Attendence/Attendence";
 import AcceptedBookings from "./ServiceProvider/Bookings/AcceptedBookings";
 import AddBlog from "./Admin/AdminBlog/AddBlog";
@@ -31,6 +30,7 @@ import BookSP from "./User/Bookings/BookSP";
 import Search from "./User/Search/Search";
 import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
+import Footer from "./Common/Footer/Footer";
 
 function App() {
   return (
@@ -68,7 +68,6 @@ function App() {
         {/* //serviceprovider */}
         <Route path="/service-reg2" element={<Singup />} />
         <Route path="/service-reg" element={<Singup register />} />
-        <Route path="/service-request" element={<UserRequest />} />
         <Route path="/service-attendence" element={<Attendence />} />
         <Route path="/service-bookings" element={<AcceptedBookings />} />
         <Route path="/service-login" element={<SignIn />} />
@@ -78,6 +77,7 @@ function App() {
         <Route path="/all-bookings" element={<AllBookings />} />
 
       </Routes>
+      <Footer/>
     </div>
   );
 }

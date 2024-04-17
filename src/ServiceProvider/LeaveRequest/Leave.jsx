@@ -16,7 +16,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import TextField from "@mui/material/TextField";
-import AcceptedLeave from "./AcceptedLeave";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -166,7 +165,6 @@ function Leave() {
         </Accordion>
       </div>
       <div className="container mt-5">
-        <AcceptedLeave />
       </div>
     </div>
   );

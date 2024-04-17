@@ -5,7 +5,6 @@ import { Avatar } from "@mui/material";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
-import Footer from "../User/Footer/Footer";
 import './home.css'
 
 function Header() {
@@ -177,14 +176,14 @@ function Header() {
           <Row>
             <Col md={6}>
               <img
-                style={{ width: "300px", height: "400px" }}
+                style={{ width: "250px", height: "400px" }}
                 src="https://papayacare.com/wp-content/uploads/2023/09/Caring-for-the-Elderly-6-Things-to-Remember.jpg"
                 alt=""
                 className="rounded"
               />
               <img
                 style={{
-                  width: "300px",
+                  width: "250px",
                   height: "400px",
                   borderRadius: "10px",
                 }}
@@ -212,7 +211,7 @@ function Header() {
           </Row>
         </Container>
       </div>
-      <Footer />
+      
     </>
   );
 }
