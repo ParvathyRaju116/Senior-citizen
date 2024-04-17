@@ -65,40 +65,8 @@ function List() {
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Ajinsa</td>
-              <td>Nurse</td>
-              <td>{formatDate("4/8/2024")}</td>
-              <td>
-                <div className="ms-5" >
-                  {" "}
-                  <Stack direction="row" spacing={2}>
-                    <Button variant="contained" color="success">
-                     Confirm
-                    </Button>
-                   
-                  </Stack>
-                </div>{" "}
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Midhun</td>
-              <td>Therapist</td>
-              <td>{formatDate("4/9/2024")}</td>
-              <td>
-                <div className="ms-5" >
-                  {" "}
-                  <Stack direction="row" spacing={2}>
-                    <Button variant="contained" color="success">
-                    Confirm
-                    </Button>
-                    
-                  </Stack>
-                </div>
-              </td>
-            </tr>
+            
+           
           </tbody>
         </Table>
         <Stack spacing={2} className="text-center mt-3">
