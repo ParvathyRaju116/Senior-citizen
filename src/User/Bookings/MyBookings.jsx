@@ -10,7 +10,6 @@ import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Payment from './Payment';
-import Swal from 'sweetalert2';
 import { getUnpaidbillsApi } from '../../Services/allApi';
 
 const style = {
