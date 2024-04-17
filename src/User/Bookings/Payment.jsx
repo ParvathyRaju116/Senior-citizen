@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import './payment.css'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Swal from 'sweetalert2';
 
 function Payment() {
   const [cardNumber, setCardNumber] = useState('');
   const [holderName, setHolderName] = useState('');
   const [expiry, setExpiry] = useState('');
   const [cvv, setCvv] = useState('');
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleCardNumberChange = (event) => {
     const input = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -26,6 +34,7 @@ function Payment() {
       setCvv(input);
     }
   };
+  
 
   const handleHolderNameChange = (event) => {
     const input = event.target.value;
@@ -43,24 +52,50 @@ function Payment() {
 
     // Perform validations
     if (!cardNumber || !holderName || !expiry || !cvv) {
-      alert('Please fill in all fields.');
+      Swal.fire({
+        title: "Please fill in all fields.",
+        icon: "warning"
+      });
       return;
     }
 
     // Validate card number format (16 digits)
     if (cardNumber.length !== 16) {
-      alert('Please enter a valid 16-digit card number.');
+      Swal.fire({
+        title: "Please enter a valid 16-digit card number.",
+        icon: "warning"
+      });
       return;
     }
 
     // If all validations pass, you can proceed with form submission
     // Add your submission logic here
-    alert('Form submitted successfully!');
+    Swal.fire({
+      title: "Payment completed successfully!",
+      icon: "success"
+    });
+    setCardNumber('');
+    setHolderName('');
+   setExpiry('');
+    setCvv('');
+
+  // Close the modal
+    handleClose();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+
+      <Button variant="primary" onClick={handleShow}>
+        Complete Payment
+      </Button>
+
+      <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Payment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <form onSubmit={handleSubmit}>
         <div className="visa-card">
           <div className="logoContainer">
             <svg
@@ -137,8 +172,15 @@ function Payment() {
             </div>
           </div>
         </div>
-        
+        <h3 className='ms-5 px-5 mt-3'>Total Amount : $100</h3>
       </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" className='btn w-75 me-5'onClick={handleSubmit}>
+            Pay Now
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

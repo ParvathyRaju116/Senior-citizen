@@ -66,7 +66,7 @@ function ServiceProviderList() {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Sl.No</StyledTableCell>
-                <StyledTableCell>Image</StyledTableCell>
+             
                 <StyledTableCell>Name</StyledTableCell>
                 <StyledTableCell>E-mail</StyledTableCell>
                 <StyledTableCell>Phone</StyledTableCell>
@@ -83,14 +83,7 @@ function ServiceProviderList() {
               .map((i, index) => (
               <StyledTableRow>
                 <StyledTableCell component="th" scope="row"> {index + 1}</StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                  <Stack direction="row" spacing={2}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                    />
-                  </Stack>
-                </StyledTableCell>
+               
                 <StyledTableCell className="text-align-center">
                 {i?.username}
                 </StyledTableCell>

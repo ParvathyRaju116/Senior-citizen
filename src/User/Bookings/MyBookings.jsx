@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Payment from './Payment';
+import Swal from 'sweetalert2';
+import { addreviewApi } from '../../Services/allApi';
 
 const style = {
   position: 'absolute',
@@ -27,6 +29,23 @@ function MyBookings() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [feedback, setFeedback] = useState({ rating: 5, comments: "" });
+  const [hover, setHover] = useState(-1);
+  const labels = {
+    1: 'Useless',
+    2: 'Poor',
+    3: 'Ok',
+    4: 'Good',
+    5: 'Excellent',
+  };
+  console.log(feedback);
+  
+ 
+
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+  }
 
   return (
     <>
@@ -62,12 +81,27 @@ function MyBookings() {
           </Typography>
           <Typography id="modal-modal-description" xl={{ mt: 2 }}>
           <Stack spacing={1}>
-      <Rating name="size-medium" className='mb-3' defaultValue={2} />
+          <Rating
+                    name="hover-feedback"
+                    value={feedback.rating}
+                    precision={1}
+                    getLabelText={getLabelText}
+                    onChange={(event, newValue) => {
+                      setFeedback({ ...feedback, rating: newValue });
+                    }}
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    size="large"
+                  />
+                  {feedback.rating !== null && (
+                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : feedback.rating]}</Box>
+                  )}
     </Stack> 
-            <TextField style={{ width: '100%'}} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" />
+            <TextField style={{ width: '100%'}} id="outlined-multiline-static" label="Multiline" multiline rows={5} placeholder="Enter your feedback" value={feedback.comments} onChange={e => setFeedback({ ...feedback, comments: e.target.value })}/>
           </Typography>
           <div className="d-flex justify-content-center">
-            <button className='btn btn-outline-success mt-3'>Submit</button>
+            <button className='btn btn-outline-success mt-3' >Submit</button>
           </div>
         </Box>
       </Modal>
