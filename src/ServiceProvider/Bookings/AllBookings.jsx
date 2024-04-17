@@ -39,6 +39,7 @@ function AllBookings() {
   }, []);
 
   const handleAccept = async (item) => {
+    const email = { id: item };
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -50,11 +51,9 @@ function AllBookings() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          setId({ id: item });
-          console.log(id);
           const response = await axios.post(
             `${baseurl}/userBooking/serviceProvider/accept`,
-            id
+            email
           );
 
           if (response?.status >= 200 && response?.status <= 300) {
@@ -86,7 +85,7 @@ function AllBookings() {
 
   const handleDelete = (item) => {
     // Create an object with email property
-
+    const email = { id: item };
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -102,7 +101,7 @@ function AllBookings() {
           console.log(id);
           const response = await axios.post(
             `${baseurl}/userBooking/serviceProvider/reject`,
-            id
+            email
           );
 
           if (response?.status >= 200 && response?.status <= 300) {
