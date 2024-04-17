@@ -25,7 +25,7 @@ function Attendence() {
 
     if (!date || !time_in || !time_out || !working_hours) {
       Swal.fire({
-        title: "Fill the Webinar Form",
+        title: "fill the Form",
         icon: "warning",
       });
     } else {
