@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import MuiModal from "@mui/material/Modal";
 import dayjs from "dayjs";
 import Swal from "sweetalert2";
 import {
@@ -48,7 +45,7 @@ function Modal({ servicess }) {
     location: "",
     serviceProviderName: servicess.username,
     service: servicess.service,
-    serviceProviderId: servicess._id,
+    serviceProviderId: servicess.serviceProvidersId,
     profile_img: servicess.profile_img,
     serviceProviderEmail: servicess.email,
     serviceProviderMobile: servicess.mobile,
@@ -160,7 +157,9 @@ function Modal({ servicess }) {
             <MDBModalContent>
               <MDBModalHeader>
                 <MDBModalTitle>
-                  <h4 className="mb-3 ms-4">Book Service Provider</h4>
+                  <h4 className="mb-3 ms-4 text-start">
+                    Book Service Provider
+                  </h4>
                 </MDBModalTitle>
                 <MDBBtn
                   className="btn-close"
@@ -170,7 +169,7 @@ function Modal({ servicess }) {
               </MDBModalHeader>
               <MDBModalBody>
                 <form style={{ width: "100%" }}>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">Type of care</label>
                     <input
                       type="text"
@@ -181,7 +180,7 @@ function Modal({ servicess }) {
                       }
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">starting Time</label>
                     <input
                       type="time"
@@ -190,7 +189,7 @@ function Modal({ servicess }) {
                       onChange={(e) => handleStartTimeChange(e.target.value)}
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">ending Time</label>
                     <input
                       type="time"
@@ -199,7 +198,7 @@ function Modal({ servicess }) {
                       onChange={(e) => handleEndTimeChange(e.target.value)}
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">start Date</label>
                     <input
                       type="date"
@@ -208,7 +207,7 @@ function Modal({ servicess }) {
                       min={new Date().toISOString().split("T")[0]}
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">end Date</label>
                     <input
                       type="date"
@@ -217,7 +216,7 @@ function Modal({ servicess }) {
                       onChange={(e) => handleEndDateChange(e.target.value)}
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 text-start">
                     <label htmlFor="">Location</label>
                     <input
                       type="text"

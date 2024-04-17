@@ -101,3 +101,8 @@ export const getAllBookingsApi = async () => {
 export const addreviewApi = async (data,reqheader) => {
     return await commonApi(`POST`, `${baseurl}/review/add-review`, data, reqheader)
 }
+
+
+export const getAllBookingsNumberApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/bookings/accepted-bookings`, "", "")
+}
