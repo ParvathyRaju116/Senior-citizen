@@ -9,6 +9,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import Payment from './Payment';
 
 const style = {
   position: 'absolute',
@@ -42,6 +43,7 @@ function MyBookings() {
               <p>Rate : 5000</p>
               <p>Action : Approved</p>
               <Button onClick={handleOpen}>Feedback</Button>
+              <Payment/>
             </div>
           </div>
         </Col>
