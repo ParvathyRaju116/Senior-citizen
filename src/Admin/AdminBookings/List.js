@@ -1,20 +1,40 @@
-import { Container } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { getBookingAdminApi } from "../../Services/allApi";
+import { Container } from 'react-bootstrap'
+
 function formatDate(dateString) {
   const date = new Date(dateString);
-  const formattedDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
-  return formattedDate;
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero based
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
 }
 
 function List() {
+  const [bookingList, setBookingList] = useState([]);
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 4;
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const getBookings = async () => {
+    try {
+      const result = await getBookingAdminApi();
+      setBookingList(result?.data?.acceptedBookings);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getBookings();
+  }, []);
+
   return (
     <Container>
       <div className="scroll2">
@@ -38,7 +58,10 @@ function List() {
                 <h5>Service Provider</h5>
               </th>
               <th>
-                <h5>Date</h5>
+                <h5>Start Date</h5>
+              </th>
+              <th>
+                <h5>End Date</h5>
               </th>
               <th>
                 <h5>Action</h5>
@@ -46,31 +69,36 @@ function List() {
             </tr>
           </thead>
           <tbody className="text-center">
-            <tr>
-              <td>1</td>
-
-              <td>Parvathy</td>
-
-              <td>Doctor</td>
-              <td>{formatDate("4/4/2024")}</td>
-              <td >
-                <div className="ms-5" >
-                  {" "}
-                  <Stack direction="row" spacing={2}>
-                    <Button variant="contained" color="success">
-                  Confirm
-                    </Button>
-                    
-                  </Stack>
-                </div>
-              </td>
-            </tr>
-            
-           
+            {bookingList
+              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+              .map((i, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{i.userName}</td>
+                  <td>{i.service}</td>
+                  <td>{formatDate(i.startDate)}</td>
+                  <td>{formatDate(i.endDate)}</td>
+                  <td>
+                    <div className="ms-5">
+                      {" "}
+                      <Stack direction="row" spacing={2}>
+                        <Button variant="contained" color="success">
+                          Confirm
+                        </Button>
+                      </Stack>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
         <Stack spacing={2} className="text-center mt-3">
-          <Pagination count={10} style={{ color: "#B08968" }} />
+          <Pagination
+            count={Math.ceil(bookingList.length / itemsPerPage)}
+            page={page}
+            onChange={handleChangePage}
+            style={{ color: "#B08968" }}
+          />
         </Stack>
       </div>
     </Container>
