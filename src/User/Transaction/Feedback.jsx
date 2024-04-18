@@ -71,7 +71,7 @@ function Feedback({ id }) {
 
     return (
         <>
-            {!feedbackSubmitted && !open && <button onClick={handleOpen}>Feedback</button>}
+            {!feedbackSubmitted && !open && <button onClick={handleOpen} className='btn btn-primary'>Add Feedback</button>}
             <Modal
                 open={open}
                 onClose={handleClose}

@@ -29,7 +29,6 @@ function ChatBox() {
       senderId: user._id,
       senderName: user.username,
     });
-    console.log(messages);
     setCount(2);
   }
 
@@ -42,7 +41,6 @@ function ChatBox() {
       const response = await axios.get(
         `${baseurl}/getMessages/${messages?.senderId}/65e16d424097856f1bda4503`
       );
-      console.log(response);
       setChat(response.data);
     } catch (error) {}
   };
@@ -61,7 +59,6 @@ function ChatBox() {
       console.log(error);
     }
   };
-  console.log(messages);
 
   return (
     <div>
