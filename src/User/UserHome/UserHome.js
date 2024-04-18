@@ -4,6 +4,7 @@ import "./userhome.css";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../Common/Footer/Footer";
 import Blog from "../Blog/Blog";
+import ViewReview from "./ViewReview";
 
 function UserHome() {
   return (
@@ -101,6 +102,7 @@ function UserHome() {
         </Container>
       </div>
       <Blog/>
+      <ViewReview/>
       <Footer/>
     </>
   );

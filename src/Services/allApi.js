@@ -120,3 +120,7 @@ export const getuserTransactionApi = async (reqheader) => {
 export const addreviewApi = async (data,reqheader) => {
     return await commonApi(`POST`, `${baseurl}/review/add-review`, data, reqheader)
 }
+
+export const viewreviewApi = async () => {
+    return await commonApi(`GET`, `${baseurl}/reviews/view-reviews`, "", "")
+}

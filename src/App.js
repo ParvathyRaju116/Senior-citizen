@@ -30,7 +30,6 @@ import BookSP from "./User/Bookings/BookSP";
 import Search from "./User/Search/Search";
 import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
-import Footer from "./Common/Footer/Footer";
 import TransactionHistory from "./User/Transaction/TransactionHistory";
 
 function App() {
@@ -80,7 +79,6 @@ function App() {
         <Route path="/all-bookings" element={<AllBookings />} />
 
       </Routes>
-      <Footer/>
     </div>
   );
 }
