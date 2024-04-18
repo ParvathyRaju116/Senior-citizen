@@ -12,7 +12,7 @@ function ChatBox() {
     receiverId: "65e16d424097856f1bda4503",
     message: "",
   });
-
+  const token = sessionStorage.getItem("token")
   const [count, setCount] = useState(1);
 
   const AlwaysScrollToBottom = () => {
@@ -29,7 +29,6 @@ function ChatBox() {
       senderId: user._id,
       senderName: user.username,
     });
-    console.log(messages);
     setCount(2);
   }
 
@@ -42,14 +41,17 @@ function ChatBox() {
       const response = await axios.get(
         `${baseurl}/getMessages/${messages?.senderId}/65e16d424097856f1bda4503`
       );
-      console.log(response);
       setChat(response.data);
     } catch (error) {}
   };
 
   const sentMessage = async () => {
     try {
-      const response = await axios.post(`${baseurl}/user/sendchat`, messages);
+      const response = await axios.post(`${baseurl}/user/sendchat`, messages,{
+        headers:{
+          Authorization:`${token}`
+        }
+      });
       if (response.status >= 200 && response.status <= 300) {
         viewMessage();
         setMessage({
@@ -61,7 +63,6 @@ function ChatBox() {
       console.log(error);
     }
   };
-  console.log(messages);
 
   return (
     <div>
