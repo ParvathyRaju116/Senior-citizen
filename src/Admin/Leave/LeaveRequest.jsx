@@ -128,10 +128,13 @@ function LeaveRequest() {
 
   return (
     <div style={{ backgroundColor: "beige" }}>
+
+     
       {leaveReq.length > 0 ? (
         <div className="leave1 ">
           <div className="card-container m-5 ">
             <div className="row">
+            <h2 className="text-center" >Leave Request</h2>
               {leaveReq.map((i) => (
                 <div className="col-lg-3 col-md-12 p-3">
                   <Card

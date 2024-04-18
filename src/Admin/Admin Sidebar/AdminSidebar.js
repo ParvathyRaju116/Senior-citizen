@@ -33,12 +33,7 @@ const navigate=useNavigate()
       <div className="dropdown">
     </div>
        
-    <li className="nav-item mx-2"  >
-        <a className="nav-link" href="#">
-        <i className="fa fa-bell" style={{ color: 'white' }} title="Notification"     ></i>
-
-          </a> 
-        </li>
+  
         <li className="nav-item mx-2"  >
         <a className="nav-link" href="/admin-chat">
         <i className="fa fa-envelope" style={{ color: 'white' }} title="Chat"     ></i>
@@ -85,9 +80,7 @@ const navigate=useNavigate()
             <NavLink exact to="/admin-bookings" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Bookings</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/admin-feedback" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="comment">Feedbacks</CDBSidebarMenuItem>
-            </NavLink>
+           
             <NavLink exact to="/admin-blog" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Blogs</CDBSidebarMenuItem>
             </NavLink>

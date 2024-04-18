@@ -17,10 +17,11 @@ function formatDate(dateString) {
   return `${day}-${month}-${year}`;
 }
 
-function List() {
+function List({ search }) {
   const [bookingList, setBookingList] = useState([]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 4;
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -71,18 +72,16 @@ function List() {
           striped
           hover
           className="ms-5"
-          style={{ width: "90%", border: "3px  #9C6644 solid" }}
+          style={{ width: "90%", border: "3px #9C6644 solid" }}
         >
           <thead>
             <tr className="text-center">
               <th>
                 <h5>Sl.No</h5>
               </th>
-
               <th>
                 <h5>User Name</h5>
               </th>
-
               <th>
                 <h5>Service Provider</h5>
               </th>
@@ -99,25 +98,27 @@ function List() {
           </thead>
           <tbody className="text-center">
             {bookingList
+              .filter((item) =>
+                search ? item.service.toLowerCase().includes(search.toLowerCase()) : true
+              )
               .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-              .map((i, index) => (
+              .map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{i.userName}</td>
-                  <td>{i.service}</td>
-                  <td>{formatDate(i.startDate)}</td>
-                  <td>{formatDate(i.endDate)}</td>
+                  <td>{item.userName}</td>
+                  <td>{item.service}</td>
+                  <td>{formatDate(item.startDate)}</td>
+                  <td>{formatDate(item.endDate)}</td>
                   <td>
                     <div className="ms-5">
-                      {" "}
                       <Stack direction="row" spacing={2}>
-                        {i?.adminStatus === "approved" ? (
+                        {item?.adminStatus === "approved" ? (
                           <h6 className="text-success">Approved</h6>
                         ) : (
                           <Button
                             variant="contained"
                             color="success"
-                            onClick={() => handleResponse(i?._id)}
+                            onClick={() => handleResponse(item?._id)}
                           >
                             Confirm
                           </Button>
