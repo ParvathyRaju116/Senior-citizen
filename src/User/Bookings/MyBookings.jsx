@@ -40,15 +40,7 @@ function MyBookings() {
   const token = sessionStorage.getItem("token");
   const [unpaid, setUnpaid] = useState([]);
 
-  function getLabelText(value) {
-    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
-  }
-
   const getUnpaidbills = async () => {
-    const reqHeader = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-    };
     try {
       // Add authorization header
       const result = await axios.get(
