@@ -98,10 +98,6 @@ export const getAllBookingsApi = async () => {
 }
 
 
-export const addreviewApi = async (data,reqheader) => {
-    return await commonApi(`POST`, `${baseurl}/review/add-review`, data, reqheader)
-}
-
 
 export const getAllBookingsNumberApi = async () => {
     return await commonApi(`GET`, `${baseurl}/bookings/accepted-bookings`, "", "")
@@ -115,4 +111,12 @@ export const getBookingAdminApi = async () => {
 }
 export const getPaymentApi = async () => {
     return await commonApi(`GET`, `${baseurl}`, "", "")
+}
+
+export const getuserTransactionApi = async (reqheader) => {
+    return await commonApi(`GET`, `${baseurl}/user/paid-bills`, "", reqheader)
+}
+
+export const addreviewApi = async (data,reqheader) => {
+    return await commonApi(`POST`, `${baseurl}/review/add-review`, data, reqheader)
 }

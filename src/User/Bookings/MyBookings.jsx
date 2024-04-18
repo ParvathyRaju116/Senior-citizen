@@ -40,16 +40,7 @@ function MyBookings() {
   const token = sessionStorage.getItem("token");
   const [unpaid, setUnpaid] = useState([]);
 
-  const [feedback, setFeedback] = useState({ rating: 5, comments: "" });
-  const [hover, setHover] = useState(-1);
-  const labels = {
-    1: "Useless",
-    2: "Poor",
-    3: "Ok",
-    4: "Good",
-    5: "Excellent",
-  };
-  console.log(feedback);
+ 
 
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
@@ -115,61 +106,7 @@ function MyBookings() {
         </Row>
       </Container>
 
-      {/* Modal */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            className="mb-3"
-          >
-            Add Your Feedback
-          </Typography>
-          <Typography id="modal-modal-description" xl={{ mt: 2 }}>
-            <Stack spacing={1}>
-              <Rating
-                name="hover-feedback"
-                value={feedback.rating}
-                precision={1}
-                getLabelText={getLabelText}
-                onChange={(event, newValue) => {
-                  setFeedback({ ...feedback, rating: newValue });
-                }}
-                onChangeActive={(event, newHover) => {
-                  setHover(newHover);
-                }}
-                size="large"
-              />
-              {feedback.rating !== null && (
-                <Box sx={{ ml: 2 }}>
-                  {labels[hover !== -1 ? hover : feedback.rating]}
-                </Box>
-              )}
-            </Stack>
-            <TextField
-              style={{ width: "100%" }}
-              id="outlined-multiline-static"
-              label="Multiline"
-              multiline
-              rows={5}
-              placeholder="Enter your feedback"
-              value={feedback.comments}
-              onChange={(e) =>
-                setFeedback({ ...feedback, comments: e.target.value })
-              }
-            />
-          </Typography>
-          <div className="d-flex justify-content-center">
-            <button className="btn btn-outline-success mt-3">Submit</button>
-          </div>
-        </Box>
-      </Modal>
+      
     </>
   );
 }

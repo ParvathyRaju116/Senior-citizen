@@ -43,6 +43,7 @@ function Header() {
                 <Dropdown.Item as={Link} to='/user-bookings' style={{ textDecoration: 'none', color: 'black' }}>My Bookings</Dropdown.Item>
                 <Dropdown.Item as={Link} to='/user-webinar' style={{ textDecoration: 'none', color: 'black' }}>Webinar</Dropdown.Item> 
                 <Dropdown.Item as={Link} to='/user-search' style={{ textDecoration: 'none', color: 'black' }}>Search Service provider</Dropdown.Item>
+                <Dropdown.Item as={Link} to='/user-transaction' style={{ textDecoration: 'none', color: 'black' }}>Transaction History</Dropdown.Item> 
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
