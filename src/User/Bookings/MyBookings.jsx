@@ -28,19 +28,17 @@ const style = {
 };
 
 function MyBookings() {
-  const [total,setTotal] = useState()
+  const [total, setTotal] = useState();
   const [open, setOpen] = useState(false);
-  const handleOpen = (item,amount) => {
-    const id = {id:item}
-    setTotal(amount)
+  const handleOpen = (item, amount) => {
+    const id = { id: item };
+    setTotal(amount);
 
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
   const token = sessionStorage.getItem("token");
   const [unpaid, setUnpaid] = useState([]);
-
- 
 
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
@@ -96,8 +94,7 @@ function MyBookings() {
                       <p>Rate : {i?.rate}</p>
                       <p>Total : {i?.amountPaid}</p>
                       <p>Action : Approved</p>
-                      <Button >Feedback</Button>
-                      <Payment item = {i}/>
+                      <Payment item={i} />
                     </div>
                   </div>
                 </Col>
@@ -105,8 +102,6 @@ function MyBookings() {
             : null}
         </Row>
       </Container>
-
-      
     </>
   );
 }
