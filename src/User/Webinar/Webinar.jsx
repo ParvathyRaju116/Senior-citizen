@@ -187,7 +187,8 @@ function Webinar() {
                   <MDBCardImage
                     position="top"
                     alt="..."
-                    src="https://mdbootstrap.com/img/new/standard/city/062.webp"
+                    src={item?.image}
+                    style={{ height: "200px" }}
                   />
                   <MDBCardBody>
                     <MDBCardTitle>{item?.title}</MDBCardTitle>

@@ -17,7 +17,7 @@ function Payment({ item }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const token = sessionStorage.getItem("token");
   const handleCardNumberChange = (event) => {
     const input = event.target.value.replace(/\D/g, ""); // Remove non-numeric characters
     if (input.length <= 16) {
@@ -25,7 +25,6 @@ function Payment({ item }) {
       setCardNumber(input);
     }
   };
-  const token = sessionStorage.getItem("token");
 
   const handleExpiryChange = (event) => {
     const input = event.target.value.replace(/\D/g, ""); // Remove non-numeric characters
