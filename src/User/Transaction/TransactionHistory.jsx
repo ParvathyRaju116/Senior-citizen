@@ -23,6 +23,7 @@ function TransactionHistory() {
       console.error("Error occurred while fetching transaction:", error);
     }
   };
+  console.log(history);
 
   useEffect(() => {
     transaction();
@@ -36,19 +37,26 @@ function TransactionHistory() {
           <div className="row">
             {history?.length > 0 ? (
               history.map((item) => (
-                <div className="col-lg-4 p-3 text-center" key={item.id}>
+                <div className="col-lg-3 p-5 text-center" key={item?._id}>
                   <MDBCard>
                     <MDBListGroup flush>
                       <MDBListGroupItem>
-                        service Provider Name: {item.serviceProviderName}
+                        <img
+                          src={item?.profile_img}
+                          alt=""
+                          style={{ width: "100px", height: "100px" }}
+                        />
                       </MDBListGroupItem>
                       <MDBListGroupItem>
-                        amountStatus: {item.amountStatus}
+                        service Provider Name: {item?.serviceProviderName}
                       </MDBListGroupItem>
                       <MDBListGroupItem>
-                        amountPaid: {item.amountPaid}
+                        amountStatus: {item?.amountStatus}
                       </MDBListGroupItem>
-                      <Feedback id={item.serviceProviderId} />
+                      <MDBListGroupItem>
+                        amountPaid: {item?.amountPaid}
+                      </MDBListGroupItem>
+                      <Feedback id={item?.serviceProviderId} />
                     </MDBListGroup>
                   </MDBCard>
                 </div>
