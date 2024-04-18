@@ -23,6 +23,7 @@ function Feedback({ id }) {
     const [feedback, setFeedback] = useState({ ratings: "", comments: "" });
     const [hover, setHover] = useState(-1);
     const [open, setOpen] = useState(false);
+    const [feedbackSubmitted, setFeedbackSubmitted] = useState(false); // State to track if feedback is submitted
 
     const handleOpen = () => {
         setOpen(true);
@@ -44,33 +45,33 @@ function Feedback({ id }) {
         5: "Excellent",
     };
 
-  
-const handleSubmit = async () => {
-  try {
-    const {ratings,comments} = feedback
-    if(!ratings || !comments){
-      alert('Please fill this form')
-    }
-    else{
-      const token = sessionStorage.getItem("token")
-    const reqHeader = {
-      "Content-Type": "application/json",
-      "Authorization": `${token}`
-    }
+    const handleSubmit = async () => {
+        try {
+            const { ratings, comments } = feedback;
+            if (!ratings || !comments) {
+                alert('Please fill all fields');
+            } else {
+                const token = sessionStorage.getItem("token");
+                const reqHeader = {
+                    "Content-Type": "application/json",
+                    "Authorization": `${token}`
+                };
 
-    const result = await addreviewApi(feedback,reqHeader,id)
-    console.log(result);
-    }
-  } catch (error) {
-    
-  }
-}
-      
+                const result = await addreviewApi({ ...feedback, serviceProviderId: id }, reqHeader);
+                console.log(result);
+                alert("Feedback added successfully");
+                setFeedback({ ratings: "", comments: "" });
+                handleClose();
+                setFeedbackSubmitted(true); // Set feedbackSubmitted to true after feedback is successfully submitted
+            }
+        } catch (error) {
+            console.error("Error submitting feedback:", error);
+        }
+    };
 
-console.log(feedback);
     return (
         <>
-            <button onClick={handleOpen}>Feedback</button>
+            {!feedbackSubmitted && !open && <button onClick={handleOpen}>Feedback</button>}
             <Modal
                 open={open}
                 onClose={handleClose}
