@@ -78,7 +78,7 @@ const Review = ({ service }) => {
       </List>
     </Box>
   );
-  // gi
+  
 
   return (
     <div className="review-container">
