@@ -6,7 +6,6 @@ import Login from "./User/UserLogin/Login";
 import UserHome from "./User/UserHome/UserHome";
 import Profile from "./User/Profile/Profile";
 import LeaveRequest from "./Admin/Leave/LeaveRequest";
-import Complaints from "./User/Complaints/Complaints";
 import Home from "./Common/Home";
 import MyBookings from "./User/Bookings/MyBookings";
 import Singup from "./ServiceProvider/LoginRegister/Singup";
@@ -56,7 +55,6 @@ function App() {
         <Route path="/user-register" element={<Login register />} />
         <Route path="/user-home" element={<UserHome />} />
         <Route path="/user-profile" element={<Profile />} />
-        <Route path="/user-complaints" element={<Complaints />} />
         <Route path="/user-blog" element={<UserBlog />} />
         <Route path="/user-webinar" element={<Webinar />} />
         <Route path="/user-booknow" element={<BookSP />} />

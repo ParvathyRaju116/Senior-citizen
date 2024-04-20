@@ -32,7 +32,6 @@ function ViewReview() {
       <MDBCardText>
         review
       </MDBCardText>
-      
     </MDBCardBody>
   </MDBCard>))
     
