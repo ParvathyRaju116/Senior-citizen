@@ -57,7 +57,8 @@ const Review = ({ service }) => {
       <Divider />
       <List>
         {reviews.map((review, index) => (
-          <ListItem key={index} className="review-item">
+         <div>
+           <ListItem key={index} className="review-item">
             <ListItemText
               primary={<span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{review.username}</span>}
               secondary={
@@ -68,7 +69,11 @@ const Review = ({ service }) => {
                 </>
               }
             />
+             
           </ListItem>
+          <hr />
+         </div>
+         
         ))}
       </List>
     </Box>
