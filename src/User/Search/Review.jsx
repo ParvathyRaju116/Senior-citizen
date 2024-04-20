@@ -56,8 +56,8 @@ const Review = ({ service }) => {
       </div>
       <Divider />
       <List>
-        {reviews.map((review, index) => (
-         <div>
+        { reviews.map((review, index) => (
+         <div key={review._id}>
            <ListItem key={index} className="review-item">
             <ListItemText
               primary={<span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{review.username}</span>}
