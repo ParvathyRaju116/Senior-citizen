@@ -78,7 +78,7 @@ const Review = ({ service }) => {
       </List>
     </Box>
   );
-  // fsdf
+
 
   return (
     <div className="review-container">
