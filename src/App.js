@@ -6,7 +6,6 @@ import Login from "./User/UserLogin/Login";
 import UserHome from "./User/UserHome/UserHome";
 import Profile from "./User/Profile/Profile";
 import LeaveRequest from "./Admin/Leave/LeaveRequest";
-import Complaints from "./User/Complaints/Complaints";
 import Home from "./Common/Home";
 import MyBookings from "./User/Bookings/MyBookings";
 import Singup from "./ServiceProvider/LoginRegister/Singup";
@@ -29,7 +28,7 @@ import BookSP from "./User/Bookings/BookSP";
 import Search from "./User/Search/Search";
 import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
-import Footer from "./Common/Footer/Footer";
+import TransactionHistory from "./User/Transaction/TransactionHistory";
 
 function App() {
   return (
@@ -54,12 +53,13 @@ function App() {
         <Route path="/user-register" element={<Login register />} />
         <Route path="/user-home" element={<UserHome />} />
         <Route path="/user-profile" element={<Profile />} />
-        <Route path="/user-bookings" element={<MyBookings />} />
-        <Route path="/user-complaints" element={<Complaints />} />
         <Route path="/user-blog" element={<UserBlog />} />
         <Route path="/user-webinar" element={<Webinar />} />
         <Route path="/user-booknow" element={<BookSP />} />
         <Route path="/user-search" element={<Search />} />
+        <Route path="/user-bookings" element={<MyBookings />} />
+
+        <Route path="/user-transaction" element={<TransactionHistory />} />
 
 
 
@@ -75,7 +75,6 @@ function App() {
         <Route path="/all-bookings" element={<AllBookings />} />
 
       </Routes>
-      <Footer/>
     </div>
   );
 }
