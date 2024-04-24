@@ -29,7 +29,10 @@ import Search from "./User/Search/Search";
 import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
 import TransactionHistory from "./User/Transaction/TransactionHistory";
+import AddCategory from "./Admin/Category/AddCategory";
+import AddEmergency from "./Admin/Emergency/AddEmergency";
 import ProfileSP from "./ServiceProvider/Profile/ProfileSP";
+
 
 function App() {
   return (
@@ -48,6 +51,10 @@ function App() {
         <Route path="/admin-webinar" element={<AdminWebinar />} />
         <Route path="/admin-attendance" element={<ServiceAttendance/>} />
         <Route path="/admin-chat" element={<AdminChat/>} />
+        <Route path="/add-category" element={<AddCategory/>} />
+        <Route path="/add-emergency" element={<AddEmergency/>} />
+
+
 
         {/* //user */}
         <Route path="/user-login" element={<Login />} />
