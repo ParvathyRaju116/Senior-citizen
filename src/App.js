@@ -29,6 +29,7 @@ import Search from "./User/Search/Search";
 import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
 import TransactionHistory from "./User/Transaction/TransactionHistory";
+import ProfileSP from "./ServiceProvider/Profile/ProfileSP";
 
 function App() {
   return (
@@ -58,9 +59,7 @@ function App() {
         <Route path="/user-booknow" element={<BookSP />} />
         <Route path="/user-search" element={<Search />} />
         <Route path="/user-bookings" element={<MyBookings />} />
-
         <Route path="/user-transaction" element={<TransactionHistory />} />
-
 
 
         {/* //serviceprovider */}
@@ -73,6 +72,7 @@ function App() {
         <Route path="/service-dash" element={<Dashboard />} />
         <Route path="/service-rejectedbookings" element={<RejectedBookings />} />
         <Route path="/all-bookings" element={<AllBookings />} />
+        <Route path="/serivce-profilee" element={<ProfileSP />} />
 
       </Routes>
     </div>
