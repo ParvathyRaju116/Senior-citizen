@@ -1,5 +1,4 @@
-// Bookings.jsx
-import React from "react";
+import React, { useState } from "react";
 import "./Bookings.css";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,9 +17,7 @@ function Bookings() {
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     color: "#E6CCB2",
-
     marginLeft: 0,
-
     width: "10%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
@@ -54,11 +51,15 @@ function Bookings() {
     },
   }));
 
-  return (
-    <div>
-      <Container>
+  const [searchQuery, setSearchQuery] = useState("");
 
-      <div className="m- 3 p-4" style={{width:"100%"}}>
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  return (
+    <Container>
+      <div className="m- 3 p-4" style={{ width: "100%" }}>
         <h1 className="text-center book1">Booking List</h1>
         <Box sx={{ flexGrow: 1 }} className="m-5">
           <AppBar position="static" sx={{ backgroundColor: "#9C6644" }}>
@@ -86,21 +87,22 @@ function Bookings() {
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
+                
                 <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ "aria-label": "search" }}
-                  color="beige"
-                />
+  placeholder="Search…"
+  value={searchQuery}
+  onChange={handleSearchChange}
+  inputProps={{ "aria-label": "search" }}
+  color="beige"
+  autoFocus 
+/>
               </Search>
             </Toolbar>
           </AppBar>
         </Box>
-        <List></List>
+        <List search={searchQuery}></List>
       </div>
-
-
-      </Container>
-    </div>
+    </Container>
   );
 }
 

@@ -17,7 +17,7 @@ export default function Payment() {
     const getPayment = async () => {
     try {
       const result = await getPaymentApi();
-      setPayment(result?.data?.transactionHistory);
+      setPayment(result?.data?.transactionsaDetails);
     } catch (error) {
       console.log(error);
     }
