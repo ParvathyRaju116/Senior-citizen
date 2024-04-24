@@ -125,3 +125,6 @@ export const addreviewApi = async (data,reqheader) => {
 export const viewreviewApi = async () => {
     return await commonApi(`GET`, `${baseurl}/reviews/view-reviews`, "", "")
 }
+export const addEmergencyApi = async () => {
+    return await commonApi(`POST`, `${baseurl}/emergency/add-emergency`, "","")
+}
