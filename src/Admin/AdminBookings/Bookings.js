@@ -87,6 +87,7 @@ function Bookings() {
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
+                
                 <StyledInputBase
   placeholder="Search…"
   value={searchQuery}
