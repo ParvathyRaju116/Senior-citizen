@@ -1,26 +1,24 @@
-import { Container } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
+import { Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { addEmergencyApi, getEmergencyApi } from '../../Services/allApi';
-import Swal from 'sweetalert2';
+import { addEmergencyApi, getEmergencyApi } from "../../Services/allApi";
+import Swal from "sweetalert2";
 
 function AddEmergency() {
-
-
-const[listEmergency,setListEmergency]=useState(null)
+  const [listEmergency, setListEmergency] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
   const [showTable, setShowTable] = useState(true);
   const [addemergency, setEmergency] = useState({
     emergency_support: "",
     location: "",
-    phonenumber: ""
+    phonenumber: "",
   });
 
   const handleCloseModal = () => {
@@ -28,7 +26,7 @@ const[listEmergency,setListEmergency]=useState(null)
     setEmergency({
       emergency_support: "",
       location: "",
-      phonenumber: ""
+      phonenumber: "",
     });
     setShowTable(true);
   };
@@ -59,20 +57,17 @@ const[listEmergency,setListEmergency]=useState(null)
       console.log(result);
 
       if (result.status === 200) {
-      
         Swal.fire({
           title: "Emergency Contact Number Added!",
-          icon: "success"
+          icon: "success",
         });
 
-        
         setEmergency({
           emergency_support: "",
           location: "",
-          phonenumber: ""
+          phonenumber: "",
         });
 
-      
         handleCloseModal();
       } else {
         alert(result.response.data.message);
@@ -81,25 +76,30 @@ const[listEmergency,setListEmergency]=useState(null)
     }
   };
 
-  const getEmergency=async()=>{
-    const result=await getEmergencyApi()
-    setListEmergency(result.data)
-  }
+  const getEmergency = async () => {
+    const result = await getEmergencyApi();
+    setListEmergency(result.data);
+  };
 
-  useEffect(()=>{
-getEmergency()
-  },[])
-  if (listEmergency === null) return (<></>)
+  useEffect(() => {
+    getEmergency();
+  }, []);
+  if (listEmergency === null) return <></>;
 
   return (
     <Container>
-      <div style={{ height: '500px' }} className='mt-5'>
-        <h2 className='text-center mt-3' style={{ color: '#B08968' }}>
+      <div style={{ height: "500px" }} className="mt-5">
+        <h2 className="text-center mt-3" style={{ color: "#B08968" }}>
           Emergency Contact Numbers
         </h2>
-        <div className='text-center mt-5 p-5'>
+        <div className="text-center mt-5 p-5">
           <Button
-            style={{ backgroundColor: '#B08968', color: 'white', width: '50%', height: '50px' }}
+            style={{
+              backgroundColor: "#B08968",
+              color: "white",
+              width: "50%",
+              height: "50px",
+            }}
             onClick={handleShowModal}
           >
             <h4>Add Emergency Contact Numbers </h4>
@@ -107,10 +107,16 @@ getEmergency()
 
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
-              <Modal.Title style={{ color: '#B08968' }}>Emergency Contact Numbers</Modal.Title>
+              <Modal.Title style={{ color: "#B08968" }}>
+                Emergency Contact Numbers
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <FloatingLabel controlId="floatingInput" label="Service" className="mb-3">
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Service"
+                className="mb-3"
+              >
                 <Form.Control
                   type="text"
                   onChange={(e) => setInputs(e)}
@@ -128,7 +134,7 @@ getEmergency()
                   value={addemergency.location}
                 />
               </FloatingLabel>
-              <FloatingLabel className='mt-3' controlId="" label="Phone Number">
+              <FloatingLabel className="mt-3" controlId="" label="Phone Number">
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -139,10 +145,17 @@ getEmergency()
               </FloatingLabel>
             </Modal.Body>
             <Modal.Footer>
-              <Button style={{ backgroundColor: 'red', color: 'white' }} variant="secondary" onClick={handleCloseModal}>
+              <Button
+                style={{ backgroundColor: "red", color: "white" }}
+                variant="secondary"
+                onClick={handleCloseModal}
+              >
                 Close
               </Button>
-              <Button onClick={(e) => handleAdd(e)} style={{ backgroundColor: 'green', color: 'white' }} >
+              <Button
+                onClick={(e) => handleAdd(e)}
+                style={{ backgroundColor: "green", color: "white" }}
+              >
                 Add
               </Button>
             </Modal.Footer>
@@ -150,7 +163,7 @@ getEmergency()
         </div>
         {showTable && (
           <div>
-            <Table className='text-center' bordered>
+            <Table className="text-center" bordered>
               <thead>
                 <tr>
                   <th>Sl.No</th>
@@ -160,25 +173,18 @@ getEmergency()
                 </tr>
               </thead>
               <tbody>
- {listEmergency?.map((i)=>(
-
- 
-    <tr >
-     
-      <td></td>
-      <td>{i.emergency_support}</td>
-      <td>{i.location}</td>
-      <td>{i.phonenumber}</td>
-  
-    </tr>
- ))}
- 
-</tbody>
+                {listEmergency?.map((i) => (
+                  <tr>
+                    <td></td>
+                    <td>{i.emergency_support}</td>
+                    <td>{i.location}</td>
+                    <td>{i.phonenumber}</td>
+                  </tr>
+                ))}
+              </tbody>
             </Table>
             <Stack spacing={2} className="text-center mt-3">
-              <Pagination
-                style={{ color: "#B08968" }}
-              />
+              <Pagination style={{ color: "#B08968" }} />
             </Stack>
           </div>
         )}
