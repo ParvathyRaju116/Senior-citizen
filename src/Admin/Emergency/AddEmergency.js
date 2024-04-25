@@ -9,9 +9,11 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { addEmergencyApi, getEmergencyApi } from "../../Services/allApi";
 import Swal from "sweetalert2";
+import axios from "axios";
+import baseurl from "../../Services/baseurl";
 
 function AddEmergency() {
-  const [listEmergency, setListEmergency] = useState(null);
+  const [listEmergency, setListEmergency] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [showTable, setShowTable] = useState(true);
@@ -77,14 +79,18 @@ function AddEmergency() {
   };
 
   const getEmergency = async () => {
-    const result = await getEmergencyApi();
-    setListEmergency(result.data);
+    try {
+      const result = await axios.get(`${baseurl}/emergency/allEmergency`);
+      setListEmergency(result.data.getAllEmergency);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getEmergency();
   }, []);
-  if (listEmergency === null) return <></>;
 
   return (
     <Container>
@@ -173,14 +179,16 @@ function AddEmergency() {
                 </tr>
               </thead>
               <tbody>
-                {listEmergency?.map((i) => (
-                  <tr>
-                    <td></td>
-                    <td>{i.emergency_support}</td>
-                    <td>{i.location}</td>
-                    <td>{i.phonenumber}</td>
-                  </tr>
-                ))}
+                {listEmergency.length > 0
+                  ? listEmergency?.map((i,index) => (
+                      <tr>
+                        <td>{index+1}</td>
+                        <td>{i.emergency_support}</td>
+                        <td>{i.location}</td>
+                        <td>{i.phonenumber}</td>
+                      </tr>
+                    ))
+                  : ""}
               </tbody>
             </Table>
             <Stack spacing={2} className="text-center mt-3">
