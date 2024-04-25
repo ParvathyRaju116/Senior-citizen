@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -7,14 +7,29 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { addEmergencyApi } from '../../Services/allApi';
+import { addEmergencyApi, getEmergencyApi } from '../../Services/allApi';
+import Swal from 'sweetalert2';
 
 function AddEmergency() {
+
+
+const[listEmergency,setListEmergency]=useState(null)
+
   const [showModal, setShowModal] = useState(false);
   const [showTable, setShowTable] = useState(true);
+  const [addemergency, setEmergency] = useState({
+    emergency_support: "",
+    location: "",
+    phonenumber: ""
+  });
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setEmergency({
+      emergency_support: "",
+      location: "",
+      phonenumber: ""
+    });
     setShowTable(true);
   };
 
@@ -23,36 +38,59 @@ function AddEmergency() {
     setShowTable(false);
   };
 
+  const setInputs = (e) => {
+    const { value, name } = e.target;
+    setEmergency({ ...addemergency, [name]: value });
+  };
 
-const[addemergency,setEmergency]=useState({
-    emergency_support:"",
-    location:"",
-    phonenumber:""
-})
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    const { emergency_support, location, phonenumber } = addemergency;
 
-const setInputs=(e)=>{
-    const {value,name}=e.target
-    setEmergency({...addemergency,[name]:value})
-}
+    if (!emergency_support || !location || !phonenumber) {
+      alert("Please fill all data");
+    } else {
+      const reqBody = new FormData();
+      reqBody.append("emergency_support", emergency_support);
+      reqBody.append("location", location);
+      reqBody.append("phonenumber", phonenumber);
 
-const handleAdd=async()=>{
-    const {emergency_support,location, phonenumber}=addemergency
+      const result = await addEmergencyApi(reqBody);
+      console.log(result);
 
-    if(!emergency_support||!location||!phonenumber){
-        alert("Please fill all datas")
+      if (result.status === 200) {
+      
+        Swal.fire({
+          title: "Emergency Contact Number Added!",
+          icon: "success"
+        });
+
+        
+        setEmergency({
+          emergency_support: "",
+          location: "",
+          phonenumber: ""
+        });
+
+      
+        handleCloseModal();
+      } else {
+        alert(result.response.data.message);
+        handleCloseModal();
+      }
     }
-    else{
-const result=await addEmergencyApi(addemergency)
-console.log(result);
-    }
+  };
 
+  const getEmergency=async()=>{
+    const result=await getEmergencyApi()
+    setListEmergency(result.data)
+  }
 
-}
+  useEffect(()=>{
+getEmergency()
+  },[])
+  if (listEmergency === null) return (<></>)
 
-
-
-
-console.log(addemergency);
   return (
     <Container>
       <div style={{ height: '500px' }} className='mt-5'>
@@ -73,22 +111,30 @@ console.log(addemergency);
             </Modal.Header>
             <Modal.Body>
               <FloatingLabel controlId="floatingInput" label="Service" className="mb-3">
-                <Form.Control type="text"
-                onChange={(e)=>setInputs(e)}
-                name={"emergency_support"}
-                placeholder="" />
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setInputs(e)}
+                  name={"emergency_support"}
+                  value={addemergency.emergency_support}
+                  placeholder=""
+                />
               </FloatingLabel>
               <FloatingLabel controlId="" label="Location">
-                <Form.Control type="text" placeholder=""
-                 onChange={(e)=>setInputs(e)}
-                 name={"location"}
-                
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  onChange={(e) => setInputs(e)}
+                  name={"location"}
+                  value={addemergency.location}
                 />
               </FloatingLabel>
               <FloatingLabel className='mt-3' controlId="" label="Phone Number">
-                <Form.Control type="text" placeholder=""
-                 onChange={(e)=>setInputs(e)}
-                 name={ "phonenumber"}
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  onChange={(e) => setInputs(e)}
+                  name={"phonenumber"}
+                  value={addemergency.phonenumber}
                 />
               </FloatingLabel>
             </Modal.Body>
@@ -96,7 +142,7 @@ console.log(addemergency);
               <Button style={{ backgroundColor: 'red', color: 'white' }} variant="secondary" onClick={handleCloseModal}>
                 Close
               </Button>
-              <Button onClick={(e)=>handleAdd()} style={{ backgroundColor: 'green', color: 'white' }} >
+              <Button onClick={(e) => handleAdd(e)} style={{ backgroundColor: 'green', color: 'white' }} >
                 Add
               </Button>
             </Modal.Footer>
@@ -114,22 +160,26 @@ console.log(addemergency);
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
+ {listEmergency?.map((i)=>(
+
+ 
+    <tr >
+     
+      <td></td>
+      <td>{i.emergency_support}</td>
+      <td>{i.location}</td>
+      <td>{i.phonenumber}</td>
+  
+    </tr>
+ ))}
+ 
+</tbody>
             </Table>
             <Stack spacing={2} className="text-center mt-3">
-        <Pagination
-         
-         
-        
-          style={{ color: "#B08968" }}
-        />
-        </Stack>
+              <Pagination
+                style={{ color: "#B08968" }}
+              />
+            </Stack>
           </div>
         )}
       </div>
