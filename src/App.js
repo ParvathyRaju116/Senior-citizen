@@ -30,6 +30,7 @@ import RejectedBookings from "./ServiceProvider/Bookings/RejectedBookings";
 import AllBookings from "./ServiceProvider/Bookings/AllBookings";
 import TransactionHistory from "./User/Transaction/TransactionHistory";
 import ProfileSP from "./ServiceProvider/Profile/ProfileSP";
+import Emergency from "./User/Emergency/Emergency";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
         <Route path="/user-search" element={<Search />} />
         <Route path="/user-bookings" element={<MyBookings />} />
         <Route path="/user-transaction" element={<TransactionHistory />} />
+        <Route path="/user-emergency" element={<Emergency />} />
 
 
         {/* //serviceprovider */}
