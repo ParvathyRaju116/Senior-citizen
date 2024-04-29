@@ -13,10 +13,17 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
+import baseurl from "../../Services/baseurl";
 
 function AdminChat() {
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   const [message, setMessage] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [singleMessage, setSingleMessage] = useState(null);
+
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
@@ -27,18 +34,31 @@ function AdminChat() {
     setMessage("");
   };
 
-  const handleUserSelect = (user) => {
-    setSelectedUser(user);
-  };
-
   useEffect(() => {
     getAllUsers();
   }, []);
 
   const getAllUsers = async () => {
     try {
-      const result = await axios.get(``);
-    } catch (error) {}
+      const result = await axios.get(`${baseurl}/complaints/chats`);
+      console.log(result.data);
+      setUsers(result.data.uniqueSenders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const MessageSingleUser = async (id, name) => {
+    try {
+      const result = await axios.get(
+        `${baseurl}/getMessages/${id}/65e16d424097856f1bda4503`
+      );
+      console.log(result.data);
+      setSingleMessage(result.data);
+      setSelectedUser(capitalizeFirstLetter(name));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -63,135 +83,60 @@ function AdminChat() {
               />
             </div>
             <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleUserSelect("Ajinsa P A")}
-              >
-                <ListItemText
-                  primary="Ajinsa P A"
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      ></Typography>
-                      {" — Hlo i want to know about your service…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider component="li" />
-
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleUserSelect("Parvathy")}
-              >
-                <ListItemText
-                  primary="Parvathy"
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      ></Typography>
-                      {" — Hlo i want to know about your service…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider component="li" />
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleUserSelect("Midun")}
-              >
-                <ListItemText
-                  primary="Midun"
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      ></Typography>
-                      {" — Hlo i want to know about your service…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider component="li" />
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleUserSelect("Arya")}
-              >
-                <ListItemText
-                  primary="Arya"
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      ></Typography>
-                      {" — Hlo i want to know about your service…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider component="li" />
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleUserSelect("Anu")}
-              >
-                <ListItemText
-                  primary="Anu"
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      ></Typography>
-                      {" — Hlo i want to know about your service…"}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-              <Divider component="li" />
+              {users ? (
+                <>
+                  {" "}
+                  {users.map((i) => (
+                    <>
+                      {" "}
+                      <ListItem
+                        alignItems="flex-start"
+                        button
+                        onClick={() => MessageSingleUser(i?._id, i?.senderName)}
+                      >
+                        <ListItemText
+                          primary={capitalizeFirstLetter(i?.senderName)}
+                          secondary={
+                            <React.Fragment>
+                              <Typography
+                                sx={{ display: "inline" }}
+                                component="span"
+                                variant="body2"
+                                color="text.primary"
+                              ></Typography>
+                            </React.Fragment>
+                          }
+                        />
+                      </ListItem>
+                      <Divider component="li" />
+                    </>
+                  ))}
+                </>
+              ) : (
+                "No Users Avalible"
+              )}
             </List>
           </Col>
 
           <Col lg={8} style={{ position: "relative" }}>
-            <h5 className="ms-3 mt-2">{selectedUser || "Select a user"}</h5>
+            <h4 className="ms-3 mt-2">{selectedUser || "Select a user"}</h4>
             <Divider component="li" />
 
             <div className="chat_body poppins-regular ">
               {/* Render chat messages based on selectedUser */}
-              {selectedUser && (
-                <React.Fragment>
-                  <div className="admin_chat">
-                    <p>
-                      <div className="admin_title">{selectedUser}</div>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Nam doloremque possimus explicabo, eveniet, accusamus
-                      animi soluta optio eum commodi sunt, delectus nobis
-                      voluptatibus. Eius dolor, expedita repudiandae amet eaque
-                      animi.
-                    </p>
-                  </div>
-                </React.Fragment>
-              )}
+              {singleMessage &&
+              
+                singleMessage.map((i) => (
+                  <React.Fragment>
+                    <div className="admin_chat">
+                     
+                      <p>
+                        <div className="admin_title"></div>
+                        {i?.message}
+                      </p>
+                    </div>
+                  </React.Fragment>
+                ))}
             </div>
 
             <div
