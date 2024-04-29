@@ -131,14 +131,14 @@ function AdminChat() {
                     {i?.senderId === "65e16d424097856f1bda4503" ? (
                       <>
                         <div className="user_chat">
-                          <p>
-                            {i.message}
-                          </p>
+                          <p>{i.message}</p>
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="admin_chat">{i?.message}</div>
+                        <div className="admin_chat">
+                          <p>{i?.message}</p>
+                        </div>
                       </>
                     )}
                   </React.Fragment>
