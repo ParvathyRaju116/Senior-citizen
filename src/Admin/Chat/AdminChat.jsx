@@ -24,6 +24,13 @@ function AdminChat() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState(null);
   const [singleMessage, setSingleMessage] = useState(null);
+  const [sendMessage, setSendMessage] = useState({
+    senderId: "65e16d424097856f1bda4503",
+    senderName: "Admin",
+    receiverId: "",
+    message: "",
+  });
+  const [userDetails, setUserDetails] = useState(null);
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
@@ -49,14 +56,53 @@ function AdminChat() {
     }
   };
 
-  const MessageSingleUser = async (id, name) => {
+  const MessageSingleUser = async (item) => {
     try {
       const result = await axios.get(
-        `${baseurl}/getMessages/${id}/65e16d424097856f1bda4503`
+        `${baseurl}/getMessages/${item?._id}/65e16d424097856f1bda4503`
       );
       console.log(result.data);
       setSingleMessage(result.data);
-      setSelectedUser(capitalizeFirstLetter(name));
+      setSelectedUser(capitalizeFirstLetter(item?.senderName));
+      setUserDetails(item);
+      setSendMessage({
+        ...sendMessage,
+        receiverId: item?._id,
+        name: item?.senderName,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMessages = async (item) => {
+    try {
+      const result = await axios.get(
+        `${baseurl}/getMessages/${item?.receiverId}/65e16d424097856f1bda4503`
+      );
+      console.log(result.data);
+      setSingleMessage(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSentMessage = async () => {
+    try {
+      const result = await axios.post(`${baseurl}/user/sendchat`, sendMessage, {
+        headers: {
+          Authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbmlkIjoiNjVlMTZkNDI0MDk3ODU2ZjFiZGE0NTAzIiwiaWF0IjoxNzE0MzgxMjU3fQ.YiBUMYg5P0Ryle0aSaS5sf7psy2jcj6UXyeZ2ZI36Ew",
+        },
+      });
+      if (result.status >= 200 && result.status <= 300) {
+        console.log(result.data);
+        getMessages(sendMessage);
+        setSendMessage({
+          ...sendMessage,
+          message: "",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +139,7 @@ function AdminChat() {
                       <ListItem
                         alignItems="flex-start"
                         button
-                        onClick={() => MessageSingleUser(i?._id, i?.senderName)}
+                        onClick={() => MessageSingleUser(i)}
                       >
                         <ListItemText
                           primary={capitalizeFirstLetter(i?.senderName)}
@@ -129,14 +175,12 @@ function AdminChat() {
                 singleMessage.map((i) => (
                   <React.Fragment>
                     {i?.senderId === "65e16d424097856f1bda4503" ? (
-                      <>
-                        <div className="user_chat">
-                          <p>{i.message}</p>
-                        </div>
-                      </>
+                      <div className="user_chat1">
+                        <p>{i.message}</p>
+                      </div>
                     ) : (
                       <>
-                        <div className="admin_chat">
+                        <div className="admin_chat1">
                           <p>{i?.message}</p>
                         </div>
                       </>
@@ -152,18 +196,20 @@ function AdminChat() {
                 bottom: 0,
                 width: "100%",
                 backgroundColor: "#fff",
-                padding: "10px",
+                padding: "4px",
               }}
             >
               <input
                 className="form-control"
                 type="text"
                 placeholder="Type your message..."
-                value={message}
-                onChange={handleMessageChange}
+                value={sendMessage.message}
+                onChange={(e) =>
+                  setSendMessage({ ...sendMessage, message: e.target.value })
+                }
                 style={{ flex: 1, padding: "10px", marginRight: "10px" }}
               />
-              <IconButton aria-label="send" onClick={handleSendMessage}>
+              <IconButton aria-label="send" onClick={handleSentMessage}>
                 <SendIcon />
               </IconButton>
             </div>
