@@ -91,6 +91,12 @@ const navigate=useNavigate()
             <NavLink exact to="/admin-webinar"  activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="handshake">Webinar</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/add-category"  activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="list">Categories</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/add-emergency"  activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="tower-broadcast">Emergency</CDBSidebarMenuItem>
+            </NavLink>
           
           </CDBSidebarMenu>
         </CDBSidebarContent>
