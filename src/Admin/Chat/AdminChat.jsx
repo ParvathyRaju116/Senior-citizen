@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import baseurl from "../../Services/baseurl";
+import "./AdminChat.css";
 
 function AdminChat() {
   function capitalizeFirstLetter(string) {
@@ -125,16 +126,21 @@ function AdminChat() {
             <div className="chat_body poppins-regular ">
               {/* Render chat messages based on selectedUser */}
               {singleMessage &&
-              
                 singleMessage.map((i) => (
                   <React.Fragment>
-                    <div className="admin_chat">
-                     
-                      <p>
-                        <div className="admin_title"></div>
-                        {i?.message}
-                      </p>
-                    </div>
+                    {i?.senderId === "65e16d424097856f1bda4503" ? (
+                      <>
+                        <div className="user_chat">
+                          <p>
+                            {i.message}
+                          </p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="admin_chat">{i?.message}</div>
+                      </>
+                    )}
                   </React.Fragment>
                 ))}
             </div>

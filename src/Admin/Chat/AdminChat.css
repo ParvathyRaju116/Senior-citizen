@@ -1,0 +1,37 @@
+.admin_chat {
+    display: flex;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+
+.admin_chat p {
+    background-color: white;
+    padding: 7px 12px;
+    max-width: 270px;
+    border-radius: 20px;
+    text-align: justify;
+}
+
+.admin_title {
+    margin: 0;
+    text-align: left;
+    padding-left: 5px;
+    font-weight: 600;
+    color: rgb(8, 57, 85);
+}
+
+.user_chat {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.user_chat p {
+    background-color: white;
+    padding: 5px 7px;
+    max-width: 270px;
+    border-radius: 20px;
+    text-align: justify;
+
+}
