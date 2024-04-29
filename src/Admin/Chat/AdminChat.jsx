@@ -23,6 +23,7 @@ function AdminChat() {
   const [message, setMessage] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState(null);
+  const [filteredUsers, setFilteredUsers] = useState(null); // State for filtered users
   const [singleMessage, setSingleMessage] = useState(null);
   const [sendMessage, setSendMessage] = useState({
     senderId: "65e16d424097856f1bda4503",
@@ -34,6 +35,19 @@ function AdminChat() {
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
+    filterUsers(event.target.value); // Filter users on message change
+  };
+
+  const filterUsers = (searchTerm) => {
+    if (!searchTerm) {
+      setFilteredUsers(users);
+    } else {
+      const filtered = users.filter(
+        (user) =>
+          user.senderName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredUsers(filtered);
+    }
   };
 
   const handleSendMessage = () => {
@@ -51,6 +65,7 @@ function AdminChat() {
       const result = await axios.get(`${baseurl}/complaints/chats`);
       console.log(result.data);
       setUsers(result.data.uniqueSenders);
+      setFilteredUsers(result.data.uniqueSenders); // Initialize filtered users with all users
     } catch (error) {
       console.log(error);
     }
@@ -127,40 +142,37 @@ function AdminChat() {
               <InputBase
                 placeholder="Search…"
                 sx={{ flex: 1, bgcolor: "background.paper", padding: "10px" }}
+                onChange={handleMessageChange}
               />
             </div>
             <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-              {users ? (
-                <>
-                  {" "}
-                  {users.map((i) => (
-                    <>
-                      {" "}
-                      <ListItem
-                        alignItems="flex-start"
-                        button
-                        onClick={() => MessageSingleUser(i)}
-                      >
-                        <ListItemText
-                          primary={capitalizeFirstLetter(i?.senderName)}
-                          secondary={
-                            <React.Fragment>
-                              <Typography
-                                sx={{ display: "inline" }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              ></Typography>
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider component="li" />
-                    </>
-                  ))}
-                </>
+              {filteredUsers ? (
+                filteredUsers.map((i) => (
+                  <>
+                    <ListItem
+                      alignItems="flex-start"
+                      button
+                      onClick={() => MessageSingleUser(i)}
+                    >
+                      <ListItemText
+                        primary={capitalizeFirstLetter(i?.senderName)}
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline" }}
+                              component="span"
+                              variant="body2"
+                              color="text.primary"
+                            ></Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                    <Divider component="li" />
+                  </>
+                ))
               ) : (
-                "No Users Avalible"
+                <Typography>No Users Available</Typography>
               )}
             </List>
           </Col>
