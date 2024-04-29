@@ -32,6 +32,7 @@ import TransactionHistory from "./User/Transaction/TransactionHistory";
 import AddCategory from "./Admin/Category/AddCategory";
 import AddEmergency from "./Admin/Emergency/AddEmergency";
 import ProfileSP from "./ServiceProvider/Profile/ProfileSP";
+import Emergency from "./User/Emergency/Emergency";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         <Route path="/user-search" element={<Search />} />
         <Route path="/user-bookings" element={<MyBookings />} />
         <Route path="/user-transaction" element={<TransactionHistory />} />
+        <Route path="/user-emergency" element={<Emergency />} />
 
 
         {/* //serviceprovider */}
