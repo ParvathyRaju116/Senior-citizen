@@ -269,6 +269,7 @@ function Login({ register }) {
     <MenuItem value="doctor">Doctor</MenuItem>
     <MenuItem value="nurse">Nurse</MenuItem>
     <MenuItem value="care taker">Care taker</MenuItem>
+    <MenuItem value="therapist">Therapist</MenuItem>
   </Select>
                  </FormControl>
                 </div>
