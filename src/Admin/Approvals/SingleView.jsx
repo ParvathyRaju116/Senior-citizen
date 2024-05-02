@@ -57,7 +57,7 @@ const SingleView = () => {
           type="text"
           id="Service"
           aria-label="Disabled input example"
-          value={serviceProvider.service}
+          value={serviceProvider?.service}
           readOnly
         />
         <Form.Label htmlFor="uSpecialization" className="mt-3">
@@ -67,7 +67,7 @@ const SingleView = () => {
           type="text"
           id="Specialization"
           aria-label="Disabled input example"
-          value={serviceProvider.specialization}
+          value={serviceProvider?.specialization}
           readOnly
         />
         <Form.Label htmlFor="Qualification" className="mt-3">
@@ -77,7 +77,7 @@ const SingleView = () => {
           type="text"
           id="Qualification"
           aria-label="Disabled input example"
-          value={serviceProvider.username}
+          value={serviceProvider?.qualification}
           readOnly
         />
         <Form.Label htmlFor="Rate" className="mt-3">
@@ -87,12 +87,15 @@ const SingleView = () => {
           type="text"
           id="Rate"
           aria-label="Disabled input example"
-          value={serviceProvider.rate}
+          value={serviceProvider?.rate}
           readOnly
         />
-        <div className="d-flex my-4 " style={{justifyContent:"space-evenly"}}>
-        <ViewCertificate item={serviceProvider}/>
-        <ReviewServiceProvider item={serviceProvider}/>
+        <div
+          className="d-flex my-4 "
+          style={{ justifyContent: "space-evenly" }}
+        >
+          <ViewCertificate item={serviceProvider} />
+          <ReviewServiceProvider item={serviceProvider} />
         </div>
       </div>
     </div>
