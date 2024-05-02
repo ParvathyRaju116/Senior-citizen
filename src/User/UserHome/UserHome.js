@@ -4,11 +4,13 @@ import "./userhome.css";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../Common/Footer/Footer";
 import Blog from "../Blog/Blog";
+import ChatBox from "../Chat/ChatBox";
 
 function UserHome() {
   return (
     <>
       <Header />
+      <ChatBox/>
       <div className="home d-flex justify-content-center align-items-center">
         <Container fluid>
           <Row>

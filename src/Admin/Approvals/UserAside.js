@@ -17,9 +17,10 @@ function UserAside() {
         backgroundColor="#333"
         style={{
           background: "linear-gradient(to bottom, #9C6644, #DDB892)",
-         
+          minHeight:"100vh",
           width: '300px',
-          height: "100vh",
+          height: "100%",
+          
         }}
       >
         <CDBSidebarContent className="sidebar-content ">

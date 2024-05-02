@@ -13,6 +13,7 @@ import Pagination from "@mui/material/Pagination";
 import dayjs from 'dayjs';
 import 'dayjs/locale/en'; // Import the locale you need
 import localizedFormat from 'dayjs/plugin/localizedFormat'; // Import the plugin for localized formats
+import UserAside from './UserAside';
 
 dayjs.locale('en'); // Set default locale
 dayjs.extend(localizedFormat); // Extend dayjs with the localizedFormat plugin
@@ -56,6 +57,8 @@ function ServiceAttendance() {
     : [];
 
   return (
+    <div style={{display:"flex"}}>
+      <UserAside/>
     <Container>
       <h1 className='mt-5 text-center' style={{ color: "#B08968" }} >Service Provider Attendance</h1>
 
@@ -123,6 +126,7 @@ function ServiceAttendance() {
         </div>
       )}
     </Container>
+    </div>
   );
 }
 
