@@ -33,6 +33,7 @@ import AddCategory from "./Admin/Category/AddCategory";
 import AddEmergency from "./Admin/Emergency/AddEmergency";
 import ProfileSP from "./ServiceProvider/Profile/ProfileSP";
 import Emergency from "./User/Emergency/Emergency";
+import SingleView from "./Admin/Approvals/SingleView";
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="/admin-chat" element={<AdminChat/>} />
         <Route path="/add-category" element={<AddCategory/>} />
         <Route path="/add-emergency" element={<AddEmergency/>} />
+        <Route path="/serviceProvider-profile" element={<SingleView/>} />
 
 
 

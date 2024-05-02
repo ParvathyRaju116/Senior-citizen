@@ -13,9 +13,15 @@ import { Button, Container } from "@mui/material";
 import UserAside from "./UserAside";
 import { useEffect, useState } from "react";
 import { getApprovedServiceProvidersApi } from "../../Services/allApi";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import SingleView from "./SingleView";
+
 
 
 function ServiceProviderList() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: "#B08968",
@@ -50,6 +56,12 @@ function ServiceProviderList() {
     setPage(newPage);
   };
 
+  const handleView = (serviceProvider) => {
+    navigate(`/serviceProvider-profile`,{
+      state:serviceProvider
+    })
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <UserAside />
@@ -66,7 +78,7 @@ function ServiceProviderList() {
             <TableHead>
               <TableRow>
                 <StyledTableCell>Sl.No</StyledTableCell>
-             
+
                 <StyledTableCell>Name</StyledTableCell>
                 <StyledTableCell>E-mail</StyledTableCell>
                 <StyledTableCell>Phone</StyledTableCell>
@@ -74,52 +86,60 @@ function ServiceProviderList() {
                 <StyledTableCell>Specialization</StyledTableCell>
                 <StyledTableCell>Qualification</StyledTableCell>
                 <StyledTableCell>Rate</StyledTableCell>
-                <StyledTableCell>Certificate</StyledTableCell>
+                <StyledTableCell>Profile</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-            {approveList
-              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-              .map((i, index) => (
-              <StyledTableRow>
-                <StyledTableCell component="th" scope="row"> {index + 1}</StyledTableCell>
-               
-                <StyledTableCell className="text-align-center">
-                {i?.username}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                {i?.email}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-             {i?.mobile}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                 {i?.service}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                {i?.specialization}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                {i?.qualification}
-                </StyledTableCell>
-                <StyledTableCell className="text-align-center">
-                {i?.rate}
-                </StyledTableCell>
-                <StyledTableCell>
-                  <Button style={{ color: "black" }}>View</Button>
-                </StyledTableCell>
-              </StyledTableRow>
+              {approveList
+                .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                .map((i, index) => (
+                  <StyledTableRow>
+                    <StyledTableCell component="th" scope="row">
+                      {" "}
+                      {index + 1}
+                    </StyledTableCell>
+
+                    <StyledTableCell className="text-align-center">
+                      {i?.username}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.email}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.mobile}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.service}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.specialization}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.qualification}
+                    </StyledTableCell>
+                    <StyledTableCell className="text-align-center">
+                      {i?.rate}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <Button
+                        style={{ color: "black" }}
+                        onClick={() => handleView(i)}
+                      >
+                        View
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
                 ))}
             </TableBody>
           </Table>
         </TableContainer>
         <Stack spacing={2} className="text-center mt-3">
-        <Pagination
-          count={Math.ceil(approveList.length / itemsPerPage)}
-          page={page}
-          onChange={handleChangePage}
-          style={{ color: "#B08968" }}
-        />
+          <Pagination
+            count={Math.ceil(approveList.length / itemsPerPage)}
+            page={page}
+            onChange={handleChangePage}
+            style={{ color: "#B08968" }}
+          />
         </Stack>
       </Container>
     </div>
