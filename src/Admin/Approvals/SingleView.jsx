@@ -2,11 +2,12 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import "./SingleView.css";
 import { useLocation } from "react-router-dom";
+import ViewCertificate from "./ViewCertificate";
+import ReviewServiceProvider from "./ReviewServiceProvider";
 
 const SingleView = () => {
   const location = useLocation();
   const serviceProvider = location.state;
-  console.log(serviceProvider);
   return (
     <div className="align">
       <img
@@ -89,6 +90,10 @@ const SingleView = () => {
           value={serviceProvider.rate}
           readOnly
         />
+        <div className="d-flex my-4 " style={{justifyContent:"space-evenly"}}>
+        <ViewCertificate item={serviceProvider}/>
+        <ReviewServiceProvider item={serviceProvider}/>
+        </div>
       </div>
     </div>
   );
