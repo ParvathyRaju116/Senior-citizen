@@ -37,15 +37,19 @@ const ViewCertificate = ({ item }) => {
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-             <div className="text-center">
-             <img src={item.experience_crt} alt="" style={{width:"400px" ,height:"400px"}} />
-             </div>
+              <div className="text-center">
+                <img
+                  src={item.experience_crt}
+                  alt=""
+                  style={{ width: "400px", height: "400px" }}
+                />
+              </div>
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn color="secondary" onClick={toggleOpen}>
                 Close
               </MDBBtn>
-              <MDBBtn>Understood</MDBBtn>
+              <MDBBtn onClick={toggleOpen}>Understood</MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
