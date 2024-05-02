@@ -36,13 +36,15 @@ const Review = ({ service }) => {
 
   const renderStarRating = (rating) => {
     const stars = [];
-    const filledStarColor = '#FFD700'; // Yellow color for filled stars
-    const emptyStarColor = '#000000'; // Default color for empty stars
+    const filledStarColor = "#FFD700"; // Yellow color for filled stars
+    const emptyStarColor = "#000000"; // Default color for empty stars
     for (let i = 0; i < 5; i++) {
       if (i < rating) {
         stars.push(<StarIcon key={i} style={{ color: filledStarColor }} />);
       } else {
-        stars.push(<StarBorderIcon key={i} style={{ color: emptyStarColor }} />);
+        stars.push(
+          <StarBorderIcon key={i} style={{ color: emptyStarColor }} />
+        );
       }
     }
     return stars;
@@ -56,29 +58,45 @@ const Review = ({ service }) => {
       </div>
       <Divider />
       <List>
-        { reviews.map((review, index) => (
-         <div key={review._id}>
-           <ListItem key={index} className="review-item">
-            <ListItemText
-              primary={<span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{review.username}</span>}
-              secondary={
-                <>
-                  <span style={{fontSize:'20px'}}>{review.comments}</span>
-                  <br />
-                  <span>{renderStarRating(review.ratings)}</span>
-                </>
-              }
-            />
-             
-          </ListItem>
-          <hr />
-         </div>
-         
-        ))}
+        {reviews.length > 0 ? (
+          reviews.map((review, index) => (
+            <div key={review._id}>
+              <ListItem key={index} className="review-item">
+                <ListItemText
+                  primary={
+                    <span
+                      style={{ fontWeight: "bold", textTransform: "uppercase" }}
+                    >
+                      {review.username}
+                    </span>
+                  }
+                  secondary={
+                    <>
+                      <span style={{ fontSize: "20px" }}>
+                        {review.comments}
+                      </span>
+                      <br />
+                      <span>{renderStarRating(review.ratings)}</span>
+                    </>
+                  }
+                />
+              </ListItem>
+              <hr />
+            </div>
+          ))
+        ) : (
+          <div>
+            <h3
+              className="text-center text-danger"
+              style={{ alignItems: "center" }}
+            >
+              No reviews added
+            </h3>
+          </div>
+        )}
       </List>
     </Box>
   );
-
 
   return (
     <div className="review-container">
