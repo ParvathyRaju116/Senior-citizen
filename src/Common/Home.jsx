@@ -93,7 +93,6 @@ function Header() {
             </Col>
             <Col md={6}></Col>
           </Row> */}
-          <button className="btn btn-outline-primary">Get Started</button>
        
       </div>
       <div className="services mb-5">
