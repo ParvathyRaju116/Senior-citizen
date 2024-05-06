@@ -72,12 +72,10 @@ function RejectedBookings() {
                       Location : {item.location}
                     </li>
                     <li className="list-group-item px-3">Rate : {item.rate}</li>
-                    <li className="list-group-item px-3">
-                      Service Provider Status : {item.serviceProviderStatus}
+                    <li className="list-group-item px-3 mb-2">
+                      Service Provider Status : {item.serviceProviderStatus} ❌
                     </li>
-                    <li className="list-group-item px-3">
-                      Admin Status : {item.adminStatus}
-                    </li>
+                   
                   </ul>
                 </div>
               </div>
