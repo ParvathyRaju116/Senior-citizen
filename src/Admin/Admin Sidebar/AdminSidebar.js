@@ -22,7 +22,7 @@ function AdminSidebar() {
       title: "Logged out",
       icon: "success",
     });
-  };
+  }
 
   return (
     <div
