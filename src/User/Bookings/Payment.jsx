@@ -73,7 +73,7 @@ function Payment({ item }) {
       });
       return;
     } else {
-      try {
+      
         const response = await axios.post(
           `${baseurl}/maternalcare/primarybooking/user/payment/view`,
           idd,
@@ -83,17 +83,15 @@ function Payment({ item }) {
             },
           }
         );
-        if (response.status >= 200 && response.status <= 300) {
+       
           console.log(response);
           Swal.fire({
             title: "Payment Complete",
             icon: "success",
           });
           handleClose();
-        }
-      } catch (error) {
-        console.log(error);
-      }
+        
+     
     }
   };
 
