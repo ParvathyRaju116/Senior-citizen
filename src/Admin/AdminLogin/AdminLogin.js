@@ -87,7 +87,7 @@ function AdminLogin() {
           <h1>Login Form</h1>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Admin@123"
             className="input-field"
             onChange={(e) =>
               setAdminLogin({ ...adminLogin, username: e.target.value })
@@ -99,7 +99,7 @@ function AdminLogin() {
           <br />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="123"
             className="input-field"
             onChange={(e) =>
               setAdminLogin({ ...adminLogin, password: e.target.value })
